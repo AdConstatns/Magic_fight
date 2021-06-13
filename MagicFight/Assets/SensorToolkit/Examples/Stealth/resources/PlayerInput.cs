@@ -15,16 +15,18 @@ namespace SensorToolkit.Example {
 
         FieldOfView fieldOfView;
 
+        GunWithClip gun;
+
         private void Awake() {
             cc = GetComponent<PlayerCharacterControls>();
             _playerHolder = GetComponentInChildren<PlayerHolder>();
             _animator = GetComponentInChildren<Animator>();
             fieldOfView = GetComponentInChildren<FieldOfView>();
+            gun = GetComponent<GunWithClip>();
 
         }
 
         void Start() {
-
 
             // Disable and hide touch controls if we use a controller.
             // If "Enable Controls On Touch" is ticked in Touch Manager inspector,
@@ -66,6 +68,7 @@ namespace SensorToolkit.Example {
             // If Joystick was released and power is collected. Then attack.
             if (inputDevice.LeftStick.WasReleased && _playerHolder.IsHeld) {              
                 _animator.SetBool("IsPower", true);
+                gun.Fire();
             } else {
                 _animator.SetBool("IsPower", false);
             }

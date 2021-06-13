@@ -138,7 +138,7 @@ namespace SensorToolkit.Example
                     movement.Move = SteerSensor.GetSteeredDirection(targetDirection);
                     movement.Face = targetDirection;
 
-                    gun.Fire();
+                    //gun.Fire();
                     if (gun.IsEmptyClip)
                     {
                         gun.Reload();
@@ -159,7 +159,7 @@ namespace SensorToolkit.Example
                     movement.Move = SteerSensor.GetSteeredDirection(strafeDirection);
                     movement.Face = targetDirection;
 
-                    gun.Fire();
+                    //gun.Fire();
                     if (gun.IsEmptyClip && !gun.IsReloading)
                     {
                         gun.Reload();
