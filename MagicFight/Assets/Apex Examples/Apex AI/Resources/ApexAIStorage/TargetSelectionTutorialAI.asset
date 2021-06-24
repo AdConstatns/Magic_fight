@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1719459976, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
+  m_Name: TargetSelectionTutorialAI
+  m_EditorClassIdentifier: 
+  description: 
+  version: 16777729
+  aiId: e7d1d3c3-7795-46fd-93f1-d954482ebbce
+  configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":6eb5e399b40d40048a8f20043f1edd36,"_id":e7d1d3c3779546fd93f1d954482ebbce,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":6eb5e399b40d40048a8f20043f1edd36,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.Tutorial.SetBestAttackTarget, Assembly-CSharp","_scorers":[{"@type":"Apex.Examples.AI.Tutorial.IsGrenadierHoldingGrenade,
+    Assembly-CSharp","score":50},{"@type":"Apex.Examples.AI.Tutorial.IsSniperPointingTowardsUs,
+    Assembly-CSharp","score":40,"maxAngle":30},{"@type":"Apex.Examples.AI.Tutorial.AreWeInMachineGunKillZone,
+    Assembly-CSharp","score":30,"killzoneStart":5,"killZoneEnd":15},{"@type":"Apex.Examples.AI.Tutorial.GameObjectProximityScorer,
+    Assembly-CSharp","score":10,"weight":1}]}}}]}'
+  editorConfiguration: '{"offset":{"@x":0,"@y":0},"zoom":1,"SelectorView":{"ViewArea":{"@left":610,"@top":320,"@width":360,"@height":96.666656},"DefaultQualifier":{"ActionView":{}}}}'

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1719459976, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
+  m_Name: PositionScorerAI
+  m_EditorClassIdentifier: 
+  description: 
+  version: 16777729
+  aiId: 94d5d5f1-a4c7-4a6b-8e47-11094e0eb248
+  configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":fc612977baa34ef3969f77bd6866e27e,"_id":94d5d5f1a4c74a6b8e4711094e0eb248,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":fc612977baa34ef3969f77bd6866e27e,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.SetBestMoveTarget, Assembly-CSharp","_scorers":[{"@type":"Apex.Examples.AI.NextToBlockScorer,
+    Assembly-CSharp","isDisabled":true,"samplingDistance":1,"score":50},{"@type":"Apex.Examples.AI.NearestPositionScorer,
+    Assembly-CSharp","distanceMultiplier":2,"score":50}]}}}]}'
+  editorConfiguration: '{"offset":{"@x":-414,"@y":102},"zoom":1,"SelectorView":{"ViewArea":{"@left":156,"@top":362,"@width":480,"@height":96.666656},"DefaultQualifier":{"ActionView":{}}}}'

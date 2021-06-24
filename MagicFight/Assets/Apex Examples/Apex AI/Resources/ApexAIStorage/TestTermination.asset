@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1719459976, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
+  m_Name: TestTermination
+  m_EditorClassIdentifier: 
+  description: 
+  version: 16777729
+  aiId: dd98f788-b428-43d7-adaa-2b408735a174
+  configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":bcc02bd9a09c47a7b3ad42133cf4bb88,"_id":dd98f788b42843d7adaa2b408735a174,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":bcc02bd9a09c47a7b3ad42133cf4bb88,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","score":3,"action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":6f9f5c258a82455fb382f8d3ea11eb58}}},{"@type":"Apex.AI.PrioritySelector,
+    ApexAI","_id":6476a56a0f05421ca4bcd45e2a676c1c,"_qualifiers":[{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.Tutorial.ExampleAction, Assembly-CSharp"},"_scorers":[{"@type":"Apex.Test.IntervalRandomScorer,
+    Assembly-CSharp","min":0,"max":5,"seed":10}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","score":3,"action":{"@type":"Apex.Examples.AI.Tutorial.ExampleAction,
+    Assembly-CSharp"}}},{"@type":"Apex.AI.ScoreSelector, ApexAI","_id":6f9f5c258a82455fb382f8d3ea11eb58,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"Apex.Examples.AI.Tutorial.ExampleAction,
+    Assembly-CSharp"},{"@type":"Apex.Examples.AI.Tutorial.ExampleAction, Assembly-CSharp"},{"@type":"Apex.Examples.AI.Tutorial.ExampleAction,
+    Assembly-CSharp"}],"_connectorAction":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":41b32b3aa3434db6b412fd3037bf8938}}}},{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":41b32b3aa3434db6b412fd3037bf8938,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":6476a56a0f05421ca4bcd45e2a676c1c}}}]}'
+  editorConfiguration: '{"offset":{"@x":0,"@y":0},"zoom":1,"SelectorView":{"ViewArea":{"@left":100,"@top":100,"@width":200,"@height":90},"DefaultQualifier":{"ActionView":{"@connectorType":"Selector"}}},"SelectorView":{"ViewArea":{"@left":860,"@top":100,"@width":200,"@height":150},"QualifierView":{"ActionView":{}},"DefaultQualifier":{"ActionView":{}}},"SelectorView":{"ViewArea":{"@left":360,"@top":100,"@width":200,"@height":90},"DefaultQualifier":{"ActionView":{"@connectorType":"Composite"}}},"SelectorView":{"ViewArea":{"@left":620,"@top":100,"@width":200,"@height":90},"DefaultQualifier":{"ActionView":{"@connectorType":"Selector"}}}}'

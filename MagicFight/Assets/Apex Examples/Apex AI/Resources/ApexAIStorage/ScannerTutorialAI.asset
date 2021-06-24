@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1719459976, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
+  m_Name: ScannerTutorialAI
+  m_EditorClassIdentifier: 
+  description: 
+  version: 16777729
+  aiId: 6f88943e-ae7f-44da-8c72-2d9ef3809120
+  configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":e7b3f9eeab21423dbe86bfa480fc6241,"_id":6f88943eae7f44da8c722d9ef3809120,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":e7b3f9eeab21423dbe86bfa480fc6241,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.Tutorial.SimpleScanForObservations,
+    Assembly-CSharp","scanRange":30,"observationsLayer":1024}}}]}'
+  editorConfiguration: '{"offset":{"@x":488,"@y":262},"zoom":1,"SelectorView":{"ViewArea":{"@left":588,"@top":362,"@width":450,"@height":96.666656},"DefaultQualifier":{"ActionView":{}}}}'

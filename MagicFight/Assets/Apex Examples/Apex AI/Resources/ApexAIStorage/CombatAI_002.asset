@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1719459976, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
+  m_Name: CombatAI_002
+  m_EditorClassIdentifier: 
+  description: 
+  version: 16777729
+  aiId: f04816e1-a3ff-45d8-8307-273d8191c352
+  configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":4bf1703107684658a7872153bdcfd209,"_id":f04816e1a3ff45d88307273d8191c352,"_selectors":[{"@type":"Apex.AI.PrioritySelector,
+    ApexAI","_id":4bf1703107684658a7872153bdcfd209,"_qualifiers":[{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":95eb6bf96835420091757714403bf02a},"_scorers":[{"@type":"Apex.Examples.AI.HasEntityInMemory,
+    Assembly-CSharp","entityType":Any,"customRange":0,"useScanRange":true,"useAttackRange":false,"onlyVisible":false,"skipAllies":true,"not":false,"score":50}]},{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
+    ApexAI","action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":185ed0d622cd44f68679edb4c5dea904},"_scorers":[{"@type":"Apex.Examples.AI.HasMoveTarget,
+    Assembly-CSharp","not":false,"score":20}]},{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":59c3b951b98e4d78b6ba465afbf5e4a0},"_scorers":[{"@type":"Apex.Examples.AI.HasVelocity,
+    Assembly-CSharp","useDesiredVelocity":true,"not":true,"score":10}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI"}},{"@type":"Apex.AI.PrioritySelector, ApexAI","_id":185ed0d622cd44f68679edb4c5dea904,"_qualifiers":[{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"Apex.Examples.AI.SetMoveTargetToNull,
+    Assembly-CSharp"}]},"_scorers":[{"@type":"Apex.Examples.AI.CheckMoveTargetRange,
+    Assembly-CSharp","operatorType":LessThanOrEquals,"range":2,"score":50}]},{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.MoveToMoveTarget, Assembly-CSharp"},"_scorers":[{"@type":"Apex.Examples.AI.HasVelocity,
+    Assembly-CSharp","useDesiredVelocity":true,"not":true,"score":10}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI"}},{"@type":"Apex.AI.PrioritySelector, ApexAI","_id":59c3b951b98e4d78b6ba465afbf5e4a0,"_qualifiers":[{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.StartPatrolling, Assembly-CSharp","setMoveTarget":true,"issueMove":false},"_scorers":[{"@type":"Apex.Examples.AI.HasPatrolPoints,
+    Assembly-CSharp","not":false,"score":30}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.MoveToRandomPosition, Assembly-CSharp","destinationRange":10,"maxSampleDistance":2,"setMoveTarget":true}}},{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":95eb6bf96835420091757714403bf02a,"_qualifiers":[{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.ReloadAction, Assembly-CSharp"},"_scorers":[{"@type":"Apex.Examples.AI.UtilityCurveAmmoScorer,
+    Assembly-CSharp","ammoMultiplier":10,"exponentialFactor":3,"max":100,"scoreMultiplier":100,"reversed":false}]},{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"Apex.Examples.AI.SetBestMoveTarget,
+    Assembly-CSharp","_scorers":[{"@type":"Apex.Examples.AI.LOSToAttackTargetScorer,
+    Assembly-CSharp","not":true,"score":1000},{"@type":"Apex.Examples.AI.ProximityToNearestEnemy,
+    Assembly-CSharp","desiredRange":20,"score":50},{"@type":"Apex.Examples.AI.ProximityToNearestAlly,
+    Assembly-CSharp","desiredRange":4,"score":40},{"@type":"Apex.Examples.AI.NextToBlockScorer,
+    Assembly-CSharp","samplingDistance":1,"score":30},{"@type":"Apex.Examples.AI.NearestPositionScorer,
+    Assembly-CSharp","distanceMultiplier":0.1,"score":10}]},{"@type":"Apex.Examples.AI.MoveToMoveTarget,
+    Assembly-CSharp"}]},"_scorers":[{"@type":"Apex.Examples.AI.UtilityCurveHealthScorer,
+    Assembly-CSharp","linearSlope":1,"max":100,"scoreMultiplier":120,"reversed":false}]},{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"Apex.Examples.AI.SetBestAttackTarget,
+    Assembly-CSharp","_scorers":[{"@type":"Apex.Examples.AI.AttackTargetVisibilityScorer,
+    Assembly-CSharp","not":false,"score":500},{"@type":"Apex.Examples.AI.NearestAttackTargetScorer,
+    Assembly-CSharp","multiplier":0.1,"score":100},{"@type":"Apex.Examples.AI.AttackTargetAvgDamageScorer,
+    Assembly-CSharp","multiplier":1,"reversed":false,"score":40},{"@type":"Apex.Examples.AI.AttackTargetCurrentHealthScorer,
+    Assembly-CSharp","multiplier":1,"reversed":true,"score":40}]},{"@type":"Apex.Examples.AI.SetMoveTargetToNull,
+    Assembly-CSharp"},{"@type":"Apex.Examples.AI.StopMovement, Assembly-CSharp"},{"@type":"Apex.Examples.AI.StopPatrolling,
+    Assembly-CSharp","pausePatrol":true}],"_connectorAction":{"@type":"Apex.AI.SelectorAction,
+    ApexAI","_selectorId":75c6e1440c594848b82e3deea9667404}},"_scorers":[{"@type":"Apex.Examples.AI.HasAttackTarget,
+    Assembly-CSharp","not":true,"score":90}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","score":89,"action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":75c6e1440c594848b82e3deea9667404}}},{"@type":"Apex.AI.PrioritySelector,
+    ApexAI","_id":75c6e1440c594848b82e3deea9667404,"_qualifiers":[{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"Apex.Examples.AI.SetBestAttackTarget,
+    Assembly-CSharp","_scorers":[{"@type":"Apex.Examples.AI.AttackTargetVisibilityScorer,
+    Assembly-CSharp","not":false,"score":500},{"@type":"Apex.Examples.AI.NearestAttackTargetScorer,
+    Assembly-CSharp","multiplier":0.1,"score":100},{"@type":"Apex.Examples.AI.AttackTargetAvgDamageScorer,
+    Assembly-CSharp","multiplier":1,"reversed":false,"score":40},{"@type":"Apex.Examples.AI.AttackTargetCurrentHealthScorer,
+    Assembly-CSharp","multiplier":1,"reversed":true,"score":40}]}]},"_scorers":[{"@type":"Apex.Examples.AI.IsAttackTargetDead,
+    Assembly-CSharp","not":false,"score":50},{"@type":"Apex.Examples.AI.HasAttackTargetOutsideScanRange,
+    Assembly-CSharp","score":50}]},{"@type":"Apex.AI.CompositeScoreQualifier, ApexAI","action":{"@type":"Apex.AI.CompositeAction,
+    ApexAI","_actions":[{"@type":"Apex.Examples.AI.StopPatrolling, Assembly-CSharp","pausePatrol":true},{"@type":"Apex.Examples.AI.StopMovement,
+    Assembly-CSharp"},{"@type":"Apex.Examples.AI.FireAtAttackTarget, Assembly-CSharp","setFacing":true}]},"_scorers":[{"@type":"Apex.Examples.AI.IsAttackTargetVisible,
+    Assembly-CSharp","not":false,"useScanRange":false,"useAttackRange":true,"customRange":10,"score":40}]},{"@type":"Apex.AI.CompositeScoreQualifier,
+    ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"Apex.Examples.AI.SetAttackTargetAsMoveTarget,
+    Assembly-CSharp","overwriteMoveTarget":true},{"@type":"Apex.Examples.AI.MoveToMoveTarget,
+    Assembly-CSharp"}]},"_scorers":[{"@type":"Apex.Examples.AI.HasVelocity, Assembly-CSharp","useDesiredVelocity":true,"not":true,"score":100}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI"}}]}'
+  editorConfiguration: '{"offset":{"@x":-31.43399,"@y":-2.9984322},"zoom":1,"SelectorView":{"ViewArea":{"@left":48.56601,"@top":247.00156,"@width":450,"@height":320},"QualifierView":{"Name":"Has
+    Enemy in Memory within Scan Range","ActionView":{"@connectorType":"Selector"}},"QualifierView":{"Name":"Has
+    Move Target","ActionView":{"@connectorType":"Selector"}},"QualifierView":{"Name":"Has
+    No Desired Velocity","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":1018.567,"@top":447.00079,"@width":449.99969,"@height":250},"QualifierView":{"Name":"Is
+    Move Target Within 2 Meters","ActionView":{"Name":"Set Move Target to Null"}},"QualifierView":{"Name":"Has
+    No Desired Velocity","ActionView":{}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":578.56641,"@top":487.00089,"@width":399.99911,"@height":180},"QualifierView":{"Name":"Has
+    Patrol Points","ActionView":{}},"DefaultQualifier":{"ActionView":{"Name":"(Fallback)
+    Random Move"}}},"SelectorView":{"ViewArea":{"@left":528.56604,"@top":77.001572,"@width":420,"@height":320},"QualifierView":{"Name":"Utility
+    Curve Ammo Scorer","ActionView":{}},"QualifierView":{"Name":"Utility Curve Health
+    Scorer","ActionView":{"Name":"Move To Best Cover"}},"QualifierView":{"Name":"Has
+    Not Attack Target","ActionView":{"@connectorType":"Composite","Name":"Set Best
+    Attack Target"}},"DefaultQualifier":{"ActionView":{"@connectorType":"Selector"}}},"SelectorView":{"ViewArea":{"@left":1008.566,"@top":77.001572,"@width":410,"@height":320},"QualifierView":{"Name":"Is
+    Attack Target Dead or Outside Scan Range","ActionView":{"@connectorType":"Composite","Name":"Set
+    Best Attack Target"}},"QualifierView":{"Name":"Is Attack Target Visible Within
+    Attack Range","ActionView":{"Name":"Stop Patrolling / Movement & Fire at Attack
+    Target"}},"QualifierView":{"Name":"Has No Desired Velocity","ActionView":{"Name":"Move
+    to Attack Target"}},"DefaultQualifier":{}}}'

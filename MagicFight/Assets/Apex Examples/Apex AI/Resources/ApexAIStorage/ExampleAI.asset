@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1719459976, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
+  m_Name: ExampleAI
+  m_EditorClassIdentifier: 
+  description: 
+  version: 16777729
+  aiId: 8d53e04b-f6c0-4067-9848-9dd89f28a49a
+  configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":1ea6cb8afaf14c62acba4899ba872592,"_id":8d53e04bf6c0406798489dd89f28a49a,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":1ea6cb8afaf14c62acba4899ba872592,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"Apex.Examples.AI.Tutorial.CustomUtilityAIAction, Assembly-CSharp"}}}]}'
+  editorConfiguration: '{"offset":{"@x":234,"@y":132},"zoom":1,"SelectorView":{"ViewArea":{"@left":334,"@top":232,"@width":360,"@height":110},"DefaultQualifier":{"ActionView":{}}}}'

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/MagicFight/Scenes/MagicFight.unity
+    guid: 3ee6d8c4e3049bf43a62e4d42987c270
   m_configObjects: {}
