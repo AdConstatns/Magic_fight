@@ -5,7 +5,7 @@ namespace Apex.Examples.Input
     using Apex.Services;
     using UnityEngine;
 
-    public partial class InputReceiverPC
+    public partial class InputReceiverPC 
     {
         partial void Steer()
         {

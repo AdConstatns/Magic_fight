@@ -16,14 +16,14 @@ TagManager:
   - Blocks
   - Terrain
   - Units
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Cover
+  - LightMask
+  - Invisible
+  - Powerup
+  - Player
+  - Enemies
+  - Damageable
   - 
   - 
   - 

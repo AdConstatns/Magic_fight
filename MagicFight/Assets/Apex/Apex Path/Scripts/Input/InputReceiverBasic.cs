@@ -46,7 +46,7 @@ namespace Apex.Input
         {
             Movement();
 
-            Selection();
+            //Selection();
         }
 
         private void Movement()
