@@ -165,15 +165,25 @@
             Debug.DrawRay(transform.position, forward, Color.green);
             //bool hit = Physics.Raycast(transform.position, forward, out shotHit, range);
             // bool hit1 = Physics.Raycast(_shootRay, out shotHit, range, Layers.players.value);
-            LayerMask mask = LayerMask.GetMask("Cover");
+
+            // To Detect Cover layers
+            LayerMask Cover = LayerMask.GetMask("Cover");
+            // To Detect Player layers
+            LayerMask playerLayer = LayerMask.GetMask("Player");
 
             bool AIPlayer = false;
             bool NonAIPlayer = false;
 
-            if (Physics.Raycast(_shootRay, out shotHit, range)) {  //, Layers.players.value
+            if (Physics.Raycast(_shootRay, out shotHit, range, Cover)) {
+                return;
+            }
+
+            if (Physics.Raycast(_shootRay, out shotHit, range, playerLayer)) {  //, Layers.players.value
                 // Checking for AI Players. Do nothing
                 AIPlayer = true;
-            } else if (Physics.Raycast(_shootRay, out shotHit, range)) {  //, mask
+            }
+
+             if (Physics.Raycast(_shootRay, out shotHit, range)) {  //, mask
                 // Checking for Players. Do Nothing
                 NonAIPlayer = true;
             } else {
@@ -231,7 +241,7 @@
 
             this.currentAmmo--;
         }
-
+        
         private void OnDrawGizmos() {
             //Gizmos.DrawLine(transform.position, target);
         }
