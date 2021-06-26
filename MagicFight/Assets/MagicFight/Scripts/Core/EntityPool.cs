@@ -47,7 +47,7 @@
         public IEntity Get(Vector3 position, Quaternion rotation)
         {
             IEntity entity;
-            if (_pool.Count > 0)
+            if (_pool.Count > 0) 
             {
                 entity = _pool.Dequeue();
             }

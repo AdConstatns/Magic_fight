@@ -7,8 +7,8 @@
         public Transform target;            // The position that that camera will be following.
         public float smoothing = 5f;        // The speed with which the camera will be following.
 
-        //private Vector3 _offset = new Vector3(-0.2f, 15f, -26.7f);           // The initial offset from the target.
-        private Vector3 _offset = new Vector3(0.0f, 0.0f, 0.0f);
+        private Vector3 _offset = new Vector3(-0.2f, 15f, -26.7f);           // The initial offset from the target.
+        //private Vector3 _offset = new Vector3(0.0f, 0.0f, 0.0f);
 
         private void Start() {
 #if UNITY_EDITOR

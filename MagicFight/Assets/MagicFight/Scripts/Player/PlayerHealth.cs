@@ -19,8 +19,10 @@
         private Animator _anim;                                 
         private AudioSource _playerAudio;                        
         private Player _player;                                 
-                                                                                                        
+        
+        [SerializeField]
         private int _currentBandAids;
+        [SerializeField]
         private int _currentHealth;
 
         public int currentHealth

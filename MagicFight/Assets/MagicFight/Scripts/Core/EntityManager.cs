@@ -69,7 +69,7 @@
         public IEntity Spawn(EntityType entityType, Vector3 position, Quaternion rotation)
         {
             //Get the entity from its pool
-            EntityPool pool = _pools[(int)entityType];  //var pool = _pools[(int)entityType];
+            var pool = _pools[(int)entityType];  //var pool = _pools[(int)entityType];
             var entity = pool.Get(position, rotation);
             entity.type = entityType;
 
@@ -103,7 +103,8 @@
                 _players.Remove(entity);
                 if (_players.Count == 0)
                 {
-                    GameOverManager.GameOver();
+                    // Commented by Tholkappiyan
+                   // GameOverManager.GameOver();
                 }
                 else
                 {
@@ -171,8 +172,8 @@
 
         private void SetFocusedPlayer(IEntity player)
         {
-            Player.focusedPlayer = (Player)player;
-            Camera.main.GetComponent<CameraFollow>().SetTarget(player.gameObject.transform);
+            //Player.focusedPlayer = (Player)player;
+            //Camera.main.GetComponent<CameraFollow>().SetTarget(player.gameObject.transform);
         }
     }
 }

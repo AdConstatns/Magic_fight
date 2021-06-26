@@ -57,7 +57,7 @@
 
         private void Start()
         {
-            shooting = true;
+           
 #if UNITY_EDITOR
             Debug.Log($"<color=yellow><b>Initializing Ammo: { startingAmmo }</b></color>");
 #endif
@@ -165,11 +165,24 @@
             Debug.DrawRay(transform.position, forward, Color.green);
             //bool hit = Physics.Raycast(transform.position, forward, out shotHit, range);
             // bool hit1 = Physics.Raycast(_shootRay, out shotHit, range, Layers.players.value);
-            //LayerMask mask = LayerMask.GetMask("Player");          
-            
-            if (!Physics.Raycast(_shootRay, out shotHit, range, Layers.players.value)) {
+            LayerMask mask = LayerMask.GetMask("Cover");
+
+            bool AIPlayer = false;
+            bool NonAIPlayer = false;
+
+            if (Physics.Raycast(_shootRay, out shotHit, range)) {  //, Layers.players.value
+                // Checking for AI Players. Do nothing
+                AIPlayer = true;
+            } else if (Physics.Raycast(_shootRay, out shotHit, range)) {  //, mask
+                // Checking for Players. Do Nothing
+                NonAIPlayer = true;
+            } else {
+                // other than AI Players, Players dont shoot.
+                // Empty space dont shoot.
                 return;
             }
+
+          
 
             //While we do have a specific attack target we still just hit anything that gets in the way of the bullet, bullet aren't picky
             //We don't shoot at cover though
@@ -177,10 +190,20 @@
 
             //target = go.transform.position;
 
-            var player = EntityManager.instance.GetLivingEntityByGameObject(go);
-            if (player == null) {
+            LivingEntity player = null;
+            if (AIPlayer) {
+                player = EntityManager.instance.GetLivingEntityByGameObject(go);
+            } else if (NonAIPlayer) {
+                player = go.gameObject.GetComponent<Player>();
+            } else {
                 return;
             }
+
+            // Commented by tholkappiyan
+            // implemented above.
+            //if (player is null) {
+            //    return;
+            //}
 
             // Reset the timer.
             _timer = 0f;
@@ -202,7 +225,8 @@
             _gunLine.SetPosition(1, go.transform.position);
 
             //Bring the hurt
-            player.TakeDamage(damagePerShot, shotHit.point);
+            if(player != null)
+                player.TakeDamage(damagePerShot, shotHit.point);
 
 
             this.currentAmmo--;

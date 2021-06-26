@@ -5,16 +5,16 @@
     /// </summary>
     public enum EntityType
     {
-        Player,
-
-        Hellephant,
-
-        ZomTeddy,
-
-        ZomBunny,
+        Player,      
 
         Health,
 
-        Bomb
+        Bomb  
     }
+
+    //Hellephant,
+
+    //ZomTeddy,
+
+    //ZomBunny,
 }

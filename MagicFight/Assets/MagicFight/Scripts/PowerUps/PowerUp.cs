@@ -7,7 +7,7 @@
     /// Represents a power-up of some sort.
     /// </summary>
     /// <seealso cref="AmazingTeam.MagicFight.Entity" />
-    public abstract class PowerUp : Entity
+    public abstract class PowerUp : Entity 
     {
         public float levitateSpeed = 4f;
         private bool _levitate;
@@ -29,29 +29,40 @@
 
         private void OnTriggerEnter(Collider other)
         {
-            ////If whoever enters is player unit and this has not already been picked up, do the pick up.
-            //if (other.tag != Tags.Player || _levitate)
-            //{
+            // Commented by Tholkappiyan -----------------------------    
+            //If whoever enters is player unit and this has not already been picked up, do the pick up.
+            //if (other.tag != Tags.Player || _levitate) {
             //    return;
-            //}
+            //}           
 
             //var player = EntityManager.instance.GetLivingEntityByGameObject(other.gameObject) as Player;
-            //if (player == null)
-            //{
+            //if (player == null) {
             //    return;
             //}
-
-            Player player = null;
-            if (other.tag == Tags.Player) {
-                player = other.gameObject.GetComponent<Player>();
-                OnPickup(player);
-            }
-                
 
             ////Once picked up, float into the air and disappear after a second.
             //_levitate = true;
 
             //LoadBalancer.defaultBalancer.ExecuteOnce(Recycle, 1f);
+
+            // ----------------------------------------------------------------
+
+            if (other.CompareTag(Tags.Player) || _levitate) {
+
+                var player = EntityManager.instance.GetLivingEntityByGameObject(other.gameObject) as Player;
+                if (player is null) {
+                    // Non AI Player pickup the Powerup
+                    player = other.gameObject.GetComponent<Player>();
+                    OnPickup(player);
+                } else {
+                    // AI Player Pickup the Powerup.                   
+                }
+
+                //Once picked up, float into the air and disappear after a second.
+                _levitate = true;
+                LoadBalancer.defaultBalancer.ExecuteOnce(Recycle, 1f);
+
+            }          
         }
 
         private void Recycle()

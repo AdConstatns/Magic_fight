@@ -62,6 +62,8 @@
             // Create a boolean that is true if either of the input axes is non-zero.
             bool walking = false;
 
+
+            // modified by tholkappiyan
             if (_unit.velocity.x > 0f || _unit.velocity.z > 0)  //_unit.velocity.sqrMagnitude
             {
                 walking = true;

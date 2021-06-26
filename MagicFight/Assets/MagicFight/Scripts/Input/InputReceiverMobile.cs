@@ -29,6 +29,8 @@ namespace AmazingTeam.MagicFight {
 
         public bool IsPressed { get { return _IsPressed; } set { _IsPressed = value; } }
 
+        public bool IsReleased { get { return _IsReleased; } set { _IsReleased = value; } }
+
         private void Awake() {
 
             // Disable and hide touch controls if we use a controller.
