@@ -1,8 +1,11 @@
+/// <summary>
+/// Author: Tholkappiyan
+/// </summary>
 namespace AmazingTeam.MagicFight
 {
     using UnityEngine;
 
-    public class LookAtTarget : MonoBehaviour
+    public class FovDamage : MonoBehaviour
     {
         //Upon collision with another GameObject, 
         private void OnTriggerEnter(Collider other) {
@@ -14,7 +17,7 @@ namespace AmazingTeam.MagicFight
                     player.TakeDamage(playershooting.damagePerShot);
                 playershooting.currentAmmo--;
             }
-                
+
         }
     }
 }

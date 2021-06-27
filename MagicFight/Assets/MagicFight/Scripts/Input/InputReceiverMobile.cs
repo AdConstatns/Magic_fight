@@ -1,15 +1,11 @@
-/* Copyright © 2014 Apex Software. All rights reserved. */
+/* Copyright © 2021 AmazingTeam Software. All rights reserved. */
 namespace AmazingTeam.MagicFight {
 
-    using Apex;
-    using Apex.Units;
-    using Apex.Examples.Extensibility;
-    using Apex.Services;
     using Apex.Input;
     using UnityEngine;
     using InControl;
 
-    [AddComponentMenu("MagicFight/Input/Input Receiver Mobile", 1012)]
+    [AddComponentMenu("MagicFight/Input/Input Receiver Mobile", 0)]
     [InputReceiver]
     public partial class InputReceiverMobile : MonoBehaviour {
 
@@ -27,9 +23,9 @@ namespace AmazingTeam.MagicFight {
         private bool _IsPressed;
         private bool _IsReleased;
 
-        public bool IsPressed { get { return _IsPressed; } set { _IsPressed = value; } }
+        public bool IsPressed { get { return _IsPressed; } private set { _IsPressed = value; } }
 
-        public bool IsReleased { get { return _IsReleased; } set { _IsReleased = value; } }
+        public bool IsReleased { get { return _IsReleased; } private set { _IsReleased = value; } }
 
         private void Awake() {
 
@@ -56,11 +52,7 @@ namespace AmazingTeam.MagicFight {
             // Left Stick Pressed
             _IsPressed = inputDevice.LeftStick.IsPressed;
             // Left Stick Released
-            _IsReleased = inputDevice.LeftStick.WasReleased;
-           
-
-            //Vector3 direction = new Vector3(inputDevice.Direction.X, 0, inputDevice.Direction.Y);
-            //Steer(direction);
+            _IsReleased = inputDevice.LeftStick.WasReleased;      
         }     
 
         partial void Steer(Vector3 direction) {            

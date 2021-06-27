@@ -21,6 +21,11 @@
         private PlayerBombs _playerBombs;
         private UtilityAIComponent _playerAI;
         private IUnitFacade _navUnit;
+        private FieldOfView _fieldOfView;
+        [SerializeField]
+        private readonly float FOVIncreasePercentage = 1;
+
+        public FOVCollider _fOVCollider;
 
         public static Player focusedPlayer {
             get;
@@ -70,9 +75,8 @@
             _playerAI = this.GetComponent<UtilityAIComponent>();
             _playerHealth = this.GetComponent<PlayerHealth>();
             _playerBombs = this.GetComponentInChildren<PlayerBombs>();
-
-
-
+            _fieldOfView = this.GetComponentInChildren<FieldOfView>();
+            //_fOVCollider = this.GetComponentInChildren<FOVCollider>();
         }
 
         private void OnEnable() {
@@ -116,6 +120,21 @@
 
         public void AddBandAid(int amount) {
             _playerHealth.AddBandAid(amount);
+            // On Adding the BandAid Field of View Increase by 1 percent.
+            IncreaseFOVDistance();
+            // On Adding the BandAid FOVSensor Increase by 1 percent.
+            Invoke("IncreaseFOVSensor", 1f);
+            
+        }
+
+        public void IncreaseFOVDistance() {
+            // Field of view will become larger based on powerup Collected.
+            _fieldOfView.viewRadius = _fieldOfView.viewRadius + ((_fieldOfView.viewRadius / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
+        }
+
+        public void IncreaseFOVSensor() {
+           if(_fOVCollider != null && _fOVCollider.enabled)
+             _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
         }
 
         public void OnDeath() {

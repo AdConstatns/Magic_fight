@@ -29,7 +29,7 @@
 
         private void OnTriggerEnter(Collider other)
         {
-            // Commented by Tholkappiyan -----------------------------    
+            // Commented by Tholkappiyan -----------------------------  !=  string comparing is not working   
             //If whoever enters is player unit and this has not already been picked up, do the pick up.
             //if (other.tag != Tags.Player || _levitate) {
             //    return;
@@ -49,14 +49,13 @@
 
             if (other.CompareTag(Tags.Player) || _levitate) {
 
+                // AI Player Pickup the Powerup. 
                 var player = EntityManager.instance.GetLivingEntityByGameObject(other.gameObject) as Player;
                 if (player is null) {
                     // Non AI Player pickup the Powerup
                     player = other.gameObject.GetComponent<Player>();
                     OnPickup(player);
-                } else {
-                    // AI Player Pickup the Powerup.                   
-                }
+                } 
 
                 //Once picked up, float into the air and disappear after a second.
                 _levitate = true;

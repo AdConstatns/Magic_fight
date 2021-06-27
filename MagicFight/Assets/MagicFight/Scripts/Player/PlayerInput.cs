@@ -11,6 +11,8 @@ namespace AmazingTeam.MagicFight{
         private PlayerShooting _playerShooting;
         private FieldOfView _fieldOfView;
         GameObject FOVCollider ;
+      
+       
 
         bool OnceEnableMeshCollider = true;
 
@@ -36,7 +38,7 @@ namespace AmazingTeam.MagicFight{
                 _playerAIMovement.Move( this.transform.position + LeftStick.StickDirection);
 
             if (LeftStick.IsReleased && _playerHealth.currentBandAids > 0) {
-                _playerShooting.shooting = true;
+                //_playerShooting.shooting = true;
                 _fieldOfView.enabled =true;
                 Invoke("FOVColliderEnable", 0.5f);
             }          
@@ -44,6 +46,9 @@ namespace AmazingTeam.MagicFight{
 
         void FOVColliderEnable() {
             FOVCollider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+        void UpdateFieldOfView() {
         }
 
 
