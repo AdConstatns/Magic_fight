@@ -31,9 +31,9 @@ GameObject:
   - component: {fileID: 4397685362853090917}
   - component: {fileID: 7144783620877994633}
   - component: {fileID: 3356197536343020561}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

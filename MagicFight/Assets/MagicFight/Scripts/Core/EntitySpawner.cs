@@ -31,9 +31,7 @@
         [SerializeField]
         private float _lastSpawnTime;
         [SerializeField]
-        private float _CurrentTime;
-
-        private bool spawnFirst = true;
+        private float _CurrentTime;     
 
         private void Start()
         {
@@ -61,17 +59,12 @@
           
             _lastSpawnTime = Time.time;
 
-            try {
-                if (spawnFirst) {
-                    spawnFirst = false;
-                    EntityManager.instance.Spawn(entityType, transform.position, transform.rotation);
-                    return;
-                }
-
+            try {                
                 // If Empty Span the object.
-                if (locationIsObstructed(transform.position) && !spawnFirst)
+                if (locationIsObstructed(transform.position))
                     EntityManager.instance.Spawn(entityType, transform.position, transform.rotation);
             } catch {
+
 #if UNITY_EDITOR
                 Debug.Log($"<color=red><b>Spawnning Error at position: { transform.position } </b></color>");
 #endif
@@ -79,24 +72,34 @@
 
 
 
-#if UNITY_EDITOR
-            Debug.Log($"<color=green><b>Spawnning: { entityType +" "+ Time.time } </b></color>");
-#endif
+//#if UNITY_EDITOR
+//            Debug.Log($"<color=green><b>Spawnning: { entityType +" "+ Time.time } </b></color>");
+//#endif
         }
 
         // Check whether any box collider/ Health is Present at that location
         bool locationIsObstructed(Vector3 location) {
-            // return Physics.CheckSphere(location, 2.0f);
+            
             LayerMask mask = LayerMask.GetMask("Powerup");
-            Collider[] colliders = Physics.OverlapSphere(location, 2.0f, mask);
-           // Physics.CheckSphere(location,5.0f, mask)
+          
 
-            if (colliders.Length > 0) {
-                foreach (var col in colliders) {
-                    return !col.gameObject.CompareTag("Powerup");
-                }
-            }     
-            return true;
+#if UNITY_EDITOR
+            Debug.Log($"<color=green><b>Spawnning: {entityType +" Location: "+ !Physics.CheckSphere(location, 1.0f, mask) } </b></color>");
+#endif
+
+            return !Physics.CheckSphere(location, 5.0f, mask);
+
+            //  Collider[] colliders = Physics.OverlapSphere(location, 1.0f);
+            //if (colliders.Length > 0) {
+            //    foreach (var col in colliders) {
+            //        return !col.gameObject.CompareTag("Powerup");
+            //    }
+            //}
+            //return true;
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.DrawWireSphere(this.transform.position, 1.0f);
         }
     }
 }
