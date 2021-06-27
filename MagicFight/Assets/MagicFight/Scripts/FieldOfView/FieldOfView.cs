@@ -23,6 +23,16 @@ namespace AmazingTeam.MagicFight {
         public MeshFilter viewMeshFilter;
         Mesh viewMesh;
 
+        GameObject FOVCollider;
+
+        private void Awake() {
+            FOVCollider = GameObject.FindGameObjectWithTag("Sight");
+        }
+
+        private void OnEnable() {
+            FOVCollider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+
         void Start() {
             viewMesh = new Mesh();
             viewMesh.name = "View Mesh";

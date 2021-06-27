@@ -902,7 +902,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2564,7 +2564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3869210648195041764, guid: f4b126aad2a915e4791c53a19b299247, type: 3}
       propertyPath: Resolution
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3869210648195041764, guid: f4b126aad2a915e4791c53a19b299247, type: 3}
       propertyPath: ElevationAngle

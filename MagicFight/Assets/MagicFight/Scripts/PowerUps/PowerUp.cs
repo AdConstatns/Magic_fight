@@ -54,7 +54,8 @@
                 if (player is null) {
                     // Non AI Player pickup the Powerup
                     player = other.gameObject.GetComponent<Player>();
-                    OnPickup(player);
+                    if(player != null)
+                        OnPickup(player);
                 } 
 
                 //Once picked up, float into the air and disappear after a second.

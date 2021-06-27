@@ -123,18 +123,26 @@
             // On Adding the BandAid Field of View Increase by 1 percent.
             IncreaseFOVDistance();
             // On Adding the BandAid FOVSensor Increase by 1 percent.
-            Invoke("IncreaseFOVSensor", 1f);
+            Invoke("IncreaseFOVSensor", 0.1f);
             
         }
 
         public void IncreaseFOVDistance() {
+
+             if(!_fieldOfView.enabled)
+                _fieldOfView.enabled = true;
             // Field of view will become larger based on powerup Collected.
             _fieldOfView.viewRadius = _fieldOfView.viewRadius + ((_fieldOfView.viewRadius / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
+           
         }
 
         public void IncreaseFOVSensor() {
-           if(_fOVCollider != null && _fOVCollider.enabled)
-             _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
+           if(_fOVCollider != null && _fOVCollider.enabled) {
+                _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
+                _fOVCollider.CreateCollider();
+            }
+            
+
         }
 
         public void OnDeath() {

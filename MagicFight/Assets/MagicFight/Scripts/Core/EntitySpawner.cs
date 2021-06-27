@@ -58,19 +58,26 @@
 
         private void Spawn()
         {
+          
             _lastSpawnTime = Time.time;
 
-            if (spawnFirst) {
-                spawnFirst = false;
-               
+            try {
+                if (spawnFirst) {
+                    spawnFirst = false;
+                    EntityManager.instance.Spawn(entityType, transform.position, transform.rotation);
+                    return;
+                }
 
-                EntityManager.instance.Spawn(entityType, transform.position, transform.rotation);
+                // If Empty Span the object.
+                if (locationIsObstructed(transform.position) && !spawnFirst)
+                    EntityManager.instance.Spawn(entityType, transform.position, transform.rotation);
+            } catch {
+#if UNITY_EDITOR
+                Debug.Log($"<color=red><b>Spawnning Error at position: { transform.position } </b></color>");
+#endif
             }
-               
 
-            // If Empty Span the object.
-            if (locationIsObstructed(transform.position) && !spawnFirst)
-                EntityManager.instance.Spawn(entityType, transform.position, transform.rotation);          
+
 
 #if UNITY_EDITOR
             Debug.Log($"<color=green><b>Spawnning: { entityType +" "+ Time.time } </b></color>");
@@ -82,7 +89,7 @@
             // return Physics.CheckSphere(location, 2.0f);
             LayerMask mask = LayerMask.GetMask("Powerup");
             Collider[] colliders = Physics.OverlapSphere(location, 2.0f, mask);
-
+           // Physics.CheckSphere(location,5.0f, mask)
 
             if (colliders.Length > 0) {
                 foreach (var col in colliders) {
