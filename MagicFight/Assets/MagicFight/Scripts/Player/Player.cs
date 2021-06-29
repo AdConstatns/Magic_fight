@@ -118,6 +118,11 @@
             _playerHealth.UseBandAid();
         }
 
+        // Adding the Fire Powerup
+        public void AddFire(int amount) {
+
+        }
+
         public void AddBandAid(int amount) {
             _playerHealth.AddBandAid(amount);
             // On Adding the BandAid Field of View Increase by 1 percent.

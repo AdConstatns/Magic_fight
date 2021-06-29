@@ -164,7 +164,7 @@
             Vector3 forward = transform.TransformDirection(Vector3.forward) * range;
             Debug.DrawRay(transform.position, forward, Color.green);
             //bool hit = Physics.Raycast(transform.position, forward, out shotHit, range);
-            // bool hit1 = Physics.Raycast(_shootRay, out shotHit, range, Layers.players.value);
+            bool hit1 = Physics.Raycast(_shootRay, out shotHit, range, Layers.players.value);
 
             // To Detect Cover layers
             LayerMask Cover = LayerMask.GetMask("Cover");
@@ -174,9 +174,11 @@
             bool AIPlayer = false;
             bool NonAIPlayer = false;
 
+            // Ray hits Obstacles, then return.
             if (Physics.Raycast(_shootRay, out shotHit, range, Cover)) {
                 return;
             }
+
 
             if (Physics.Raycast(_shootRay, out shotHit, range, playerLayer)) {  //, Layers.players.value
                 // Checking for AI Players. Do nothing

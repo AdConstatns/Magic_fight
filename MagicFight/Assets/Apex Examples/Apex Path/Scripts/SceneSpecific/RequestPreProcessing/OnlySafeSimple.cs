@@ -1,9 +1,9 @@
 ﻿#pragma warning disable 1591
 namespace Apex.Examples.SceneSpecific.RequestPreProcessing
-{
+{   
     using Apex.DataStructures;
     using Apex.PathFinding;
-    using Apex.WorldGeometry;
+    using Apex.WorldGeometry;   
     using UnityEngine;
 
     /// <summary>

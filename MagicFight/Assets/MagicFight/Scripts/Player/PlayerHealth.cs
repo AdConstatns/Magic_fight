@@ -67,7 +67,7 @@
             Zs.transform.position += Vector3.up;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             
 #if UNITY_EDITOR
@@ -75,7 +75,10 @@
 #endif
             // Set the initial health of the player.
             this.currentHealth = startingHealth;
-            this.currentBandAids = startingBandAids;
+
+            // Commented by Tholkappiyan
+            // Default no BandAids are added.
+            //this.currentBandAids = startingBandAids;
         }
 
         public void TakeDamage(int amount, Vector3 hitPoint)

@@ -84,7 +84,7 @@
           
 
 #if UNITY_EDITOR
-            Debug.Log($"<color=green><b>Spawnning: {entityType +" Location: "+ !Physics.CheckSphere(location, 1.0f, mask) } </b></color>");
+            Debug.Log($"<color=green><b>Spawnning: {entityType +" at Location: "+ location +" Status: "+ !Physics.CheckSphere(location, 1.0f, mask) } </b></color>");
 #endif
 
             return !Physics.CheckSphere(location, 5.0f, mask);

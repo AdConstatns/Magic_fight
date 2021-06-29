@@ -41,7 +41,7 @@ namespace Apex.Examples.Input
         {
             Movement();
 
-            Selection();
+           // Selection();
 
             Misc();
 
@@ -60,69 +60,71 @@ namespace Apex.Examples.Input
             }
         }
 
-        private void Selection()
-        {
-            if (_selectRectangle == null)
-            {
-                return;
-            }
+        // Commented by tholkappiyan
+        // No need of Selecting feature.
+        //private void Selection()
+        //{
+        //    if (_selectRectangle == null)
+        //    {
+        //        return;
+        //    }
 
-            var selectAppend = Input.GetButton(InputButton.SelectAppendModifier);
+        //    var selectAppend = Input.GetButton(InputButton.SelectAppendModifier);
 
-            if (Input.GetButtonDown(InputButton.Select))
-            {
-                _lastSelectDownPos = Input.mousePosition;
-                _selectRectangle.StartSelect();
-                return;
-            }
+        //    if (Input.GetButtonDown(InputButton.Select))
+        //    {
+        //        _lastSelectDownPos = Input.mousePosition;
+        //        _selectRectangle.StartSelect();
+        //        return;
+        //    }
 
-            if (Input.GetButton(InputButton.Select))
-            {
-                if (_selectRectangle.HasSelection(_lastSelectDownPos, Input.mousePosition))
-                {
-                    _inputController.SelectUnitRangeTentative(_lastSelectDownPos, Input.mousePosition, selectAppend);
-                }
+        //    if (Input.GetButton(InputButton.Select))
+        //    {
+        //        if (_selectRectangle.HasSelection(_lastSelectDownPos, Input.mousePosition))
+        //        {
+        //            _inputController.SelectUnitRangeTentative(_lastSelectDownPos, Input.mousePosition, selectAppend);
+        //        }
 
-                return;
-            }
+        //        return;
+        //    }
 
-            if (Input.GetButtonUp(InputButton.Select))
-            {
-                if (_selectRectangle.HasSelection(_lastSelectDownPos, Input.mousePosition))
-                {
-                    _inputController.SelectUnitRange(_lastSelectDownPos, Input.mousePosition, selectAppend);
-                }
-                else
-                {
-                    _inputController.SelectUnit(_lastSelectDownPos, selectAppend);
-                }
+        //    if (Input.GetButtonUp(InputButton.Select))
+        //    {
+        //        if (_selectRectangle.HasSelection(_lastSelectDownPos, Input.mousePosition))
+        //        {
+        //            _inputController.SelectUnitRange(_lastSelectDownPos, Input.mousePosition, selectAppend);
+        //        }
+        //        else
+        //        {
+        //            _inputController.SelectUnit(_lastSelectDownPos, selectAppend);
+        //        }
 
-                _selectRectangle.EndSelect();
-                return;
-            }
+        //        _selectRectangle.EndSelect();
+        //        return;
+        //    }
 
-            var selectGroup = Input.GetButton(InputButton.SelectGroupModifier);
-            var assignGroup = Input.GetButton(InputButton.AssignGroupModifier);
+        //    var selectGroup = Input.GetButton(InputButton.SelectGroupModifier);
+        //    var assignGroup = Input.GetButton(InputButton.AssignGroupModifier);
 
-            for (int index = 0; index < 5; index++)
-            {
-                if (Input.GetButtonUp(InputButton.UnitSelect(index)))
-                {
-                    if (selectGroup)
-                    {
-                        _inputController.SelectGroup(index);
-                    }
-                    else if (assignGroup)
-                    {
-                        _inputController.AssignGroup(index);
-                    }
-                    else
-                    {
-                        _inputController.SelectUnit(index, false);
-                    }
-                }
-            }
-        }
+        //    for (int index = 0; index < 5; index++)
+        //    {
+        //        if (Input.GetButtonUp(InputButton.UnitSelect(index)))
+        //        {
+        //            if (selectGroup)
+        //            {
+        //                _inputController.SelectGroup(index);
+        //            }
+        //            else if (assignGroup)
+        //            {
+        //                _inputController.AssignGroup(index);
+        //            }
+        //            else
+        //            {
+        //                _inputController.SelectUnit(index, false);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void Misc()
         {

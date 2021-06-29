@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanRange: 0
+  _fOVCollider: {fileID: 0}
 --- !u!114 &6347458916553468422
 MonoBehaviour:
   m_ObjectHideFlags: 0

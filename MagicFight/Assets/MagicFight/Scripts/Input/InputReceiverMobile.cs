@@ -18,14 +18,14 @@ namespace AmazingTeam.MagicFight {
 
         bool powerCollected;
 
-        public Vector3 StickDirection { get; set; }
+        public Vector3 LeftStickDirection { get; set; }
 
         private bool _IsPressed;
-        private bool _IsReleased;
+        private bool _WasReleased;
 
         public bool IsPressed { get { return _IsPressed; } private set { _IsPressed = value; } }
 
-        public bool IsReleased { get { return _IsReleased; } private set { _IsReleased = value; } }
+        public bool WasReleased { get { return _WasReleased; } private set { _WasReleased = value; } }
 
         private void Awake() {
 
@@ -47,12 +47,12 @@ namespace AmazingTeam.MagicFight {
             if (inputDevice is null)
                 return;         
 
-            StickDirection = new Vector3(inputDevice.Direction.X, 0, inputDevice.Direction.Y);
+            LeftStickDirection = new Vector3(inputDevice.Direction.X, 0, inputDevice.Direction.Y);
 
             // Left Stick Pressed
             _IsPressed = inputDevice.LeftStick.IsPressed;
             // Left Stick Released
-            _IsReleased = inputDevice.LeftStick.WasReleased;      
+            _WasReleased = inputDevice.LeftStick.WasReleased;      
         }     
 
         partial void Steer(Vector3 direction) {            
