@@ -13,7 +13,7 @@ namespace Apex.Examples.AI
         {
             // Stops all nav mesh agent movement
             var c = (AIContext)context;
-#if UNITY_2017
+#if UNITY_2017 || UNITY_2020
             c.entity.navMeshAgent.isStopped = true;
 #else
             c.entity.navMeshAgent.Stop();

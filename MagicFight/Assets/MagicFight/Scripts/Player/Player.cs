@@ -6,6 +6,7 @@
     using Apex.AI.Components;
     using Apex.Units;
     using UnityEngine;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Component representing the player. Instantiates the context and holds player specific variables
@@ -17,7 +18,10 @@
         private SurvivalContext _context;
         private PlayerShooting _playerShooting;
         private PlayerHealth _playerHealth;
+        // AI Player Movement.
         private PlayerAIMovement _playerAIMovement;
+        // Non AI Player Movement.
+        private PlayerMovement _playerMovement;
         private PlayerBombs _playerBombs;
         private UtilityAIComponent _playerAI;
         private IUnitFacade _navUnit;
@@ -26,6 +30,11 @@
         private readonly float FOVIncreasePercentage = 1;
 
         public FOVCollider _fOVCollider;
+
+        // For Handline multiple targets.
+        public HashSet<LivingEntity> AttackTarget;
+
+       
 
         public static Player focusedPlayer {
             get;
@@ -72,11 +81,14 @@
             _navUnit = this.GetUnitFacade();
             _playerShooting = this.GetComponentInChildren<PlayerShooting>();
             _playerAIMovement = this.GetComponent<PlayerAIMovement>();
+            _playerMovement = this.GetComponent<PlayerMovement>();          
             _playerAI = this.GetComponent<UtilityAIComponent>();
             _playerHealth = this.GetComponent<PlayerHealth>();
             _playerBombs = this.GetComponentInChildren<PlayerBombs>();
             _fieldOfView = this.GetComponentInChildren<FieldOfView>();
             //_fOVCollider = this.GetComponentInChildren<FOVCollider>();
+            
+            AttackTarget = new HashSet<LivingEntity>();
         }
 
         private void OnEnable() {

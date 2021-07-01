@@ -20,8 +20,14 @@
         private float _effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
         private int _currentAmmo;
 
-        private Vector3 target;
-      
+
+
+        public PlayerAnimation _playerAnimation;
+
+        int GetHit = Animator.StringToHash("IS_GETHIT");
+        int Attack1 = Animator.StringToHash("IS_ATTACK1");
+        int Attack2 = Animator.StringToHash("IS_ATTACK2");
+
         public int currentAmmo {
             get {
                 return _currentAmmo;
@@ -53,6 +59,8 @@
             _gunAudio = GetComponent<AudioSource>();
             _gunLight = GetComponent<Light>();
             faceLight = GetComponentInChildren<Light>();
+
+            _playerAnimation = GetComponentInParent<PlayerAnimation>();
         }
 
         private void Start()
@@ -153,7 +161,8 @@
         //    this.currentAmmo--;
         //}
 
-        private void Shoot() {
+        private void Shoot() {           
+
             // Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
             _shootRay.origin = transform.position;
             _shootRay.direction = transform.forward;

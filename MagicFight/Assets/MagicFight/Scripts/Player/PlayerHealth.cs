@@ -8,7 +8,7 @@
     /// </summary>
 
     [AddComponentMenu("MagicFight/Player/PlayerHealth", 3)]
-    public class PlayerHealth : MonoBehaviour, IHealth
+    public class PlayerHealth : MonoBehaviour, IHealth 
     {
         public int startingHealth = 100;
         public int startingBandAids = 0;
@@ -105,7 +105,7 @@
             if (currentHealth <= 0)
             {
                 // Tell the animator that the player is dead.
-                _anim.SetTrigger("Die");
+                _anim.SetTrigger("IS_DIE");
 
                 // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
                 _playerAudio.clip = deathClip;

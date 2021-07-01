@@ -7,13 +7,13 @@
     public sealed class SurvivalContext : IAIContext
     {
         public SurvivalContext(Player entity)
-        {
+        {          
             this.player = entity;
             this.players = new List<LivingEntity>();
             this.enemies = new List<LivingEntity>();
             this.sampledPositions = new List<Vector3>();
             this.powerups = new List<IEntity>();
-        }
+        }     
 
         public Player player
         {

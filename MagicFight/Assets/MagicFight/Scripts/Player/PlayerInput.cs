@@ -14,7 +14,7 @@ namespace AmazingTeam.MagicFight{
         private FieldOfView _fieldOfView;
        
       
-        bool OnceEnableMeshCollider = true;
+       
 
        // public static event Action<bool> OnPlayerTakeDamageEventHandler;
 
@@ -40,10 +40,13 @@ namespace AmazingTeam.MagicFight{
             if(LeftStick.IsPressed)
                 _playerAIMovement.Move( this.transform.position + LeftStick.LeftStickDirection);
 
-            if (LeftStick.WasReleased && _playerHealth.currentBandAids > 0 && (_player.attackTarget != null)) {
-                _player.StartFiring();               
+            if ((_player.AttackTarget.Count > 0) && (_playerHealth.currentBandAids > 0) && LeftStick.WasReleased ) {
+                _player.StartFiring();
                 //Invoke("DiablePlayerShooting", 1f);
-            }          
+#if UNITY_2020
+                Debug.LogWarning($"<color=green><b>PlayerInput - Shooting Status: { _playerShooting.shooting }</b></color>");
+#endif
+            }
         }
 
         void DiablePlayerShooting() {
