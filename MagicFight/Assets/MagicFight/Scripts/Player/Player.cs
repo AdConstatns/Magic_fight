@@ -19,22 +19,29 @@
         private PlayerShooting _playerShooting;
         private PlayerHealth _playerHealth;
         // AI Player Movement.
-        private PlayerAIMovement _playerAIMovement;
-        // Non AI Player Movement.
-        private PlayerMovement _playerMovement;
+        private PlayerAIMovement _playerAIMovement;     
+        // Player Bomb Attack.
         private PlayerBombs _playerBombs;
+        // Player Fire Attack
+        private PlayerFire _playerFire;
+        //Player Thunder Attack
+        private PlayerThunder _playerThunder;
+        // Player Ground Attack
+        private PlayerLava _playerLava;
         private UtilityAIComponent _playerAI;
         private IUnitFacade _navUnit;
         private FieldOfView _fieldOfView;
         [SerializeField]
         private readonly float FOVIncreasePercentage = 1;
+        // Set by the Player
+        private bool _IsPlayerShooting;
 
         public FOVCollider _fOVCollider;
 
-        // For Handline multiple targets.
-        public HashSet<LivingEntity> AttackTarget;
+        public PlayerAnimation _playerAnimation;
 
-       
+        // For Handline multiple targets.
+        public HashSet<LivingEntity> AttackTarget;       
 
         public static Player focusedPlayer {
             get;
@@ -62,6 +69,20 @@
             get { return _playerHealth.currentBandAids; }
         }
 
+        public int currentFires {
+            get { return _playerFire.currentFires; }
+            set {  }
+        }
+
+        public int currentThunders {
+            get { return _playerThunder.currentThunders; }
+
+        }
+
+        public int currentLavas {
+            get { return _playerLava.currentLavas; }
+        }
+
         public Vector3 spawnPoint {
             get;
             private set;
@@ -75,16 +96,30 @@
             return _context;
         }
 
+        // Value set by the AI Player to control shooting.
+        public bool IsShooting {
+            get { return _playerShooting.shooting; }
+        }
+
+        // Variable Set by the Non-AI Player to control shooting.
+        public bool IsPlayerShooting {
+            get { return _IsPlayerShooting; } set { _IsPlayerShooting = value; }
+        }
+
         protected override void OnAwake() {
             _context = new SurvivalContext(this);
 
             _navUnit = this.GetUnitFacade();
             _playerShooting = this.GetComponentInChildren<PlayerShooting>();
-            _playerAIMovement = this.GetComponent<PlayerAIMovement>();
-            _playerMovement = this.GetComponent<PlayerMovement>();          
+            _playerAIMovement = this.GetComponent<PlayerAIMovement>();                  
             _playerAI = this.GetComponent<UtilityAIComponent>();
             _playerHealth = this.GetComponent<PlayerHealth>();
             _playerBombs = this.GetComponentInChildren<PlayerBombs>();
+            _playerFire = GetComponentInChildren<PlayerFire>();
+            _playerThunder = GetComponentInChildren<PlayerThunder>();
+            _playerLava = GetComponentInChildren<PlayerLava>();
+            _playerAnimation = GetComponent<PlayerAnimation>();
+
             _fieldOfView = this.GetComponentInChildren<FieldOfView>();
             //_fOVCollider = this.GetComponentInChildren<FOVCollider>();
             
@@ -95,6 +130,7 @@
             _playerShooting.enabled = true;
             _playerAIMovement.enabled = true;
             _playerAI.enabled = true;
+            _playerAnimation.enabled = true;
             this.spawnPoint = this.transform.position;
         }
 
@@ -130,27 +166,120 @@
             _playerHealth.UseBandAid();
         }
 
+        public void UseFire() {
+            _playerFire.UseFire();
+
+            if(_playerFire.currentFires <= 0) {
+                DisableStrikeAreaParticle(_playerFire.gameObject);
+            }
+
+            DisableFieldOfView();
+        }
+
+        public void UseThunder() {
+            _playerThunder.UseThunder();
+
+            if (_playerThunder.currentThunders <= 0) {
+                DisableStrikeAreaParticle(_playerThunder.gameObject);
+            }
+            DisableFieldOfView();          
+        }
+
+        public void UseLava() {
+            _playerLava.UseLava();
+        }
+
+        public void ShowFireEffect() {
+            _playerFire.ShowFireEffect();
+        }
+
+        public void ShowFireAttackEffect() {
+            _playerFire.ShowAttackFireEffect();
+        }
+
+        public void ShowThunderEffect() {
+            _playerThunder.ShowThunderEffect();
+        }
+
+        public void ShowAttackThunderEffect() {
+            _playerThunder.ShowAttackThunderEffect();
+        }
+
+        public void ShowLavaEffect() {
+            _playerLava.ShowLavaEffect();
+        }
+
+        public void ShowLavaAttackEffect() {
+            _playerLava.ShowAttackLavaEffect();
+        }
+
         // Adding the Fire Powerup
         public void AddFire(int amount) {
-
+            _playerFire.AddFire(amount);
+            // Show Fire Effect
+            _playerFire.ShowFireEffect();
+            // On Adding the Player Field of View Increase by 1 percent.            
+            IncreaseFOVDistance();
+            // Enable the Field Of View Particle System.
+            EnableStrikeAreaParticle(_playerFire.gameObject);
+            // Commented by Tholkappiyan
+            // Logic Implemented in the Player AI System.
+            // On Adding the BandAid FOVSensor Increase by 1 percent.
+            //Invoke("IncreaseFOVSensor", 0.1f);
         }
+
+        public void AddThunder(int amount) {
+            _playerThunder.AddThunder(amount);
+            // Show Thunder Effect
+            _playerThunder.ShowThunderEffect();
+            // On Adding the Player Field of View Increase by 1 percent.          
+            IncreaseFOVDistance();
+            // Enable the Strike Area Particle System.
+            EnableStrikeAreaParticle(_playerThunder.gameObject);
+            // On Adding the BandAid FOVSensor Increase by 1 percent.
+            //Invoke("IncreaseFOVSensor", 0.1f);
+        }
+
+        public void AddLava(int amount) {
+            _playerLava.AddLava(amount);
+            // Show Lava Effect
+            _playerLava.ShowLavaEffect();
+            // On Adding the Player Field of View Increase by 1 percent.
+            IncreaseFOVDistance();
+            // Enable the Field Of View Particle System.
+            EnableStrikeAreaParticle(_playerLava.gameObject);
+            // On Adding the BandAid FOVSensor Increase by 1 percent.
+            //Invoke("IncreaseFOVSensor", 0.1f);
+        }
+
+        public void EnableStrikeAreaParticle(GameObject strikeArea) {
+            strikeArea.transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+        public void DisableStrikeAreaParticle(GameObject strikeArea) {
+            strikeArea.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        public void DisableFieldOfView() {
+            // Disable the field of view if all the Powerup's is equal to zero.
+            if (_playerFire.currentFires <= 0 && _playerThunder.currentThunders <= 0 && _playerLava.currentLavas <= 0) {
+                _fieldOfView.enabled = false;
+                return;
+            }
+        }
+
+      
 
         public void AddBandAid(int amount) {
-            _playerHealth.AddBandAid(amount);
-            // On Adding the BandAid Field of View Increase by 1 percent.
-            IncreaseFOVDistance();
-            // On Adding the BandAid FOVSensor Increase by 1 percent.
-            Invoke("IncreaseFOVSensor", 0.1f);
-            
+            _playerHealth.AddBandAid(amount);                   
         }
 
-        public void IncreaseFOVDistance() {
+        public void IncreaseFOVDistance() {              
 
-             if(!_fieldOfView.enabled)
+            if (!_fieldOfView.enabled)
                 _fieldOfView.enabled = true;
             // Field of view will become larger based on powerup Collected.
-            _fieldOfView.viewRadius = _fieldOfView.viewRadius + ((_fieldOfView.viewRadius / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
-           
+            _fieldOfView.viewRadius = _fieldOfView.viewRadius + ((_fieldOfView.viewRadius / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);           
         }
 
         public void IncreaseFOVSensor() {
@@ -158,15 +287,17 @@
                 _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
                 _fOVCollider.CreateCollider();
             }
-            
-
         }
+
+     
 
         public void OnDeath() {
             // Turn off the movement and shooting scripts.
             _playerAIMovement.enabled = false;
             _playerShooting.enabled = false;
             _playerAI.enabled = false;
+            _playerAnimation.enabled = false;
+
         }
 
         protected override void OnAttackTargetChanged(LivingEntity newAttackTarget) {

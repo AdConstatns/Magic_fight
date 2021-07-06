@@ -15,13 +15,16 @@ namespace Apex.AI
 		public static readonly Guid CustomUtilityAI = new Guid("ab8a81bb-ca2f-44fc-ab17-04b2c030ad06");
 		public static readonly Guid EntityScanner = new Guid("c3095717-47fb-44ae-9044-f0cc746951fc");
 		public static readonly Guid ExampleAI = new Guid("8d53e04b-f6c0-4067-9848-9dd89f28a49a");
+		public static readonly Guid MagicFight = new Guid("be29cce3-16bc-4bd3-8a6c-67cc29e2f57c");
 		public static readonly Guid MemoryCleanupAI = new Guid("675eaaa8-d26a-47a4-911d-3b8cfe329dad");
+		public static readonly Guid PlayerAction = new Guid("c92a16e8-9d37-4038-b043-1cfa2b04aa5e");
+		public static readonly Guid PlayerScanner = new Guid("dcb18271-7255-407e-865f-f06af241f9e4");
 		public static readonly Guid PositionScannerAI = new Guid("4fd984cf-0221-4e35-84ea-b5ac08b9d766");
 		public static readonly Guid PositionScorerAI = new Guid("94d5d5f1-a4c7-4a6b-8e47-11094e0eb248");
 		public static readonly Guid ScannerTutorialAI = new Guid("6f88943e-ae7f-44da-8c72-2d9ef3809120");
 		public static readonly Guid SerializationExample = new Guid("9ac850fa-506b-48d1-ab20-100218883ff5");
 		public static readonly Guid TargetSelectionTutorialAI = new Guid("e7d1d3c3-7795-46fd-93f1-d954482ebbce");
-		public static readonly Guid test = new Guid("a03cf3dc-532c-404d-8937-47d559cc6002");
+		public static readonly Guid TestTermination = new Guid("dd98f788-b428-43d7-adaa-2b408735a174");
 
     }
 }

@@ -23,14 +23,17 @@ namespace AmazingTeam.MagicFight {
         public MeshFilter viewMeshFilter;
         Mesh viewMesh;
 
-        GameObject FOVCollider;
+        // Handled by Player AI
+        //GameObject FOVCollider;
 
         private void Awake() {
-            FOVCollider = GameObject.FindGameObjectWithTag("Sight");
+            // Commented by tholkappiyan
+           // FOVCollider = GameObject.FindGameObjectWithTag("Sight");
         }
 
         private void OnEnable() {
-            FOVCollider.transform.GetChild(0).gameObject.SetActive(true);
+            // Commented by tholkappiyan
+            //FOVCollider.transform.GetChild(0).gameObject.SetActive(true);
         }
 
         void Start() {
@@ -39,6 +42,16 @@ namespace AmazingTeam.MagicFight {
             viewMeshFilter.mesh = viewMesh;
 
             StartCoroutine("FindTargetsWithDelay", .2f);
+        }
+
+        private void OnDisable() {
+            // Clear the Mesh after Particle system is played. For that add delay.
+            Invoke("ClearMesh", 3.0f);
+           
+        }
+
+        public void ClearMesh() {
+            viewMesh.Clear();
         }
 
 

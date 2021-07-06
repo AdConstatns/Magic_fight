@@ -12,6 +12,7 @@
         {
             var c = (SurvivalContext)context;
 
+            // Test for negative. i.e currentBombs less than zero.
             if (c.player.currentBombs <= 0)
             {
                 return this.not ? this.score : 0f;

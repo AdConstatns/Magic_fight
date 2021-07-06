@@ -81,8 +81,8 @@ namespace AmazingTeam.MagicFight {
                         //Bring the hurt to the player.                       
                         otherPlayer.TakeDamage(_playershooting.damagePerShot);
                         //for each player dead shooting will be set to false.
-                        // Enable shooting to true. to shoot another enemies.           
-                        _playershooting.shooting = true;
+                        // Enable shooting to true, to shoot another enemies not necessary           
+                       // _playershooting.shooting = true;
                         // Remove the Dead players from the attackTarget list.
                         _cPlayer.AttackTarget.Remove(other.gameObject.GetComponent<Player>());
                         _cPlayer.AttackTarget.Clear();

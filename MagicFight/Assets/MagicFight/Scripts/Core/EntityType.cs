@@ -5,7 +5,13 @@
     /// </summary>
     public enum EntityType
     {
-        Player,      
+        Player = 0,    
+
+        Fire,
+
+        Thunder,
+
+        Ground,
 
         Health,
 

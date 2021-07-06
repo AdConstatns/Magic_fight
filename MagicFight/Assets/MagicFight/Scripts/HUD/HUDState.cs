@@ -1,5 +1,6 @@
 ﻿namespace AmazingTeam.MagicFight
 {
+    using System;
     using UnityEngine;
 
     /// <summary>
@@ -13,6 +14,10 @@
         private static BombUI _bombs;
         private static HealthUI _health;
         private static ScoreUI _score;
+
+        private static FireUI _fire;
+        private static ThunderUI _thunder;
+        private static GroundUI _ground;
 
         public static void UpdateAmmo(int currentAmmo) {
             _ammo.SetAmmo(currentAmmo);
@@ -44,9 +49,24 @@
 #endif
              _ammo = GetComponentInChildren<AmmoUI>();
             _bombs = GetComponentInChildren<BombUI>();
+            _ground = GetComponentInChildren<GroundUI>();
+            _fire = GetComponentInChildren<FireUI>();          
+            _thunder = GetComponentInChildren<ThunderUI>();
             _bandaids = GetComponentInChildren<BandAidUI>();
             _health = GetComponentInChildren<HealthUI>();
             _score = GetComponentInChildren<ScoreUI>();
+        }
+
+        public static void UpdateGrounds(int currentGrounds) {
+            _ground.SetGrounds(currentGrounds);
+        }
+
+        public static void UpdateFires(int currentFires) {
+            _fire.SetFires(currentFires);
+        }
+
+        public static void UpdateThunders(int currentThunder) {
+            _thunder.SetThunders(currentThunder);
         }
     }
 }

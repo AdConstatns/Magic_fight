@@ -18,7 +18,7 @@
         [Tooltip("The size of the field of view cones base in world units.")]
         public float BaseSize = 0.5f;
 
-        [Range(1f, 180f), Tooltip("The arc angle of the fov cone.")]
+        [Range(1f, 180), Tooltip("The arc angle of the fov cone.")]
         public float FOVAngle = 90f;
 
         [Range(1f, 180f), Tooltip("The elevation angle of the cone.")]

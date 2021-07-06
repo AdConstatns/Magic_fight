@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1719459976, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
+  m_Name: PlayerScanner
+  m_EditorClassIdentifier: 
+  description: 
+  version: 16779010
+  aiId: dcb18271-7255-407e-865f-f06af241f9e4
+  configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":45894ab81ee3456eb3f711c9623b5350,"_id":dcb182717255407e865ff06af241f9e4,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
+    ApexAI","_id":45894ab81ee3456eb3f711c9623b5350,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI","action":{"@type":"AmazingTeam.MagicFight.ScanForPlayers, Assembly-CSharp","Count":0}}}]}'
+  editorConfiguration: '{"offset":{"@x":-21,"@y":-13},"zoom":0.85000002,"SelectorView":{"ViewArea":{"@left":64,"@top":72,"@width":170,"@height":85},"Name":"Scan
+    For Players","Description":"Scan for players in the Range Provided by the player.","DefaultQualifier":{"ActionView":{}}}}'

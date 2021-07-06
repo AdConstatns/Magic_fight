@@ -60,11 +60,13 @@
             _playerAudio = GetComponent<AudioSource>();
             _player = GetComponent<Player>();
 
-            //Damage indicator
-            var go = GameObject.Instantiate(zPrefab, this.transform.position + (Vector3.up * 1), zPrefab.transform.rotation) as GameObject;
-            go.transform.SetParent(this.transform);
-            Zs = go.GetComponent<ParticleSystem>();
-            Zs.transform.position += Vector3.up;
+            // Commented by Tholkappiyan
+            // To Disable Damage Indicator.
+            ////Damage indicator
+            //var go = GameObject.Instantiate(zPrefab, this.transform.position + (Vector3.up * 1), zPrefab.transform.rotation) as GameObject;
+            //go.transform.SetParent(this.transform);
+            //Zs = go.GetComponent<ParticleSystem>();
+            //Zs.transform.position += Vector3.up;
         }
 
         private void OnEnable()
@@ -75,7 +77,7 @@
 #endif
             // Set the initial health of the player.
             this.currentHealth = startingHealth;
-
+            zPrefab.SetActive(false);
             // Commented by Tholkappiyan
             // Default no BandAids are added.
             //this.currentBandAids = startingBandAids;
@@ -93,7 +95,8 @@
                 return;
             }
 
-            Zs.Play();
+            zPrefab.SetActive(true);
+            //Zs.Play();
 
             // Reduce the current health by the damage amount.
             currentHealth -= amount;

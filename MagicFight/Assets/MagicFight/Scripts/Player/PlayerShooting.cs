@@ -1,6 +1,7 @@
 ﻿namespace AmazingTeam.MagicFight
 {
     using UnityEngine;
+    using System.Collections.Generic;
 
     [AddComponentMenu("MagicFight/Player/PlayerShooting", 5)]
     public class PlayerShooting : MonoBehaviour
@@ -27,6 +28,9 @@
         int GetHit = Animator.StringToHash("IS_GETHIT");
         int Attack1 = Animator.StringToHash("IS_ATTACK1");
         int Attack2 = Animator.StringToHash("IS_ATTACK2");
+        int Attack = Animator.StringToHash("IS_ATTACK");
+
+        private ColliderContainer _ColliderContainer;
 
         public int currentAmmo {
             get {
@@ -70,6 +74,9 @@
             Debug.Log($"<color=yellow><b>Initializing Ammo: { startingAmmo }</b></color>");
 #endif
             this.currentAmmo = startingAmmo;
+
+            // Initializing the container for colliders of all hit object.
+            _ColliderContainer = new ColliderContainer();
         }
 
         private void OnDisable()
@@ -252,9 +259,25 @@
 
             this.currentAmmo--;
         }
+
+      
         
         private void OnDrawGizmos() {
             //Gizmos.DrawLine(transform.position, target);
+        }
+
+        public class ColliderContainer {
+
+            // a HashSet can be used rather than a list,
+            // which would yield a lower time complexity(make your code run faster).
+            // While the.Remove() and.Contains() method for List runs in O(N^2) and O(N) respectively,
+            // the.Remove() and.Contains() for HashSet are both O(1).
+
+            public HashSet<Collider> colliders = new HashSet<Collider>();
+
+            public HashSet<Collider> GetColliders() {
+                return colliders;   //hashset automatically handles duplicates
+            }
         }
     }
 }

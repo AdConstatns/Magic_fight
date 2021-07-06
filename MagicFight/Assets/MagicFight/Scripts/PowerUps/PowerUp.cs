@@ -59,6 +59,7 @@
                 } 
 
                 //Once picked up, float into the air and disappear after a second.
+                // Other will always be player . So below code block placed inside the player tag block.
                 _levitate = true;
                 LoadBalancer.defaultBalancer.ExecuteOnce(Recycle, 1f);
 
