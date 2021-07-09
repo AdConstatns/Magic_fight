@@ -2,39 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AmazingTeam.MagicFight {
-    [AddComponentMenu("MagicFight/Player/PlayerThunder", 7)]
-    public class PlayerThunder : MonoBehaviour {
-        public int damage = 30;                  // The damage inflicted by each bullet.
+namespace AmazingTeam.MagicFight
+{
+    [AddComponentMenu("MagicFight/Player/PlayerFire", 6)]
+    public class PlayerFire : MonoBehaviour
+    {
+        public int damage = 20;                  // The damage inflicted by each bullet.
         public float timeBetweenBombs = 1f;       // The minimum time between each bomb use.
         public float range = 5f;                  // The bombs explosion range.
-        public int startingThunder = 3;
-        public Light ThunderLight;
-        public List<GameObject> Thunders;
+        public int startingFires = 3;
+        public Light FireLight;
+        public List<GameObject> Fires;
 
-        private List<ParticleSystem> _ThunderParticleSystems;
+        private List<ParticleSystem> _FireParticleSystems;
 
-        private int _currentThunder;
+        private int _currentFires;
         private float _timer;                                    // A timer to determine when to fire.
-        private AudioSource _ThunderAudio;                           // Reference to the audio source.
+        private AudioSource _fireAudio;                           // Reference to the audio source.
 
         private float _effectsDisplayTime = 0.2f;                // The explosion display time.
         private float _effectStartTime;
 
-        public int currentThunders {
+        public int currentFires {
             get {
-                return _currentThunder;
+                return _currentFires;
             }
 
             set {
-                _currentThunder = value;
-                HUDState.UpdateThunders(_currentThunder);
+                _currentFires = value;
+                HUDState.UpdateFires(_currentFires);
             }
         }
 
-        public bool canThrowThunder {
+        public bool canThrowFire {
             get {
-                if (this.currentThunders <= 0) {
+                if (this.currentFires <= 0) {
                     return false;
                 }
 
@@ -46,12 +48,12 @@ namespace AmazingTeam.MagicFight {
             }
         }
 
-        public void ThrowThunder() {
+        public void ThrowFire() {
             _timer = 0;
 
             EnableEffects();
 
-            _ThunderAudio.Play();
+            _fireAudio.Play();
 
             //Find all enemies within the blast range of the bomb
             var colliders = Physics.OverlapSphere(transform.position, range, Layers.players);
@@ -66,49 +68,52 @@ namespace AmazingTeam.MagicFight {
                 }
             }
 
-            this.currentThunders--;
+            this.currentFires--;
         }
 
 
-        public void AddThunder(int amount) {
-            this.currentThunders += amount;
+        public void AddFire(int amount) {
+            this.currentFires += amount;
         }
 
-        public void UseThunder() {
-            //Only Use Thunder if Thunder count is greater than zero.
-            if (this.currentThunders <= 0) {
+        public void UseFire(AbilityMode mode) {
+            //Only Use Fire if Fire count is greater than zero.
+            if (this.currentFires <= 0) {
                 return;
             }
 
-            this.currentThunders--;
+            if (AbilityMode.Single == mode)
+                this.currentFires--;
+            else if (AbilityMode.Multiple == mode)
+                this.currentFires = 0;
         }
 
         private void Awake() {
             // Set up the references.
-            _ThunderAudio = GetComponent<AudioSource>();
+            _fireAudio = GetComponent<AudioSource>();
         }
 
         private void Start() {
-            this.currentThunders = startingThunder;
+            this.currentFires = startingFires;
 
-            var count = Thunders.Count;
+            var count = Fires.Count;
 
-            _ThunderParticleSystems = new List<ParticleSystem>();
+            _FireParticleSystems = new List<ParticleSystem>();
 
             for (int i = 0; i < count; i++) {
-                var prefab = Thunders[i];
+                var prefab = Fires[i];
 
                 var go = GameObject.Instantiate(prefab, this.transform.position + Vector3.up, prefab.transform.rotation) as GameObject;
 
                 go.transform.SetParent(this.transform);
 
-                _ThunderParticleSystems.Add(go.GetComponent<ParticleSystem>());
+                _FireParticleSystems.Add(go.GetComponent<ParticleSystem>());
             }
         }
 
         private void OnEnable() {
 #if UNITY_EDITOR
-            Debug.Log($"<color=yellow><b>Initializing Bomb: { startingThunder }</b></color>");
+            Debug.Log($"<color=yellow><b>Initializing Bomb: { startingFires }</b></color>");
 #endif
             //this.currentBombs = startingFires;
         }
@@ -129,44 +134,47 @@ namespace AmazingTeam.MagicFight {
         }
 
         private void Flicker() {
-            if (ThunderLight.enabled) {
-                ThunderLight.intensity = UnityEngine.Random.Range(0f, 8f);
+            if (FireLight.enabled) {
+                FireLight.intensity = UnityEngine.Random.Range(0f, 8f);
             }
         }
 
         private void DisableEffects() {
-            if (ThunderLight != null)
-                ThunderLight.enabled = false;
+            if (FireLight != null)
+                FireLight.enabled = false;
         }
 
         private void EnableEffects() {
             _effectStartTime = Time.time;
-            ThunderLight.enabled = true;
+            FireLight.enabled = true;
 
-            var count = _ThunderParticleSystems.Count;
+            var count = _FireParticleSystems.Count;
 
             for (int i = 0; i < count; i++) {
-                var ps = _ThunderParticleSystems[i];
+                var ps = _FireParticleSystems[i];
                 ps.Play();
             }
         }
 
         private void EnableEffects(int index) {
             _effectStartTime = Time.time;
-            ThunderLight.enabled = true;
+            FireLight.enabled = true;
 
-            if (_ThunderParticleSystems.Count >= index) {
-                var ps = _ThunderParticleSystems[index];
+            if (_FireParticleSystems.Count >= index) {
+                var ps = _FireParticleSystems[index];
                 ps.Play();
             }
         }
 
-        public void ShowThunderEffect() {
+        public void ShowFireEffect() {  
             EnableEffects(0);
         }
 
-        public void ShowAttackThunderEffect() {
+        public void ShowAttackFireEffect() {
             EnableEffects(1);
         }
+
+      
+
     }
 }

@@ -57,7 +57,7 @@
             _score = GetComponentInChildren<ScoreUI>();
         }
 
-        public static void UpdateGrounds(int currentGrounds) {
+        public static void UpdateLavas(int currentGrounds) {
             _ground.SetGrounds(currentGrounds);
         }
 

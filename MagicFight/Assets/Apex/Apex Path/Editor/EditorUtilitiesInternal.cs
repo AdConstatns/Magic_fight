@@ -19,7 +19,10 @@ namespace Apex.Editor
             var currentValue = property.intValue;
             var curEnumVal = (Enum)Enum.ToObject(enumType, property.intValue);
 
-            var newValRaw = EditorGUI.EnumMaskField(position, label, curEnumVal) as IConvertible;
+            // Commented by Tholkappiyan
+            //var newValRaw = EditorGUI.EnumMaskField(position, label, curEnumVal) as IConvertible;
+            // Added by tholkappiyan
+            var newValRaw = EditorGUI.EnumFlagsField(position, label, curEnumVal) as IConvertible;
 
             var newVal = newValRaw.ToInt32(null);
             if (newVal != currentValue)

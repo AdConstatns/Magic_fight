@@ -77,11 +77,17 @@
 #endif
             // Set the initial health of the player.
             this.currentHealth = startingHealth;
+
             zPrefab.SetActive(false);
             // Commented by Tholkappiyan
             // Default no BandAids are added.
             //this.currentBandAids = startingBandAids;
         }
+
+        //private void OnValidate() {
+        //    // Set the initial health of the player.
+        //    this.currentHealth = startingHealth;
+        //}
 
         public void TakeDamage(int amount, Vector3 hitPoint)
         {

@@ -10,7 +10,7 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
             var player = c.player;
 
-            var players = c.players;
+            var players = c.AIPlayers;
             var count = players.Count;
             if (count == 0) {
                 return 0f;

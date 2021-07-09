@@ -45,7 +45,7 @@ namespace Apex.Steering.Behaviours
             if (unit != null)
             {
                 unit.StopWander();
-            }
+            }          
         }
     }
 }

@@ -17,7 +17,7 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
 
             var player = c.player;
-            c.players.Clear();
+            c.AIPlayers.Clear();
 
             // Use OverlapSphere for getting all relevant colliders within scan range, filtered by the scanning layer
             var colliders = Physics.OverlapSphere(player.position, player.scanRange, Layers.players);
@@ -37,11 +37,11 @@ namespace AmazingTeam.MagicFight {
 
                 // Avoiding adding the own gameobject.
                 if(c.player.gameObject != col.gameObject) {
-                    c.players.Add(playerToAdd);                  
+                    c.AIPlayers.Add(playerToAdd);                  
                 }               
             }
             // Visually display the Player Count
-            Count = c.players.Count;
+            Count = c.AIPlayers.Count;
         }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4059348013103741601}
   - component: {fileID: 4059348013103741603}
   - component: {fileID: 4059348013103741600}
-  m_Layer: 16
+  m_Layer: 15
   m_Name: ThunderAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

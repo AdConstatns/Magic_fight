@@ -10094,12 +10094,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32067ea884548644b13cf9baddd4573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 1
+  startingHealth: 100
   startingBandAids: 0
   deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
   zPrefab: {fileID: 5162124540784191703}
   _currentBandAids: 0
-  _currentHealth: 0
+  _currentHealth: 100
 --- !u!114 &7415298225207524936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10221,7 +10221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstTime: 0
-  _hiddenComponents: 4095
+  _hiddenComponents: 0
 --- !u!114 &5189917496954418877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40494,6 +40494,10 @@ PrefabInstance:
       propertyPath: LavaLight
       value: 
       objectReference: {fileID: 65588798979454232}
+    - target: {fileID: 8500657798678174099, guid: ab6299b5fc4c3044eb51e0933767e071, type: 3}
+      propertyPath: startingLava
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab6299b5fc4c3044eb51e0933767e071, type: 3}
 --- !u!4 &65588798979454230 stripped
@@ -40824,8 +40828,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2135673965668040438, guid: 5f8c79e4d4cd6d342884a635e89b4b9c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135673965668040438, guid: 5f8c79e4d4cd6d342884a635e89b4b9c, type: 3}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135673965668040438, guid: 5f8c79e4d4cd6d342884a635e89b4b9c, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135673965668040438, guid: 5f8c79e4d4cd6d342884a635e89b4b9c, type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2135673965668040439, guid: 5f8c79e4d4cd6d342884a635e89b4b9c, type: 3}
       propertyPath: m_RootOrder
@@ -40853,7 +40869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2135673965668040439, guid: 5f8c79e4d4cd6d342884a635e89b4b9c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.342
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 2135673965668040439, guid: 5f8c79e4d4cd6d342884a635e89b4b9c, type: 3}
       propertyPath: m_LocalRotation.w

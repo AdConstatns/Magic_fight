@@ -9,7 +9,7 @@
         public SurvivalContext(Player entity)
         {          
             this.player = entity;
-            this.players = new List<LivingEntity>();
+            this.AIPlayers = new List<LivingEntity>();          
             this.enemies = new List<LivingEntity>();
             this.sampledPositions = new List<Vector3>();
             this.powerups = new List<IEntity>();
@@ -21,10 +21,10 @@
             private set;
         }
 
-        public List<LivingEntity> players {
+        public List<LivingEntity> AIPlayers {
             get;
             private set;
-        }
+        }     
 
         public List<LivingEntity> enemies
         {

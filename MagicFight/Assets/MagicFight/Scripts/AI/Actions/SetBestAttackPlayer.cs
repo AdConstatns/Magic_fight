@@ -9,7 +9,7 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
             var player = c.player;
 
-            var players = c.players;
+            var players = c.AIPlayers;
 
             var best = this.GetBest(context, players);
             if (best != null) {

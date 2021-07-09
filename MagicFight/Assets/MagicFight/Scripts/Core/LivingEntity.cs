@@ -101,7 +101,7 @@
             {
                 OnDeath();
             }
-        }
+        }       
 
         /// <summary>
         /// Take damage with a specific hit point -&gt; for e.g. spawning particle system

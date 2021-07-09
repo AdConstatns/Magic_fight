@@ -2,45 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AmazingTeam.MagicFight
-{
-    [AddComponentMenu("MagicFight/Player/PlayerFire", 6)]
-    public class PlayerFire : MonoBehaviour
-    {
-        public int damage = 20;                  // The damage inflicted by each bullet.
-        public float timeBetweenBombs = 1f;       // The minimum time between each bomb use.
+namespace AmazingTeam.MagicFight {
+    [AddComponentMenu("MagicFight/Player/PlayerLava", 8)]
+    public class PlayerLava : MonoBehaviour {
+        public int damage = 10;                  // The damage inflicted by each bullet.
+        public float timeBetweenLava = 1f;       // The minimum time between each bomb use.
         public float range = 5f;                  // The bombs explosion range.
-        public int startingFires = 3;
-        public Light FireLight;
-        public List<GameObject> Fires;
+        public int startingLava = 3;
+        public Light LavaLight;
+        public List<GameObject> Lavas;
 
-        private List<ParticleSystem> _FireParticleSystems;
+        private List<ParticleSystem> _LavaParticleSystems;
 
-        private int _currentFires;
+        private int _currentLavas;
         private float _timer;                                    // A timer to determine when to fire.
-        private AudioSource _fireAudio;                           // Reference to the audio source.
+        private AudioSource _LavaAudio;                           // Reference to the audio source.
 
         private float _effectsDisplayTime = 0.2f;                // The explosion display time.
         private float _effectStartTime;
 
-        public int currentFires {
+        public int currentLavas {
             get {
-                return _currentFires;
+                return _currentLavas;
             }
 
             set {
-                _currentFires = value;
-                HUDState.UpdateFires(_currentFires);
+                _currentLavas = value;
+                HUDState.UpdateLavas(_currentLavas);
             }
         }
 
         public bool canThrowFire {
             get {
-                if (this.currentFires <= 0) {
+                if (this.currentLavas <= 0) {
                     return false;
                 }
 
-                if (_timer < timeBetweenBombs) {
+                if (_timer < timeBetweenLava) {
                     return false;
                 }
 
@@ -48,12 +46,12 @@ namespace AmazingTeam.MagicFight
             }
         }
 
-        public void ThrowFire() {
+        public void ThrowLava() {
             _timer = 0;
 
             EnableEffects();
 
-            _fireAudio.Play();
+            _LavaAudio.Play();
 
             //Find all enemies within the blast range of the bomb
             var colliders = Physics.OverlapSphere(transform.position, range, Layers.players);
@@ -68,51 +66,54 @@ namespace AmazingTeam.MagicFight
                 }
             }
 
-            this.currentFires--;
+            this.currentLavas--;
         }
 
 
-        public void AddFire(int amount) {
-            this.currentFires += amount;
+        public void AddLava(int amount) {
+            this.currentLavas += amount;
         }
 
-        public void UseFire() {
-            //Only Use Fire if Fire count is greater than zero.
-            if (this.currentFires <= 0) {
+        public void UseLava(AbilityMode mode) {
+            //Only Use Thunder if Thunder count is greater than zero.
+            if (this.currentLavas <= 0) {
                 return;
             }
 
-            this.currentFires--;            
+            if (AbilityMode.Single == mode)
+                this.currentLavas--;
+            else if (AbilityMode.Multiple == mode)
+                this.currentLavas = 0;
         }
 
         private void Awake() {
             // Set up the references.
-            _fireAudio = GetComponent<AudioSource>();
+            _LavaAudio = GetComponent<AudioSource>();
         }
 
         private void Start() {
-            this.currentFires = startingFires;
+            this.currentLavas = startingLava;
 
-            var count = Fires.Count;
+            var count = Lavas.Count;
 
-            _FireParticleSystems = new List<ParticleSystem>();
+            _LavaParticleSystems = new List<ParticleSystem>();
 
             for (int i = 0; i < count; i++) {
-                var prefab = Fires[i];
+                var prefab = Lavas[i];
 
                 var go = GameObject.Instantiate(prefab, this.transform.position + Vector3.up, prefab.transform.rotation) as GameObject;
 
                 go.transform.SetParent(this.transform);
 
-                _FireParticleSystems.Add(go.GetComponent<ParticleSystem>());
+                _LavaParticleSystems.Add(go.GetComponent<ParticleSystem>());
             }
         }
 
         private void OnEnable() {
 #if UNITY_EDITOR
-            Debug.Log($"<color=yellow><b>Initializing Bomb: { startingFires }</b></color>");
+            Debug.Log($"<color=yellow><b>Initializing Bomb: { startingLava }</b></color>");
 #endif
-            //this.currentBombs = startingFires;
+            //this.currentBombs = startingLava;
         }
 
         private void OnDisable() {
@@ -131,47 +132,45 @@ namespace AmazingTeam.MagicFight
         }
 
         private void Flicker() {
-            if (FireLight.enabled) {
-                FireLight.intensity = UnityEngine.Random.Range(0f, 8f);
+            if (LavaLight.enabled) {
+                LavaLight.intensity = UnityEngine.Random.Range(0f, 8f);
             }
         }
 
         private void DisableEffects() {
-            if (FireLight != null)
-                FireLight.enabled = false;
+            if (LavaLight != null)
+                LavaLight.enabled = false;
         }
 
         private void EnableEffects() {
             _effectStartTime = Time.time;
-            FireLight.enabled = true;
+            LavaLight.enabled = true;
 
-            var count = _FireParticleSystems.Count;
+            var count = _LavaParticleSystems.Count;
 
             for (int i = 0; i < count; i++) {
-                var ps = _FireParticleSystems[i];
+                var ps = _LavaParticleSystems[i];
                 ps.Play();
             }
-        }
+        }      
 
         private void EnableEffects(int index) {
             _effectStartTime = Time.time;
-            FireLight.enabled = true;
+            LavaLight.enabled = true;
 
-            if (_FireParticleSystems.Count >= index) {
-                var ps = _FireParticleSystems[index];
+            if (_LavaParticleSystems.Count >= index) {
+                var ps = _LavaParticleSystems[index];
                 ps.Play();
             }
         }
 
-        public void ShowFireEffect() {  
+        public void ShowLavaEffect() {
             EnableEffects(0);
         }
 
-        public void ShowAttackFireEffect() {
+        public void ShowAttackLavaEffect() {
             EnableEffects(1);
         }
-
-      
-
     }
 }
+

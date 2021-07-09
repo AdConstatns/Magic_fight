@@ -45,7 +45,7 @@
 
         public void Stop()
         {
-            _unit.Stop();
+            _unit.Stop();            
         }
 
         /// <summary>

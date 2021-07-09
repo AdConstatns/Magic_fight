@@ -9,10 +9,10 @@ namespace AmazingTeam.MagicFight
     /// </summary>
     public enum AbilityType {     
 
-        Fire,
+        Fire = 10,
 
-        Thunder,
+        Thunder = 20,
 
-        Ground      
+        Lava = 30      
     }
 }

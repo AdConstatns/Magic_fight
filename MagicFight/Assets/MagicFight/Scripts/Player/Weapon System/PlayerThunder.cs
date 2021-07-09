@@ -3,42 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace AmazingTeam.MagicFight {
-    [AddComponentMenu("MagicFight/Player/PlayerLava", 8)]
-    public class PlayerLava : MonoBehaviour {
-        public int damage = 10;                  // The damage inflicted by each bullet.
-        public float timeBetweenLava = 1f;       // The minimum time between each bomb use.
+    [AddComponentMenu("MagicFight/Player/PlayerThunder", 7)]
+    public class PlayerThunder : MonoBehaviour {
+        public int damage = 30;                  // The damage inflicted by each bullet.
+        public float timeBetweenBombs = 1f;       // The minimum time between each bomb use.
         public float range = 5f;                  // The bombs explosion range.
-        public int startingLava = 3;
-        public Light LavaLight;
-        public List<GameObject> Lavas;
+        public int startingThunder = 3;
+        public Light ThunderLight;
+        public List<GameObject> Thunders;
 
-        private List<ParticleSystem> _LavaParticleSystems;
+        private List<ParticleSystem> _ThunderParticleSystems;
 
-        private int _currentLavas;
+        private int _currentThunder;
         private float _timer;                                    // A timer to determine when to fire.
-        private AudioSource _LavaAudio;                           // Reference to the audio source.
+        private AudioSource _ThunderAudio;                           // Reference to the audio source.
 
         private float _effectsDisplayTime = 0.2f;                // The explosion display time.
         private float _effectStartTime;
 
-        public int currentLavas {
+        public int currentThunders {
             get {
-                return _currentLavas;
+                return _currentThunder;
             }
 
             set {
-                _currentLavas = value;
-                HUDState.UpdateGrounds(_currentLavas);
+                _currentThunder = value;
+                HUDState.UpdateThunders(_currentThunder);
             }
         }
 
-        public bool canThrowFire {
+        public bool canThrowThunder {
             get {
-                if (this.currentLavas <= 0) {
+                if (this.currentThunders <= 0) {
                     return false;
                 }
 
-                if (_timer < timeBetweenLava) {
+                if (_timer < timeBetweenBombs) {
                     return false;
                 }
 
@@ -46,12 +46,12 @@ namespace AmazingTeam.MagicFight {
             }
         }
 
-        public void ThrowLava() {
+        public void ThrowThunder() {
             _timer = 0;
 
             EnableEffects();
 
-            _LavaAudio.Play();
+            _ThunderAudio.Play();
 
             //Find all enemies within the blast range of the bomb
             var colliders = Physics.OverlapSphere(transform.position, range, Layers.players);
@@ -66,49 +66,53 @@ namespace AmazingTeam.MagicFight {
                 }
             }
 
-            this.currentLavas--;
+            this.currentThunders--;
         }
 
 
-        public void AddLava(int amount) {
-            this.currentLavas += amount;
+        public void AddThunder(int amount) {
+            this.currentThunders += amount;
         }
 
-        public void UseLava() {
+        public void UseThunder(AbilityMode mode) {
             //Only Use Thunder if Thunder count is greater than zero.
-            if (this.currentLavas <= 0) {
+            if (this.currentThunders <= 0) {
                 return;
             }
 
-            this.currentLavas--;
+            if (AbilityMode.Single == mode)
+                this.currentThunders--;
+            else if (AbilityMode.Multiple == mode)
+                this.currentThunders = 0;
+
         }
 
         private void Awake() {
             // Set up the references.
-            _LavaAudio = GetComponent<AudioSource>();
+            _ThunderAudio = GetComponent<AudioSource>();
         }
 
         private void Start() {
-            this.currentLavas = startingLava;
+            this.currentThunders = startingThunder;
 
-            var count = Lavas.Count;
+            var count = Thunders.Count;
 
-            _LavaParticleSystems = new List<ParticleSystem>();
+            _ThunderParticleSystems = new List<ParticleSystem>();
 
             for (int i = 0; i < count; i++) {
-                var prefab = Lavas[i];
+                var prefab = Thunders[i];
 
                 var go = GameObject.Instantiate(prefab, this.transform.position + Vector3.up, prefab.transform.rotation) as GameObject;
 
                 go.transform.SetParent(this.transform);
 
-                _LavaParticleSystems.Add(go.GetComponent<ParticleSystem>());
+                _ThunderParticleSystems.Add(go.GetComponent<ParticleSystem>());
             }
         }
 
         private void OnEnable() {
 #if UNITY_EDITOR
-            Debug.Log($"<color=yellow><b>Initializing Bomb: { startingLava }</b></color>");
+            Debug.Log($"<color=yellow><b>Initializing Bomb: { startingThunder }</b></color>");
 #endif
             //this.currentBombs = startingFires;
         }
@@ -129,45 +133,44 @@ namespace AmazingTeam.MagicFight {
         }
 
         private void Flicker() {
-            if (LavaLight.enabled) {
-                LavaLight.intensity = UnityEngine.Random.Range(0f, 8f);
+            if (ThunderLight.enabled) {
+                ThunderLight.intensity = UnityEngine.Random.Range(0f, 8f);
             }
         }
 
         private void DisableEffects() {
-            if (LavaLight != null)
-                LavaLight.enabled = false;
+            if (ThunderLight != null)
+                ThunderLight.enabled = false;
         }
 
         private void EnableEffects() {
             _effectStartTime = Time.time;
-            LavaLight.enabled = true;
+            ThunderLight.enabled = true;
 
-            var count = _LavaParticleSystems.Count;
+            var count = _ThunderParticleSystems.Count;
 
             for (int i = 0; i < count; i++) {
-                var ps = _LavaParticleSystems[i];
+                var ps = _ThunderParticleSystems[i];
                 ps.Play();
             }
-        }      
+        }
 
         private void EnableEffects(int index) {
             _effectStartTime = Time.time;
-            LavaLight.enabled = true;
+            ThunderLight.enabled = true;
 
-            if (_LavaParticleSystems.Count >= index) {
-                var ps = _LavaParticleSystems[index];
+            if (_ThunderParticleSystems.Count >= index) {
+                var ps = _ThunderParticleSystems[index];
                 ps.Play();
             }
         }
 
-        public void ShowLavaEffect() {
+        public void ShowThunderEffect() {
             EnableEffects(0);
         }
 
-        public void ShowAttackLavaEffect() {
+        public void ShowAttackThunderEffect() {
             EnableEffects(1);
         }
     }
 }
-

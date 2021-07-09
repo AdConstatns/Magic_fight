@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2862039110059467439}
   - component: {fileID: 693144517284187876}
   m_Layer: 15
-  m_Name: Ground
-  m_TagString: Untagged
+  m_Name: Lava
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

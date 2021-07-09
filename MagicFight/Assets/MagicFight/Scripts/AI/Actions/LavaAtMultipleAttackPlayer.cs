@@ -5,26 +5,26 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
 
             var player = c.player;
-            var players = c.players;
+            var players = c.AIPlayers;
 
             foreach (var otherPlayer in players) {
 
                 c.player.attackTarget = otherPlayer;
 
-                if (c.player.attackTarget != null) {
-                    //Bring the hurt to the player.                       
-                    otherPlayer.TakeDamage(30);
+                if (c.player.attackTarget == null)
+                    return;
+
+                    //Bring the hurt to the player.     
+                    //otherPlayer.TakeDamage((int)AbilityType.Lava);
+                    otherPlayer.TakeDamage((int)AbilityType.Lava * c.player.currentLavas);
 
                     // Show the Thunder Effect
                     otherPlayer.GetComponent<Player>().ShowLavaAttackEffect();
-                }
-
+               
             }
-
-            // After shooting all the players make it false.
-            player.IsPlayerShooting = false;
+           
             // Thunder powerup is decrease after attack.
-            player.UseLava();
+            player.UseLava(AbilityMode.Multiple);
         }
     }
 }

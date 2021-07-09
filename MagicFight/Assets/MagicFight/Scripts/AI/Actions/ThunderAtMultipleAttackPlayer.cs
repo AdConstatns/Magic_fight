@@ -6,27 +6,25 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
 
             var player = c.player;
-            var players = c.players;
+            var players = c.AIPlayers;
 
             foreach (var otherPlayer in players) {
 
                 c.player.attackTarget = otherPlayer;
 
-                if (c.player.attackTarget != null) {
-                    //Bring the hurt to the player.                       
-                    otherPlayer.TakeDamage(20);
+                if (c.player.attackTarget == null)
+                    return;
+
+                    //Bring the hurt to the player.
+                    //otherPlayer.TakeDamage((int)AbilityType.Thunder);
+                    otherPlayer.TakeDamage((int)AbilityType.Thunder * c.player.currentThunders);
 
                     // Show the Thunder Effect
-                    otherPlayer.GetComponent<Player>().ShowAttackThunderEffect();                  
-                }
-                   
-            }
-
-            // After shooting all the players make it false.
-            player.IsPlayerShooting = false;
+                    otherPlayer.GetComponent<Player>().ShowAttackThunderEffect();                   
+            }          
             // Thunder powerup is decrease after attack.
-            player.UseThunder();
-           
+            // Ability Mode multiple will use all the power accumulated till now.
+            player.UseThunder(AbilityMode.Multiple);          
 
         }
     }

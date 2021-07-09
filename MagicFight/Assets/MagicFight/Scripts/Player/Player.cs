@@ -166,8 +166,8 @@
             _playerHealth.UseBandAid();
         }
 
-        public void UseFire() {
-            _playerFire.UseFire();
+        public void UseFire(AbilityMode mode) {
+            _playerFire.UseFire(mode);
 
             if(_playerFire.currentFires <= 0) {
                 DisableStrikeAreaParticle(_playerFire.gameObject);
@@ -176,8 +176,8 @@
             DisableFieldOfView();
         }
 
-        public void UseThunder() {
-            _playerThunder.UseThunder();
+        public void UseThunder(AbilityMode mode) {
+            _playerThunder.UseThunder(mode);
 
             if (_playerThunder.currentThunders <= 0) {
                 DisableStrikeAreaParticle(_playerThunder.gameObject);
@@ -185,8 +185,13 @@
             DisableFieldOfView();          
         }
 
-        public void UseLava() {
-            _playerLava.UseLava();
+        public void UseLava(AbilityMode mode) {
+            _playerLava.UseLava(mode);
+
+            if (_playerLava.currentLavas <= 0) {
+                DisableStrikeAreaParticle(_playerLava.gameObject);
+            }
+            DisableFieldOfView();
         }
 
         public void ShowFireEffect() {
@@ -266,9 +271,7 @@
                 _fieldOfView.enabled = false;
                 return;
             }
-        }
-
-      
+        }      
 
         public void AddBandAid(int amount) {
             _playerHealth.AddBandAid(amount);                   
@@ -287,9 +290,7 @@
                 _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
                 _fOVCollider.CreateCollider();
             }
-        }
-
-     
+        }     
 
         public void OnDeath() {
             // Turn off the movement and shooting scripts.

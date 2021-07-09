@@ -1,30 +1,30 @@
 namespace AmazingTeam.MagicFight {
+  
+    using Apex.Steering.Behaviours;  
     using Apex.AI;
-    public class FireAtMultipleAttackPlayer : ActionBase {
+    public class FireAtMultipleAttackPlayer : ActionBase { 
         public override void Execute(IAIContext context) {
             var c = (SurvivalContext)context;
 
             var player = c.player;
-            var players = c.players;            
+            var players = c.AIPlayers;            
 
             foreach (var otherPlayer in players) {
 
                 c.player.attackTarget = otherPlayer;
 
-                if(c.player.attackTarget != null)
-                //Bring the hurt to the player.                       
-                otherPlayer.TakeDamage(10);
+                if (c.player.attackTarget == null)
+                    return;
 
+                //Bring the hurt to the player.      
+                //otherPlayer.TakeDamage((int)AbilityType.Fire);
+                otherPlayer.TakeDamage((int)AbilityType.Fire * c.player.currentFires);    
                 // Show the Fire Effect
-                otherPlayer.GetComponent<Player>().ShowFireAttackEffect();
-            }
+                otherPlayer.GetComponent<Player>().ShowFireAttackEffect();              
+            }           
            
-            // After shooting all the players make it false.
-            player.IsPlayerShooting = false;
             // Fire powerup is reset after attack.
-            player.UseFire();
-           
-            
+            player.UseFire(AbilityMode.Multiple);           
         }
     }
 }
