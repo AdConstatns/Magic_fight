@@ -1725,6 +1725,10 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3841951117995849423, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 4200454617404395666, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
       propertyPath: _hiddenComponents
       value: 4095

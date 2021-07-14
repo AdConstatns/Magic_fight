@@ -32,7 +32,7 @@
         private IUnitFacade _navUnit;
         private FieldOfView _fieldOfView;
         [SerializeField]
-        private readonly float FOVIncreasePercentage = 10;
+        private readonly float FOVIncreasePercentage = 20;
         // Set by the Player
         private bool _IsPlayerShooting;     
 
