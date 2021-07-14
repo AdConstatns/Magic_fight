@@ -52,7 +52,7 @@ MonoBehaviour:
   startingThunder: 0
   ThunderLight: {fileID: 4059348013103741600}
   Thunders:
-  - {fileID: 100008, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
+  - {fileID: 1251993928265596, guid: c445b201205907b4f90b242a07f4dbc9, type: 3}
   - {fileID: 13301048646092075, guid: 334ccdade87a4194b9f1855c484967dc, type: 3}
 --- !u!82 &4059348013103741603
 AudioSource:
