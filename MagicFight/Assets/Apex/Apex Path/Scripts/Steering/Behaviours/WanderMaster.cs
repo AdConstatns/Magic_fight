@@ -44,7 +44,11 @@ namespace Apex.Steering.Behaviours
                 unit = unit
             };
 
-            _clients.Add(unit.gameObject, client);
+
+            // Changed by tholkappiyan
+            // Added the if condition to suppress multiple addition of the same unit during the player hit.
+            if(!_clients.ContainsKey(unit.gameObject))
+                _clients.Add(unit.gameObject, client);
 
             Start(client);
         }
@@ -67,7 +71,7 @@ namespace Apex.Steering.Behaviours
             {
                 unit.Stop();
             }
-        }
+        }      
 
         private static bool DelayedMove(GameObject go)
         {

@@ -1,6 +1,7 @@
 ﻿namespace AmazingTeam.MagicFight
 {
     using Apex.LoadBalancing;
+    using System.Collections;
     using UnityEngine;
 
     /// <summary>
@@ -18,12 +19,13 @@
         private ParticleSystem Zs;
         private Animator _anim;                                 
         private AudioSource _playerAudio;                        
-        private Player _player;                                 
-        
-        [SerializeField]
+        private Player _player;      
         private int _currentBandAids;
+
         [SerializeField]
         private int _currentHealth;
+
+        public HealthBar _healthBar;
 
         public int currentHealth
         {
@@ -36,18 +38,19 @@
             {
                 _currentHealth = Mathf.Max(0, value);
                 HUDState.UpdateHealth(_currentHealth);
+
+                if(_healthBar != null)
+                    _healthBar.UpdateHealthBar();
             }
         }
 
         public int currentBandAids
         {
-            get
-            {
+            get {
                 return _currentBandAids;
             }
 
-            set
-            {
+            set {
                 _currentBandAids = value;
                 HUDState.UpdateBandAids(_currentBandAids);
             }
@@ -59,6 +62,7 @@
             _anim = GetComponent<Animator>();
             _playerAudio = GetComponent<AudioSource>();
             _player = GetComponent<Player>();
+            //_healthBar = GetComponentInChildren<HealthBar>();
 
             // Commented by Tholkappiyan
             // To Disable Damage Indicator.
@@ -79,15 +83,8 @@
             this.currentHealth = startingHealth;
 
             zPrefab.SetActive(false);
-            // Commented by Tholkappiyan
-            // Default no BandAids are added.
-            //this.currentBandAids = startingBandAids;
-        }
-
-        //private void OnValidate() {
-        //    // Set the initial health of the player.
-        //    this.currentHealth = startingHealth;
-        //}
+           
+        }      
 
         public void TakeDamage(int amount, Vector3 hitPoint)
         {
@@ -124,7 +121,14 @@
 
                 //Recycle the entity
                 LoadBalancer.defaultBalancer.ExecuteOnce(() => EntityManager.instance.Recycle(_player), 3f);
+            }  else {
+               StartCoroutine(WaitForParticleSystem());          
             }
+        }
+
+        IEnumerator WaitForParticleSystem() {
+            yield return new WaitForSeconds(2.0f);
+            GetComponent<PlayerAIMovement>().StartWander();
         }
 
         public void UseBandAid()

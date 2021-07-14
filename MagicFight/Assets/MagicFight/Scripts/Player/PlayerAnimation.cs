@@ -29,14 +29,6 @@ namespace AmazingTeam.MagicFight
 
         public void TriggerAnimation(int Param) {
             _animator.SetTrigger(Param);
-        }
-
-       
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        }      
     }
 }

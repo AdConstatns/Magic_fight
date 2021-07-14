@@ -32,16 +32,18 @@
         private IUnitFacade _navUnit;
         private FieldOfView _fieldOfView;
         [SerializeField]
-        private readonly float FOVIncreasePercentage = 1;
+        private readonly float FOVIncreasePercentage = 10;
         // Set by the Player
-        private bool _IsPlayerShooting;
+        private bool _IsPlayerShooting;     
 
-        public FOVCollider _fOVCollider;
-
-        public PlayerAnimation _playerAnimation;
+        PlayerAnimation _playerAnimation;
 
         // For Handline multiple targets.
-        public HashSet<LivingEntity> AttackTarget;       
+        public HashSet<LivingEntity> AttackTarget;
+
+        // public FOVCollider _fOVCollider;
+
+        public int PowerUpCount;
 
         public static Player focusedPlayer {
             get;
@@ -103,7 +105,13 @@
 
         // Variable Set by the Non-AI Player to control shooting.
         public bool IsPlayerShooting {
-            get { return _IsPlayerShooting; } set { _IsPlayerShooting = value; }
+            get { 
+                return _IsPlayerShooting; 
+            }
+
+            set { 
+                _IsPlayerShooting = value;             
+            }
         }
 
         protected override void OnAwake() {
@@ -277,20 +285,24 @@
             _playerHealth.AddBandAid(amount);                   
         }
 
-        public void IncreaseFOVDistance() {              
-
+        public void IncreaseFOVDistance() {
+            if (PowerUpCount > 5)  // 5 is the max power up count
+                return;
+                
             if (!_fieldOfView.enabled)
                 _fieldOfView.enabled = true;
             // Field of view will become larger based on powerup Collected.
-            _fieldOfView.viewRadius = _fieldOfView.viewRadius + ((_fieldOfView.viewRadius / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);           
+            _fieldOfView.viewRadius = _fieldOfView.viewRadius + ((_fieldOfView.viewRadius / 100) * FOVIncreasePercentage );
+
+            PowerUpCount++;
         }
 
-        public void IncreaseFOVSensor() {
-           if(_fOVCollider != null && _fOVCollider.enabled) {
-                _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
-                _fOVCollider.CreateCollider();
-            }
-        }     
+        //public void IncreaseFOVSensor() {
+        //   if(_fOVCollider != null && _fOVCollider.enabled) {
+        //        _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
+        //        _fOVCollider.CreateCollider();
+        //    }
+        //}     
 
         public void OnDeath() {
             // Turn off the movement and shooting scripts.
@@ -323,6 +335,31 @@
                 angleInDegrees += transform.eulerAngles.y;
             }
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        }
+
+        public int GreatestOfThreePowerUp(int num1, int num2, int num3) {
+            // set the value of the three numbers
+            //num1 = 10;
+            //num2 = 20;
+            //num3 = 50;
+            int greatestNum;
+
+            if (num1 > num2) {
+                if (num1 > num3) {
+                    //Console.Write("Number one is the largest!\n");
+                    greatestNum = num1;
+                } else {
+                    //Console.Write("Number three is the largest!\n");
+                    greatestNum = num3;
+                }
+            } else if (num2 > num3)
+                //Console.Write("Number two is the largest!\n");
+                greatestNum = num2;
+            else
+                //Console.Write("Number three is the largest!\n");
+                greatestNum = num3;
+
+            return greatestNum;
         }
     }
 }

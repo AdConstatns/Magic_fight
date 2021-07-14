@@ -7,6 +7,7 @@ namespace AmazingTeam.MagicFight {
 
             var player = c.player;
             var players = c.AIPlayers;
+            var damage = c.player.GetComponentInChildren<PlayerThunder>().damage;
 
             foreach (var otherPlayer in players) {
 
@@ -15,12 +16,14 @@ namespace AmazingTeam.MagicFight {
                 if (c.player.attackTarget == null)
                     return;
 
-                    //Bring the hurt to the player.
-                    //otherPlayer.TakeDamage((int)AbilityType.Thunder);
-                    otherPlayer.TakeDamage((int)AbilityType.Thunder * c.player.currentThunders);
+                // Stop the player before getting hurt.
+                otherPlayer.GetComponent<PlayerAIMovement>().StopWander();
 
-                    // Show the Thunder Effect
-                    otherPlayer.GetComponent<Player>().ShowAttackThunderEffect();                   
+                //Bring the hurt to the player.              
+                otherPlayer.TakeDamage(damage * c.player.currentThunders);
+
+                // Show the Thunder Effect
+                otherPlayer.GetComponent<Player>().ShowAttackThunderEffect();                   
             }          
             // Thunder powerup is decrease after attack.
             // Ability Mode multiple will use all the power accumulated till now.

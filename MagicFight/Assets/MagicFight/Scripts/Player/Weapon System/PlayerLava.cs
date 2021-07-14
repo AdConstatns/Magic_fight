@@ -8,7 +8,7 @@ namespace AmazingTeam.MagicFight {
         public int damage = 10;                  // The damage inflicted by each bullet.
         public float timeBetweenLava = 1f;       // The minimum time between each bomb use.
         public float range = 5f;                  // The bombs explosion range.
-        public int startingLava = 3;
+        public int startingLava = 0;
         public Light LavaLight;
         public List<GameObject> Lavas;
 

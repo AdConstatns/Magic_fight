@@ -3,6 +3,7 @@
     using Apex;
     using Apex.Units;
     using UnityEngine;
+    using Apex.Steering.Behaviours;
 
     [AddComponentMenu("MagicFight/Player/PlayerAIMovement", 2)]
     public class PlayerAIMovement : MonoBehaviour
@@ -11,15 +12,27 @@
         private Transform _lookAtTransform;
         private IUnitFacade _unit;
         private PlayerAnimation _playerAnimation;
-     
+        private Player _player;
+
+        private float radius;
+        private float minimumDistance;
+        private float lingerForSeconds;
+
+
         int Walk = Animator.StringToHash("IS_WALK");
+        int Attack = Animator.StringToHash("IS_ATTACK");
 
         private void Awake()
         {
             // Set up references.
             _anim = GetComponentInChildren<Animator>();
             _playerAnimation = GetComponent<PlayerAnimation>();
+            _player = GetComponent<Player>();
             _unit = this.GetUnitFacade();
+
+            //radius = GetComponent<WanderComponent>().radius;
+            // = GetComponent<WanderComponent>().minimumDistance;
+            //lingerForSeconds = GetComponent<WanderComponent>().lingerForSeconds;
         }
 
         private void OnDisable()
@@ -41,12 +54,22 @@
         public void Move(Vector3 destination)
         {
             _unit.MoveTo(destination, false);
+            
         }
 
         public void Stop()
         {
             _unit.Stop();            
         }
+
+        public void StopWander() {
+
+            _unit.StopWander();
+        }
+
+        public void StartWander() {
+            _unit.Wander(10.0f, 4.0f, 0.0f);
+        }        
 
         /// <summary>
         /// Set the position to look at. Set to null is the Ai should stop looking
@@ -68,7 +91,8 @@
 
 
             // modified by tholkappiyan
-            if (_unit.velocity.x > 0f || _unit.velocity.z > 0)  //_unit.velocity.sqrMagnitude
+            //if (_unit.velocity.x != 0.0f || _unit.velocity.z != 0.0f)  //_unit.velocity.sqrMagnitude > 0
+            if(_unit.velocity.sqrMagnitude != 0)
             {
                 walking = true;
             }
@@ -78,11 +102,19 @@
             //_anim.SetBool("IsWalking", walking);
             _playerAnimation.SetAnimationBool(Walk, walking);
 
+            //if (_player.IsPlayerShooting) {
+            //    _playerAnimation.SetAnimationBool(Attack, true);
+            //}
+            //else {             
+            //    _playerAnimation.SetAnimationBool(Attack, false);
+            //}
+
+
+
 #if UNITY_EDITOR
-            Debug.Log("Player Animation: Walk Status:"+ walking);
+            Debug.LogWarning($"<color=green><b>Player Animation: Walk Status:</b></color>"+ walking);
+            Debug.LogWarning($"<color=green><b>Player Animation: Walk velocity of x, z: </b></color>" + _unit.velocity.x + "  "+ _unit.velocity.z);
 #endif
-
-
         }
     }
 }

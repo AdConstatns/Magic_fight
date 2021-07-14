@@ -6,6 +6,7 @@ namespace AmazingTeam.MagicFight {
 
             var player = c.player;
             var players = c.AIPlayers;
+            var damage = c.player.GetComponentInChildren<PlayerLava>().damage;
 
             foreach (var otherPlayer in players) {
 
@@ -14,13 +15,14 @@ namespace AmazingTeam.MagicFight {
                 if (c.player.attackTarget == null)
                     return;
 
-                    //Bring the hurt to the player.     
-                    //otherPlayer.TakeDamage((int)AbilityType.Lava);
-                    otherPlayer.TakeDamage((int)AbilityType.Lava * c.player.currentLavas);
+                // Stop the player before getting hurt.
+                otherPlayer.GetComponent<PlayerAIMovement>().StopWander();
 
-                    // Show the Thunder Effect
-                    otherPlayer.GetComponent<Player>().ShowLavaAttackEffect();
-               
+                //Bring the hurt to the player.                    
+                otherPlayer.TakeDamage( damage * c.player.currentLavas);
+
+                // Show the Lava Effect
+                otherPlayer.GetComponent<Player>().ShowLavaAttackEffect();               
             }
            
             // Thunder powerup is decrease after attack.

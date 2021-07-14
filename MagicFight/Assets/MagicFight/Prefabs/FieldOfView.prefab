@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2125559054317790814}
-  - component: {fileID: 2125559054317790809}
+  - component: {fileID: 5745189750916205879}
   m_Layer: 0
   m_Name: FieldOfView
   m_TagString: FieldOfView
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2125559054317790809
+--- !u!114 &5745189750916205879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,22 +41,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2125559054317790815}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49bf30cad4594044aaa7e4b3baa6dfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1aeb5b55ec467224295da33707cc2c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 5
-  viewAngle: 90
+  viewRadius: 0
+  viewAngle: 0
   targetMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   visibleTargets: []
-  meshResolution: 1
-  edgeResolveIterations: 4
+  meshResolution: 0
+  edgeResolveIterations: 0
   edgeDstThreshold: 0
-  viewMeshFilter: {fileID: 2125559055425536747}
+  viewMeshFilter: {fileID: 0}
 --- !u!1 &2125559055425536750
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ba4d407ba0d5f2d4f97329bf3c731050, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

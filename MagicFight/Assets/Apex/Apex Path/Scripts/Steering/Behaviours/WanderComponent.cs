@@ -44,7 +44,7 @@ namespace Apex.Steering.Behaviours
             var unit = this.GetUnitFacade();
             if (unit != null)
             {
-                unit.StopWander();
+                unit.StopWander();         
             }          
         }
     }
