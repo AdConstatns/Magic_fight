@@ -288,7 +288,7 @@
         public void IncreaseFOVDistance() {
             if (PowerUpCount > 5)  // 5 is the max power up count
                 return;
-                
+
             if (!_fieldOfView.enabled)
                 _fieldOfView.enabled = true;
             // Field of view will become larger based on powerup Collected.

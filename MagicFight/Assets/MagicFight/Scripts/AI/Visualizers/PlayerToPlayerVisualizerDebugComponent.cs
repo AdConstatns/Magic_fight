@@ -14,7 +14,7 @@ namespace AmazingTeam.MagicFight {
             Gizmos.color = color;
             var playerPos = ctx.player.position;
 
-            var players = ctx.AIPlayers;
+            var players = ctx.Players;
             var count = players.Count;
             for (int i = 0; i < count; i++) {
                 var otherPlayers = players[i];

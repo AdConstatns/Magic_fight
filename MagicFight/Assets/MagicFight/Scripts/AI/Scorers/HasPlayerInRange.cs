@@ -13,7 +13,7 @@ namespace AmazingTeam.MagicFight {
         public override float Score(IAIContext context) {
             var c = (SurvivalContext)context;
 
-            var players = c.AIPlayers;
+            var players = c.Players;
 
             var count = players.Count;
 

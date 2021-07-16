@@ -17,7 +17,7 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
 
             var player = c.player;
-            c.AIPlayers.Clear();
+            c.Players.Clear();
 
             // Use OverlapSphere for getting all relevant colliders within scan range, filtered by the scanning layer
             var colliders = Physics.OverlapSphere(player.position, player.scanRange, Layers.players);
@@ -29,19 +29,23 @@ namespace AmazingTeam.MagicFight {
                     continue;
                 }
 
+                // Scan for the AI Player.
                 var playerToAdd = EntityManager.instance.GetLivingEntityByGameObject(col.gameObject);
 
                 if (playerToAdd == null) {
-                    continue;
+                    // Scan for the Non AI Player.
+                    playerToAdd =  col.gameObject.GetComponent<Player>();
+                    if(playerToAdd is null)
+                        continue;
                 }
 
                 // Avoiding adding the own gameobject.
                 if(c.player.gameObject != col.gameObject) {
-                    c.AIPlayers.Add(playerToAdd);                  
+                    c.Players.Add(playerToAdd);                  
                 }               
             }
             // Visually display the Player Count
-            Count = c.AIPlayers.Count;
+            Count = c.Players.Count;
         }
     }
 }

@@ -10,11 +10,13 @@ namespace AmazingTeam.MagicFight {
         public float range = 5f;                  // The bombs explosion range.
         public int startingLava = 0;
         public Light LavaLight;
+        [SerializeField]
+        private int _currentLavas;
         public List<GameObject> Lavas;
 
         private List<ParticleSystem> _LavaParticleSystems;
 
-        private int _currentLavas;
+     
         private float _timer;                                    // A timer to determine when to fire.
         private AudioSource _LavaAudio;                           // Reference to the audio source.
 

@@ -7,6 +7,8 @@ TagManager:
   - FieldOfView
   - Sight
   - Powerup
+  - FxTemporaire
+  - PlayerAI
   layers:
   - Default
   - TransparentFX

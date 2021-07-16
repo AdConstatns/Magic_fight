@@ -47,15 +47,15 @@ MonoBehaviour:
     Assembly-CSharp","not":true,"score":110},{"@type":"AmazingTeam.MagicFight.HasLava,
     Assembly-CSharp","not":true,"score":110}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
     ApexAI","score":100}}]}'
-  editorConfiguration: '{"offset":{"@x":70,"@y":28},"zoom":0.75,"SelectorView":{"ViewArea":{"@left":55,"@top":88,"@width":150,"@height":120},"Name":"Player
+  editorConfiguration: '{"offset":{"@x":96,"@y":-16},"zoom":1,"SelectorView":{"ViewArea":{"@left":76,"@top":64,"@width":200,"@height":160},"Name":"Player
     Shooting","Description":"Player can shoot if the Shooting key is pressed and
-    \nhas attack target.","QualifierView":{"Name":"Is Player Can Shoot","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":535,"@top":58,"@width":165,"@height":120},"Name":"Player
+    \nhas attack target.","QualifierView":{"Name":"Is Player Can Shoot","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":716,"@top":24,"@width":220,"@height":160},"Name":"Player
     Fire Attack","Description":"Different Types of Attack ","QualifierView":{"Name":"Fire
-    Attack","ActionView":{}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":535,"@top":328,"@width":180,"@height":120},"Name":"Player
+    Attack","ActionView":{}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":716,"@top":384,"@width":240,"@height":160},"Name":"Player
     Thunder Attack","Description":"Different Types of Attack ","QualifierView":{"Name":"Thunder
-    Attack","ActionView":{}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":535,"@top":193,"@width":165,"@height":120},"Name":"Player
+    Attack","ActionView":{}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":716,"@top":204,"@width":220,"@height":160},"Name":"Player
     Lava Attack","Description":"Different Types of Attack ","QualifierView":{"Name":"Lava
-    Attack","ActionView":{}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":265,"@top":88,"@width":195,"@height":255},"Name":"Player
+    Attack","ActionView":{}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":356,"@top":64,"@width":260,"@height":340},"Name":"Player
     Attack","QualifierView":{"Name":"Fire Attack","ActionView":{}},"QualifierView":{"Name":"Thunder
     Attack","ActionView":{}},"QualifierView":{"Name":"Lava Attack","ActionView":{}},"QualifierView":{"Name":"Is
     Shooting To False","ActionView":{"Name":"Is Shooting To False","Description":"If

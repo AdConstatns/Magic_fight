@@ -18,7 +18,7 @@ namespace AmazingTeam.MagicFight
         public override float Score(IAIContext context) {
             var c = (SurvivalContext)context;          
 
-            if (c.AIPlayers.Count <= 0) {
+            if (c.Players.Count <= 0) {
                 // No Players available make the input shooting false.
                 c.player.IsPlayerShooting = false;
                 return this.not ? this.score : 0f;

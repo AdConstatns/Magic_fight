@@ -10,7 +10,7 @@ namespace AmazingTeam.MagicFight {
         public override float Score(IAIContext context) {
             var c = (SurvivalContext)context;
 
-            if (c.player.currentBandAids <= 0) {
+            if (c.player.currentFires <= 0 && c.player.currentThunders <= 0 && c.player.currentLavas <= 0) {
                 return this.not ? this.score : 0f;
             }
 

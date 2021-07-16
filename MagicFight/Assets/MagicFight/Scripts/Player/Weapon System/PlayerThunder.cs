@@ -10,11 +10,13 @@ namespace AmazingTeam.MagicFight {
         public float range = 5f;                  // The bombs explosion range.
         public int startingThunder = 3;
         public Light ThunderLight;
+        [SerializeField]
+        private int _currentThunder;
         public List<GameObject> Thunders;
 
         private List<ParticleSystem> _ThunderParticleSystems;
 
-        private int _currentThunder;
+       
         private float _timer;                                    // A timer to determine when to fire.
         private AudioSource _ThunderAudio;                           // Reference to the audio source.
 

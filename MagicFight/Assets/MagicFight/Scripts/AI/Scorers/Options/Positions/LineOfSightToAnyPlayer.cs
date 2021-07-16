@@ -9,7 +9,7 @@ namespace AmazingTeam.MagicFight {
             //To be a bit more precise, we check line of sight as seen from the tip of the gun
             position = position + c.player.gunTipOffset;
 
-            var players = c.AIPlayers;
+            var players = c.Players;
             var count = players.Count;
             if (count == 0) {
                 return 0f;

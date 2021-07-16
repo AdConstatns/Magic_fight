@@ -6,7 +6,7 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
 
             var player = c.player;
-            var players = c.AIPlayers;
+            var players = c.Players;
             var damage = c.player.GetComponentInChildren<PlayerThunder>().damage;
 
             foreach (var otherPlayer in players) {
@@ -16,8 +16,12 @@ namespace AmazingTeam.MagicFight {
                 if (c.player.attackTarget == null)
                     return;
 
-                // Stop the player before getting hurt.
-                otherPlayer.GetComponent<PlayerAIMovement>().StopWander();
+                // Stop the player AI when getting hurt.
+                if (otherPlayer.CompareTag(Tags.PlayerAI))
+                    otherPlayer.GetComponent<PlayerAIMovement>().StopWander();
+                else
+                    // Stop the Player when getting hurt
+                    otherPlayer.GetComponent<PlayerAIMovement>().Stop();                
 
                 //Bring the hurt to the player.              
                 otherPlayer.TakeDamage(damage * c.player.currentThunders);

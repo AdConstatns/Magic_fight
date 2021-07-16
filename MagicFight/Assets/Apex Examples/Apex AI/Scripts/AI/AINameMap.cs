@@ -18,6 +18,8 @@ namespace Apex.AI
 		public static readonly Guid MagicFight = new Guid("be29cce3-16bc-4bd3-8a6c-67cc29e2f57c");
 		public static readonly Guid MemoryCleanupAI = new Guid("675eaaa8-d26a-47a4-911d-3b8cfe329dad");
 		public static readonly Guid PlayerAction = new Guid("c92a16e8-9d37-4038-b043-1cfa2b04aa5e");
+		public static readonly Guid PlayerAIAction = new Guid("55f7fe19-a6ec-45bb-9192-8d2fe58b5079");
+		public static readonly Guid PlayerAIMove = new Guid("6a3493cf-51ff-4648-bdd7-e6b23d8acefb");
 		public static readonly Guid PlayerScanner = new Guid("dcb18271-7255-407e-865f-f06af241f9e4");
 		public static readonly Guid PositionScannerAI = new Guid("4fd984cf-0221-4e35-84ea-b5ac08b9d766");
 		public static readonly Guid PositionScorerAI = new Guid("94d5d5f1-a4c7-4a6b-8e47-11094e0eb248");

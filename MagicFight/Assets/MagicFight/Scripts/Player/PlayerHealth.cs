@@ -128,7 +128,9 @@
 
         IEnumerator WaitForParticleSystem() {
             yield return new WaitForSeconds(2.0f);
-            GetComponent<PlayerAIMovement>().StartWander();
+            // Wander functionallity should be enabled for Player AI.
+            if(gameObject.CompareTag(Tags.PlayerAI))
+                GetComponent<PlayerAIMovement>().StartWander();
         }
 
         public void UseBandAid()

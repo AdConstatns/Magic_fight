@@ -9,14 +9,14 @@ namespace AmazingTeam.MagicFight {
 
 		public float viewAngle = 90.0f;
 		void OnSceneGUI() {
-			Player fow = (Player)target;
+			Player player = (Player)target;
 			Handles.color = Color.white;
-			Handles.DrawWireArc(fow.transform.position, Vector3.up, Vector3.forward, 360, fow.scanRange);
-			Vector3 viewAngleA = fow.DirFromAngle(-viewAngle / 2, false);
-			Vector3 viewAngleB = fow.DirFromAngle(viewAngle / 2, false);
+			Handles.DrawWireArc(player.transform.position, Vector3.up, Vector3.forward, 360, player.scanRange);
+			Vector3 viewAngleA = player.DirFromAngle(-viewAngle / 2, false);
+			Vector3 viewAngleB = player.DirFromAngle(viewAngle / 2, false);
 
-			Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleA * (fow.scanRange));  // View Radius = fow.scanRange/2
-			Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleB * (fow.scanRange));
+			Handles.DrawLine(player.transform.position, player.transform.position + viewAngleA * (player.scanRange));  // View Radius = fow.scanRange/2
+			Handles.DrawLine(player.transform.position, player.transform.position + viewAngleB * (player.scanRange));
 
 		}
 	}

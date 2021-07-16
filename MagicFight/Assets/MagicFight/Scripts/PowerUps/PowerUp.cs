@@ -47,16 +47,17 @@
 
             // ----------------------------------------------------------------
 
-            if (other.CompareTag(Tags.Player) || _levitate) {
+            if (other.CompareTag(Tags.Player) || other.CompareTag(Tags.PlayerAI) || _levitate) {
 
                 // AI Player Pickup the Powerup. 
                 var player = EntityManager.instance.GetLivingEntityByGameObject(other.gameObject) as Player;
                 if (player is null) {
                     // Non AI Player pickup the Powerup
-                    player = other.gameObject.GetComponent<Player>();
-                    if(player != null)
-                        OnPickup(player);
-                } 
+                    player = other.gameObject.GetComponent<Player>();                   
+                }
+
+                if (player != null)
+                    OnPickup(player);
 
                 //Once picked up, float into the air and disappear after a second.
                 // Other will always be player . So below code block placed inside the player tag block.

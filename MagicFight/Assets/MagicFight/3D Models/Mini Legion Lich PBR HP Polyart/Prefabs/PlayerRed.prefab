@@ -9990,7 +9990,7 @@ GameObject:
   - component: {fileID: 2486421925942124671}
   m_Layer: 16
   m_Name: PlayerRed
-  m_TagString: Player
+  m_TagString: PlayerAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10081,7 +10081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cf633d339ecd143b23824eb81df7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 0
+  scanRange: 8
   PowerUpCount: 0
 --- !u!114 &6347458916553468422
 MonoBehaviour:
@@ -10468,8 +10468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9d728dc72ea08489e10c3fbcc2f3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
-  minimumDistance: 4
+  radius: 12
+  minimumDistance: 8
   lingerForSeconds: 0
 --- !u!114 &-7303660851173223815
 MonoBehaviour:
@@ -10483,7 +10483,25 @@ MonoBehaviour:
   m_Script: {fileID: 939582531, guid: 6012f3241c1c1f7409c44769fc0a1db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiConfigs: []
+  aiConfigs:
+  - aiId: dcb18271-7255-407e-865f-f06af241f9e4
+    intervalMin: 1
+    intervalMax: 1
+    startDelayMin: 0
+    startDelayMax: 0
+    isActive: 1
+  - aiId: 6a3493cf-51ff-4648-bdd7-e6b23d8acefb
+    intervalMin: 1
+    intervalMax: 1
+    startDelayMin: 0
+    startDelayMax: 0
+    isActive: 1
+  - aiId: 55f7fe19-a6ec-45bb-9192-8d2fe58b5079
+    intervalMin: 1
+    intervalMax: 1
+    startDelayMin: 0
+    startDelayMax: 0
+    isActive: 1
 --- !u!114 &2486421925942124671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41246,6 +41264,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5745189750916205879, guid: e5e564e15891dfe48b417815912e2d7b, type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 8699059299182772143}
+    - target: {fileID: 5745189750916205879, guid: e5e564e15891dfe48b417815912e2d7b, type: 3}
       propertyPath: edgeResolveIterations
       value: 4
       objectReference: {fileID: 0}
@@ -41254,6 +41276,11 @@ PrefabInstance:
 --- !u!4 &8699059298071993114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2125559054317790814, guid: e5e564e15891dfe48b417815912e2d7b, type: 3}
+  m_PrefabInstance: {fileID: 7333765531852995908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8699059299182772143 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 2125559055425536747, guid: e5e564e15891dfe48b417815912e2d7b, type: 3}
   m_PrefabInstance: {fileID: 7333765531852995908}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8321103699746772100
