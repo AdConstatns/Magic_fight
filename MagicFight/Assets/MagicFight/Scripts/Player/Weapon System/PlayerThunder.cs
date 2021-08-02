@@ -30,7 +30,8 @@ namespace AmazingTeam.MagicFight {
 
             set {
                 _currentThunder = value;
-                HUDState.UpdateThunders(_currentThunder);
+                if (gameObject.CompareTag("Player")) // Update for player 
+                    HUDState.UpdateThunders(_currentThunder);
             }
         }
 

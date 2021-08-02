@@ -10,6 +10,8 @@ namespace AmazingTeam.MagicFight {
             
            if( player.currentFires <= 0 && player.currentThunders <=0 && player.currentLavas <= 0) {
                 player.IsPlayerShooting = false;
+                // Disable the multiple attack targets;
+                player.IsComboAttack = false;
            }    
         }
     }

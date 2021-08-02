@@ -41,13 +41,12 @@ namespace AmazingTeam.MagicFight {
             viewMesh.name = "View Mesh";
             viewMeshFilter.mesh = viewMesh;
 
-            StartCoroutine("FindTargetsWithDelay", .2f);
+            StartCoroutine("FindTargetsWithDelay", .1f);
         }
 
         private void OnDisable() {
             // Clear the Mesh after Particle system is played. For that add delay.
-            Invoke("ClearMesh", 3.0f);
-           
+            Invoke("ClearMesh", 1f);           
         }
 
         public void ClearMesh() {

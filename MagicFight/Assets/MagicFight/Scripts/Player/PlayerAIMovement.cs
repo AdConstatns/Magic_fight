@@ -27,17 +27,22 @@
             // Set up references.
             _anim = GetComponentInChildren<Animator>();
             _playerAnimation = GetComponent<PlayerAnimation>();
-            _player = GetComponent<Player>();
+            _player = GetComponent<Player>();           
             _unit = this.GetUnitFacade();
-
-            //radius = GetComponent<WanderComponent>().radius;
-            // = GetComponent<WanderComponent>().minimumDistance;
-            //lingerForSeconds = GetComponent<WanderComponent>().lingerForSeconds;
+         
+           
         }
 
         private void OnDisable()
         {
-            _unit.Stop();
+            _unit.Stop();            
+        }
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.R)) {
+               var unit = this.GetUnitFacade<ExtendedUnitFacade>();
+                unit.Run();
+            }
         }
 
         private void FixedUpdate()
@@ -54,7 +59,7 @@
         public void Move(Vector3 destination)
         {
             _unit.MoveTo(destination, false);
-            
+           
         }
 
         public void Stop()
@@ -92,7 +97,7 @@
 
             // modified by tholkappiyan
             //if (_unit.velocity.x != 0.0f || _unit.velocity.z != 0.0f)  //_unit.velocity.sqrMagnitude > 0
-            if(_unit.velocity.sqrMagnitude != 0)
+            if(_unit.velocity.sqrMagnitude != 0 )
             {
                 walking = true;
             }
@@ -111,10 +116,10 @@
 
 
 
-#if UNITY_EDITOR
-            Debug.LogWarning($"<color=green><b>Player Animation: Walk Status:</b></color>"+ walking);
-            Debug.LogWarning($"<color=green><b>Player Animation: Walk velocity of x, z: </b></color>" + _unit.velocity.x + "  "+ _unit.velocity.z);
-#endif
+//#if UNITY_EDITOR
+//            Debug.LogWarning($"<color=green><b>Player Animation: Walk Status:</b></color>"+ walking);
+//            Debug.LogWarning($"<color=green><b>Player Animation: Walk velocity of x, z: </b></color>" + _unit.velocity.x + "  "+ _unit.velocity.z);
+//#endif
         }
     }
 }

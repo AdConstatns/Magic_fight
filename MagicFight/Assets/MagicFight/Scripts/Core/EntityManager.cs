@@ -49,6 +49,7 @@
 
         private void Update()
         {
+            
             //If multiple players exist in the scene, they can be focused using the numeric keys
             for (int i = 0; i < _players.Count; i++)
             {

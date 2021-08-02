@@ -27,6 +27,8 @@
 
         public HealthBar _healthBar;
 
+        public PlayerAIMovement _playerAIMovement;
+
         public int currentHealth
         {
             get
@@ -62,6 +64,7 @@
             _anim = GetComponent<Animator>();
             _playerAudio = GetComponent<AudioSource>();
             _player = GetComponent<Player>();
+            _playerAIMovement = GetComponent<PlayerAIMovement>();
             //_healthBar = GetComponentInChildren<HealthBar>();
 
             // Commented by Tholkappiyan
@@ -117,9 +120,13 @@
                 _playerAudio.clip = deathClip;
                 _playerAudio.Play();
 
+                // On death Stop the wander of the player.
+                _playerAIMovement.StopWander();               
                 _player.OnDeath();
 
+
                 //Recycle the entity
+                // 4f is the time afterwhich the player is recycled.
                 LoadBalancer.defaultBalancer.ExecuteOnce(() => EntityManager.instance.Recycle(_player), 3f);
             }  else {
                StartCoroutine(WaitForParticleSystem());          
@@ -129,8 +136,11 @@
         IEnumerator WaitForParticleSystem() {
             yield return new WaitForSeconds(2.0f);
             // Wander functionallity should be enabled for Player AI.
-            if(gameObject.CompareTag(Tags.PlayerAI))
-                GetComponent<PlayerAIMovement>().StartWander();
+            if (gameObject.CompareTag(Tags.PlayerAI)) {
+                if(currentHealth > 0)
+                     GetComponent<PlayerAIMovement>().StartWander();
+            }
+              
         }
 
         public void UseBandAid()

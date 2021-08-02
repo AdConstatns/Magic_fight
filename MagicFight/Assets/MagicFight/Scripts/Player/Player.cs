@@ -7,13 +7,18 @@
     using Apex.Units;
     using UnityEngine;
     using System.Collections.Generic;
+   
 
     /// <summary>
     /// Component representing the player. Instantiates the context and holds player specific variables
     /// </summary>
     [AddComponentMenu("MagicFight/Player/Player", 0)]
     public class Player : LivingEntity, IContextProvider {
-        public float scanRange;                     //The range inside which to scan for enemies and power-ups
+
+        //The range inside which to scan for enemies and power-ups
+        public float scanRange;
+        // The range inside which to attack the enemies
+        public float strikeRange;
 
         private SurvivalContext _context;
         private PlayerShooting _playerShooting;
@@ -30,11 +35,13 @@
         private PlayerLava _playerLava;
         private UtilityAIComponent _playerAI;
         private IUnitFacade _navUnit;
-        private FieldOfView _fieldOfView;
+        private FieldOfViewAsset.FieldOfView _fieldOfView; 
         [SerializeField]
         private readonly float FOVIncreasePercentage = 20;
         // Set by the Player
-        private bool _IsPlayerShooting;     
+        private bool _IsPlayerShooting;
+        // Player has multiple attacks
+        private bool _IsComboAttack;
 
         PlayerAnimation _playerAnimation;
 
@@ -44,6 +51,10 @@
         // public FOVCollider _fOVCollider;
 
         public int PowerUpCount;
+        public PlayerCollectable CollectedPowerup;
+        public  float _cachedScanRange;
+
+        public float _fovUpdateSpeed = 1;
 
         public static Player focusedPlayer {
             get;
@@ -72,8 +83,7 @@
         }
 
         public int currentFires {
-            get { return _playerFire.currentFires; }
-            set {  }
+            get { return _playerFire.currentFires; }           
         }
 
         public int currentThunders {
@@ -105,13 +115,13 @@
 
         // Variable Set by the Non-AI Player to control shooting.
         public bool IsPlayerShooting {
-            get { 
-                return _IsPlayerShooting; 
-            }
+            get { return _IsPlayerShooting; }
+            set { _IsPlayerShooting = value; }
+        }
 
-            set { 
-                _IsPlayerShooting = value;             
-            }
+        public bool IsComboAttack {
+            get { return _IsComboAttack; }
+            set { _IsComboAttack = value; }
         }
 
         protected override void OnAwake() {
@@ -128,10 +138,12 @@
             _playerLava = GetComponentInChildren<PlayerLava>();
             _playerAnimation = GetComponent<PlayerAnimation>();
 
-            _fieldOfView = this.GetComponentInChildren<FieldOfView>();
+            _fieldOfView = this.GetComponentInChildren<FieldOfViewAsset.FieldOfView>();
             //_fOVCollider = this.GetComponentInChildren<FOVCollider>();
             
             AttackTarget = new HashSet<LivingEntity>();
+
+            _cachedScanRange = scanRange;
         }
 
         private void OnEnable() {
@@ -172,34 +184,25 @@
 
         public void UseBandAid() {
             _playerHealth.UseBandAid();
+        }     
+
+        void ComboAttack() {
+            int attackType = 0;
+            if (_playerFire.currentFires > 0)
+                attackType++;
+            if (_playerThunder.currentThunders > 0)
+                attackType++;
+            if (_playerLava.currentLavas > 0)
+                attackType++;
+
+            if (attackType > 1)
+                IsComboAttack = true;
+            else
+                IsComboAttack = false;
         }
 
-        public void UseFire(AbilityMode mode) {
-            _playerFire.UseFire(mode);
-
-            if(_playerFire.currentFires <= 0) {
-                DisableStrikeAreaParticle(_playerFire.gameObject);
-            }
-
-            DisableFieldOfView();
-        }
-
-        public void UseThunder(AbilityMode mode) {
-            _playerThunder.UseThunder(mode);
-
-            if (_playerThunder.currentThunders <= 0) {
-                DisableStrikeAreaParticle(_playerThunder.gameObject);
-            }
-            DisableFieldOfView();          
-        }
-
-        public void UseLava(AbilityMode mode) {
-            _playerLava.UseLava(mode);
-
-            if (_playerLava.currentLavas <= 0) {
-                DisableStrikeAreaParticle(_playerLava.gameObject);
-            }
-            DisableFieldOfView();
+        void ResetPowerUpCount() {
+            PowerUpCount = 0;
         }
 
         public void ShowFireEffect() {
@@ -231,38 +234,88 @@
             _playerFire.AddFire(amount);
             // Show Fire Effect
             _playerFire.ShowFireEffect();
-            // On Adding the Player Field of View Increase by 1 percent.            
+            //Increase Scan Range of the player
+            IncreaseScanRange();
+            // On Adding fire the Player Field of View Increase by 20 percent.            
             IncreaseFOVDistance();
             // Enable the Field Of View Particle System.
-            EnableStrikeAreaParticle(_playerFire.gameObject);
-            // Commented by Tholkappiyan
-            // Logic Implemented in the Player AI System.
-            // On Adding the BandAid FOVSensor Increase by 1 percent.
-            //Invoke("IncreaseFOVSensor", 0.1f);
+            EnableStrikeAreaParticle(_playerFire.gameObject);       
+            // Check for combo Attack. i.e player has more than one attack 
+            ComboAttack();
         }
 
         public void AddThunder(int amount) {
             _playerThunder.AddThunder(amount);
             // Show Thunder Effect
-            _playerThunder.ShowThunderEffect();
-            // On Adding the Player Field of View Increase by 1 percent.          
+            _playerThunder.ShowThunderEffect();    
+            //Increase Scan Range of the player
+            IncreaseScanRange();
+            // On Adding Thunder the Player Field of View Increase by 20 percent.          
             IncreaseFOVDistance();
             // Enable the Strike Area Particle System.
-            EnableStrikeAreaParticle(_playerThunder.gameObject);
-            // On Adding the BandAid FOVSensor Increase by 1 percent.
-            //Invoke("IncreaseFOVSensor", 0.1f);
+            EnableStrikeAreaParticle(_playerThunder.gameObject);         
+            // Check for combo Attack. i.e player has more than one attack 
+            ComboAttack();
         }
 
         public void AddLava(int amount) {
             _playerLava.AddLava(amount);
             // Show Lava Effect
-            _playerLava.ShowLavaEffect();
-            // On Adding the Player Field of View Increase by 1 percent.
+            _playerLava.ShowLavaEffect();          
+            //Increase Scan Range of the player
+            IncreaseScanRange();
+            // On Adding Lava the Player Field of View Increase by 20 percent.
             IncreaseFOVDistance();
             // Enable the Field Of View Particle System.
-            EnableStrikeAreaParticle(_playerLava.gameObject);
-            // On Adding the BandAid FOVSensor Increase by 1 percent.
-            //Invoke("IncreaseFOVSensor", 0.1f);
+            EnableStrikeAreaParticle(_playerLava.gameObject);        
+            // Check for combo Attack. i.e player has more than one attack 
+            ComboAttack();
+
+        }
+
+        public void UseFire(AbilityMode mode) {
+            _playerFire.UseFire(mode);
+
+            if (_playerFire.currentFires <= 0) {
+                DisableStrikeAreaParticle(_playerFire.gameObject);
+            }
+
+            DisableFieldOfView();
+            ResetPowerUpCount();
+            ResetScanRange();
+        }
+        public void UseThunder(AbilityMode mode) {
+            _playerThunder.UseThunder(mode);
+
+            if (_playerThunder.currentThunders <= 0) {
+                DisableStrikeAreaParticle(_playerThunder.gameObject);
+            }
+            DisableFieldOfView();
+            ResetPowerUpCount();
+            ResetScanRange();
+        }
+        public void UseLava(AbilityMode mode) {
+            _playerLava.UseLava(mode);
+
+            if (_playerLava.currentLavas <= 0) {
+                DisableStrikeAreaParticle(_playerLava.gameObject);
+            }
+            DisableFieldOfView();
+            ResetPowerUpCount();
+            ResetScanRange();
+        }
+
+        void IncreaseScanRange() {
+            // Increrase the scan range by 20 percent
+            // i.e 3 is 100 percent
+            //     0.6 is 20 percent.
+            //scanRange += 0.6f; 
+            // Increase the scan range by FOVIncreasePercentage
+            scanRange += _cachedScanRange * (FOVIncreasePercentage/100);
+        }
+
+        void ResetScanRange() {
+            scanRange = _cachedScanRange;
         }
 
         public void EnableStrikeAreaParticle(GameObject strikeArea) {
@@ -276,7 +329,8 @@
         public void DisableFieldOfView() {
             // Disable the field of view if all the Powerup's is equal to zero.
             if (_playerFire.currentFires <= 0 && _playerThunder.currentThunders <= 0 && _playerLava.currentLavas <= 0) {
-                _fieldOfView.enabled = false;
+                //_fieldOfView.enabled = false;
+                _fieldOfView.Reset();                
                 return;
             }
         }      
@@ -286,23 +340,62 @@
         }
 
         public void IncreaseFOVDistance() {
-            if (PowerUpCount > 5)  // 5 is the max power up count
+            if (PowerUpCount > CollectedPowerup.Maximum )  // 5 is the max power up count
                 return;
 
-            if (!_fieldOfView.enabled)
-                _fieldOfView.enabled = true;
-            // Field of view will become larger based on powerup Collected.
-            _fieldOfView.viewRadius = _fieldOfView.viewRadius + ((_fieldOfView.viewRadius / 100) * FOVIncreasePercentage );
+           // if (!_fieldOfView.enabled)
+           //    _fieldOfView.enabled = true;
+            // Field of view will become larger based on scanRange which is depend on Powerup Collected.
+            //_fieldOfView.ViewRadius = scanRange;
+            //StartCoroutine(ChangeToPct(scanRange));
 
+            _fieldOfView.ViewRadius = scanRange;
             PowerUpCount++;
         }
 
-        //public void IncreaseFOVSensor() {
-        //   if(_fOVCollider != null && _fOVCollider.enabled) {
-        //        _fOVCollider.Length = _fOVCollider.Length + ((_fOVCollider.Length / 100) * FOVIncreasePercentage * _playerHealth.currentBandAids);
-        //        _fOVCollider.CreateCollider();
+        //private System.Collections.IEnumerator ChangeToPct(float pct) {
+        //    float preChangePct = _fieldOfView.viewRadius;
+        //    float elapsed = 0f;
+
+        //    while (elapsed < _fovUpdateSpeed) {
+        //        elapsed += 0.02f * Time.deltaTime;
+        //        _fieldOfView.viewRadius = Mathf.Lerp(preChangePct, pct, elapsed / _fovUpdateSpeed);
+        //        yield return null;
         //    }
-        //}     
+           
+        //    _fieldOfView.viewRadius = scanRange;
+        //}
+
+       
+
+        //// starting value for the Lerp
+        //static float t = 0.0f;
+
+        //private System.Collections.IEnumerator ChangeToPct1(float pct) {
+        //     // animate the game object from -1 to +1 and back
+        //    float minimum = _fieldOfView.viewRadius;
+        //    float maximum = scanRange;
+
+        //// animate the position of the game object...
+        //_fieldOfView.viewRadius = Mathf.Lerp(minimum, scanRange, t);
+
+        //    // .. and increase the t interpolater
+        //    t += 0.03f * Time.deltaTime;
+
+        //    // now check if the interpolator has reached 1.0
+        //    // and swap maximum and minimum so game object moves
+        //    // in the opposite direction.
+        //    while (t > 1.0f) {
+        //        //float temp = maximum;
+        //        //maximum = minimum;
+        //        //minimum = temp;
+        //        t = 0.0f;
+        //    }
+
+        //    yield return null;
+        //}
+
+
 
         public void OnDeath() {
             // Turn off the movement and shooting scripts.
@@ -337,29 +430,29 @@
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
         }
 
-        public int GreatestOfThreePowerUp(int num1, int num2, int num3) {
-            // set the value of the three numbers
-            //num1 = 10;
-            //num2 = 20;
-            //num3 = 50;
-            int greatestNum;
+        //public int GreatestOfThreePowerUp(int num1, int num2, int num3) {
+        //    // set the value of the three numbers
+        //    //num1 = 10;
+        //    //num2 = 20;
+        //    //num3 = 50;
+        //    int greatestNum;
 
-            if (num1 > num2) {
-                if (num1 > num3) {
-                    //Console.Write("Number one is the largest!\n");
-                    greatestNum = num1;
-                } else {
-                    //Console.Write("Number three is the largest!\n");
-                    greatestNum = num3;
-                }
-            } else if (num2 > num3)
-                //Console.Write("Number two is the largest!\n");
-                greatestNum = num2;
-            else
-                //Console.Write("Number three is the largest!\n");
-                greatestNum = num3;
+        //    if (num1 > num2) {
+        //        if (num1 > num3) {
+        //            //Console.Write("Number one is the largest!\n");
+        //            greatestNum = num1;
+        //        } else {
+        //            //Console.Write("Number three is the largest!\n");
+        //            greatestNum = num3;
+        //        }
+        //    } else if (num2 > num3)
+        //        //Console.Write("Number two is the largest!\n");
+        //        greatestNum = num2;
+        //    else
+        //        //Console.Write("Number three is the largest!\n");
+        //        greatestNum = num3;
 
-            return greatestNum;
-        }
+        //    return greatestNum;
+        //}
     }
 }

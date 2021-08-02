@@ -10,7 +10,7 @@
     public abstract class PowerUp : Entity 
     {
         public float levitateSpeed = 4f;
-        private bool _levitate;
+        private bool _levitate;     
 
         protected abstract void OnPickup(Player p);
 

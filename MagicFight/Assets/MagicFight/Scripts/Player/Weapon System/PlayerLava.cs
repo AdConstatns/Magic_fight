@@ -30,7 +30,8 @@ namespace AmazingTeam.MagicFight {
 
             set {
                 _currentLavas = value;
-                HUDState.UpdateLavas(_currentLavas);
+                if (gameObject.CompareTag("Player"))  // Update for player 
+                    HUDState.UpdateLavas(_currentLavas);
             }
         }
 

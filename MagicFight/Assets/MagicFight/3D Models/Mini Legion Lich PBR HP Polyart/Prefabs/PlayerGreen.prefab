@@ -721,9 +721,9 @@ MonoBehaviour:
   startingBandAids: 0
   deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
   zPrefab: {fileID: 146184, guid: 19c0fb493cd0d8743960865a00f973ed, type: 3}
-  _currentBandAids: 0
   _currentHealth: 0
   _healthBar: {fileID: 0}
+  _playerAIMovement: {fileID: 0}
 --- !u!114 &702241334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,9 +762,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanRange: 0
-  _fOVCollider: {fileID: 3869210648195041764}
-  _playerAnimation: {fileID: 0}
+  strikeRange: 0
   PowerUpCount: 0
+  CollectedPowerup: {fileID: 0}
+  _cachedScanRange: 0
+  _fovUpdateSpeed: 1
 --- !u!114 &702241338
 MonoBehaviour:
   m_ObjectHideFlags: 0

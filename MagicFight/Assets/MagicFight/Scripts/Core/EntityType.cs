@@ -5,7 +5,7 @@
     /// </summary>
     public enum EntityType
     {
-        Player = 0,    
+        Player = 0,
 
         Fire,
 

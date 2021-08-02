@@ -31,7 +31,8 @@ namespace AmazingTeam.MagicFight
 
             set {
                 _currentFires = value;
-                HUDState.UpdateFires(_currentFires);
+                if(gameObject.CompareTag("Player")) // Update for player 
+                    HUDState.UpdateFires(_currentFires);
             }
         }
 

@@ -30,7 +30,7 @@ namespace AmazingTeam.MagicFight {
                 // Show the Fire Effect
                 otherPlayer.GetComponent<Player>().ShowFireAttackEffect();               
             }           
-            // Fire powerup is reset after attack.
+            // Fire powerup is reset after attack. Uses all the Fire power.
             player.UseFire(AbilityMode.Multiple);           
         }
     }

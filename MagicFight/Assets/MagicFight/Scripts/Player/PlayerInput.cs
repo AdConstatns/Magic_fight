@@ -40,26 +40,20 @@ namespace AmazingTeam.MagicFight{
 
         // Update is called once per frame
         void Update() {
-            if (LeftStick.IsPressed)
-                _playerAIMovement.Move(this.transform.position + LeftStick.LeftStickDirection);
 
-            //            if ((_player.AttackTarget.Count > 0) && (_playerHealth.currentHealth > 0) && LeftStick.WasReleased) {
-            //                if (_playerFire.currentFires > 0 || _playerThunder.currentThunders > 0 || _playerGround.currentGrounds > 0)
-            //                    _player.StartFiring();
-            //                //Invoke("DiablePlayerShooting", 1f);
-            //#if UNITY_2020
-            //                Debug.LogWarning($"<color=green><b>PlayerInput - Shooting Status: { _playerShooting.shooting }</b></color>");
-            //#endif
-            //            }
-
-
+            // After finished shooting then only he can move.
+            // Check Character is alive. Then he can move.
+            if (LeftStick.IsPressed && _player.currentHealth > 0)
+                _playerAIMovement.Move(this.transform.position + LeftStick.LeftStickDirection);    
+            
+            // Player should Finish shooting. Then only he can shoot again.
             if ((_playerHealth.currentHealth > 0) && LeftStick.WasReleased) {
                 if (_playerFire.currentFires > 0 || _playerThunder.currentThunders > 0 || _playerGround.currentLavas > 0)
                     _player.IsPlayerShooting = true;
-                //Invoke("DiablePlayerShooting", 1f);
+               
 
-#if UNITY_2020
-                Debug.LogWarning($"<color=green><b>PlayerInput - Shooting Status: { _playerShooting.shooting }</b></color>");
+#if UNITY_EDITOR
+                Debug.LogWarning($"<color=green><b>PlayerInput - Shooting Status: {  _player.IsPlayerShooting }</b></color>");
 #endif
 
             } 

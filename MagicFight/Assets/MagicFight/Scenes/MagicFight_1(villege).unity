@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44669217, g: 0.4965436, b: 0.57488793, a: 1}
+  m_IndirectSpecularColor: {r: 0.4466915, g: 0.49654257, b: 0.5748869, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -708,6 +708,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 150957437648469232, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505262919350557250, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1505262919350557255, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
       propertyPath: m_Type
       value: 2
@@ -720,6 +728,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3841951117995849422, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4008440009415698349, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -729,13 +741,37 @@ PrefabInstance:
       value: 2046
       objectReference: {fileID: 0}
     - target: {fileID: 4200454617404395667, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: runSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200454617404395667, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
       propertyPath: walkSpeed
-      value: 6
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200454617404395667, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: _minimumSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200454617404395667, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: _maxAcceleration
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200454617404395667, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: _maxDeceleration
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4200454617404395704, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
       propertyPath: m_Name
       value: MagicWand01
       objectReference: {fileID: 0}
+    - target: {fileID: 4200454617404395709, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: _MaximumPowerUp
+      value: 
+      objectReference: {fileID: 11400000, guid: 887d63491b413c14ab29c756e2c01900, type: 2}
+    - target: {fileID: 4200454617404395709, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
+      propertyPath: CollectedPowerup
+      value: 
+      objectReference: {fileID: 11400000, guid: 887d63491b413c14ab29c756e2c01900, type: 2}
     - target: {fileID: 4201292751561294016, guid: 1f1ec4a202f065943b20bf978c4a0d82, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5479,7 +5515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 1.3000488}
+  m_AnchoredPosition: {x: -50, y: 1.300293}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &902732378

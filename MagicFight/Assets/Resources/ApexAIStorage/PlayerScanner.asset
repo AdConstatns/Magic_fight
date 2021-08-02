@@ -20,6 +20,6 @@ MonoBehaviour:
     ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"AmazingTeam.MagicFight.ScanForPlayers,
     Assembly-CSharp","Count":0},{"@type":"AmazingTeam.MagicFight.ScanForPowerUps,
     Assembly-CSharp"},{"@type":"AmazingTeam.MagicFight.ScanForPositions, Assembly-CSharp"}]}}}]}'
-  editorConfiguration: '{"offset":{"@x":-20,"@y":-4},"zoom":1,"SelectorView":{"ViewArea":{"@left":80,"@top":96,"@width":200,"@height":100},"Name":"Scan
+  editorConfiguration: '{"offset":{"@x":-15,"@y":-7},"zoom":1,"SelectorView":{"ViewArea":{"@left":85,"@top":93,"@width":200,"@height":100},"Name":"Scan
     For Players","Description":"Scan for players in the Range Provided by the player.","DefaultQualifier":{"Name":"Context
     For Player","ActionView":{"@connectorType":"Composite","Name":"Scan"}}}}'

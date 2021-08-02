@@ -11,9 +11,7 @@ namespace AmazingTeam.MagicFight {
         public int Count = 0;   
 
         public override void Execute(IAIContext context) {
-            // Player Count Reset
-            //Count = 0;
-
+          
             var c = (SurvivalContext)context;
 
             var player = c.player;
