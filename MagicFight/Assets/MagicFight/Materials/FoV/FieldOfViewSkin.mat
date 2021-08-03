@@ -36,5 +36,5 @@ Material:
     - _SkinsOffset: 0
     m_Colors:
     - _ActiveColor: {r: 1, g: 0, b: 0, a: 0.2509804}
-    - _PassiveColor: {r: 0, g: 1, b: 0, a: 0.2509804}
+    - _PassiveColor: {r: 0.32941177, g: 0.29803923, b: 0.29803923, a: 0}
   m_BuildTextureStacks: []

@@ -2,7 +2,7 @@
     Properties {
         [Enum(Color,0,Texture,1)] _SkinType ("Skin Type", Int) = 0
 
-        _PassiveColor ("Passive Color", Color) = (0,1,0,0.25)
+        _PassiveColor ("Passive Color", Color) = (0.3294,0.2980,0.2980,0.25) //(0,1,0,0.25)
         _ActiveColor ("Active Color", Color) = (1,0,0,0.5)
 
         _PassiveTexture ("Passive Texture", 2D) = ""

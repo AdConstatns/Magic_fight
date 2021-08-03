@@ -35,7 +35,8 @@
         private PlayerLava _playerLava;
         private UtilityAIComponent _playerAI;
         private IUnitFacade _navUnit;
-        private FieldOfViewAsset.FieldOfView _fieldOfView; 
+        private FieldOfViewAsset.FieldOfView _fieldOfView;
+        private FieldOfView _fieldOfView1;
         [SerializeField]
         private readonly float FOVIncreasePercentage = 20;
         // Set by the Player
@@ -139,8 +140,9 @@
             _playerAnimation = GetComponent<PlayerAnimation>();
 
             _fieldOfView = this.GetComponentInChildren<FieldOfViewAsset.FieldOfView>();
+            _fieldOfView1 = this.GetComponentInChildren<FieldOfView>();
             //_fOVCollider = this.GetComponentInChildren<FOVCollider>();
-            
+
             AttackTarget = new HashSet<LivingEntity>();
 
             _cachedScanRange = scanRange;
@@ -330,10 +332,38 @@
             // Disable the field of view if all the Powerup's is equal to zero.
             if (_playerFire.currentFires <= 0 && _playerThunder.currentThunders <= 0 && _playerLava.currentLavas <= 0) {
                 //_fieldOfView.enabled = false;
-                _fieldOfView.Reset();                
+                StartCoroutine(ChangeToZero1(0));
+                StartCoroutine(ChangeToZero(0));                          
                 return;
             }
-        }      
+        }
+
+        private System.Collections.IEnumerator ChangeToZero(float pct) {
+            float preChangePct = _fieldOfView.ViewRadius;
+            float elapsed = 0f;
+
+            while (elapsed < _fovUpdateSpeed) {
+                elapsed += 0.02f * Time.deltaTime;
+                _fieldOfView.ViewRadius = Mathf.Lerp(preChangePct, pct, elapsed / _fovUpdateSpeed);
+                yield return null;
+            }
+
+            _fieldOfView.ViewRadius = 0;
+            _fieldOfView.ManualReset();
+        }
+
+        private System.Collections.IEnumerator ChangeToZero1(float pct) {
+            float preChangePct = _fieldOfView1.viewRadius;
+            float elapsed = 0f;
+
+            while (elapsed < _fovUpdateSpeed) {
+                elapsed += 0.02f * Time.deltaTime;
+                _fieldOfView1.viewRadius = Mathf.Lerp(preChangePct, pct, elapsed / _fovUpdateSpeed);
+                yield return null;
+            }
+
+            _fieldOfView1.viewRadius = 0;           
+        }
 
         public void AddBandAid(int amount) {
             _playerHealth.AddBandAid(amount);                   
@@ -343,41 +373,57 @@
             if (PowerUpCount > CollectedPowerup.Maximum )  // 5 is the max power up count
                 return;
 
-           // if (!_fieldOfView.enabled)
-           //    _fieldOfView.enabled = true;
+            // if (!_fieldOfView.enabled)
+            //    _fieldOfView.enabled = true;
             // Field of view will become larger based on scanRange which is depend on Powerup Collected.
             //_fieldOfView.ViewRadius = scanRange;
-            //StartCoroutine(ChangeToPct(scanRange));
 
-            _fieldOfView.ViewRadius = scanRange;
+            StartCoroutine(ChangeToPct1(scanRange));
+            StartCoroutine(ChangeToPct(scanRange));
+
+            //_fieldOfView.ViewRadius = scanRange;
             PowerUpCount++;
         }
 
-        //private System.Collections.IEnumerator ChangeToPct(float pct) {
-        //    float preChangePct = _fieldOfView.viewRadius;
-        //    float elapsed = 0f;
+        private System.Collections.IEnumerator ChangeToPct(float pct) {
+            float preChangePct = _fieldOfView.ViewRadius;
+            float elapsed = 0f;
 
-        //    while (elapsed < _fovUpdateSpeed) {
-        //        elapsed += 0.02f * Time.deltaTime;
-        //        _fieldOfView.viewRadius = Mathf.Lerp(preChangePct, pct, elapsed / _fovUpdateSpeed);
-        //        yield return null;
-        //    }
-           
-        //    _fieldOfView.viewRadius = scanRange;
-        //}
+            while (elapsed < _fovUpdateSpeed) {
+                elapsed += 0.02f * Time.deltaTime;
+                _fieldOfView.ViewRadius = Mathf.Lerp(preChangePct, pct, elapsed / _fovUpdateSpeed);
+                yield return null;
+            }
 
-       
+            _fieldOfView.ViewRadius = scanRange;
+        }
+
+        private System.Collections.IEnumerator ChangeToPct1(float pct) {
+            float preChangePct = _fieldOfView1.viewRadius;
+            float elapsed = 0f;
+
+            while (elapsed < _fovUpdateSpeed) {
+                elapsed += 0.02f * Time.deltaTime;
+                _fieldOfView1.viewRadius = Mathf.Lerp(preChangePct, pct, elapsed / _fovUpdateSpeed);
+                yield return null;
+            }
+
+            _fieldOfView1.viewRadius = scanRange;
+        }
+
+
 
         //// starting value for the Lerp
         //static float t = 0.0f;
+        //    float minimum = 0;
+        //    float maximum = 1;
 
-        //private System.Collections.IEnumerator ChangeToPct1(float pct) {
+        //private System.Collections.IEnumerator ChangeToPct1(float pct, float minimum, float maximum) {
         //     // animate the game object from -1 to +1 and back
-        //    float minimum = _fieldOfView.viewRadius;
-        //    float maximum = scanRange;
+
 
         //// animate the position of the game object...
-        //_fieldOfView.viewRadius = Mathf.Lerp(minimum, scanRange, t);
+        //_fieldOfView.ViewRadius = Mathf.Lerp(minimum, maximum, t);
 
         //    // .. and increase the t interpolater
         //    t += 0.03f * Time.deltaTime;

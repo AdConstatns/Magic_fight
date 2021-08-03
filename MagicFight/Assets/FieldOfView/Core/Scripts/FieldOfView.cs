@@ -311,8 +311,13 @@ namespace FieldOfViewAsset {
         
         public void Reset() {
             SetupDefaultSettings();
-            SetupDefaultSkinMaterial();
-            UpdateMeshSkin(0);
+            SetupDefaultSkinMaterial();           
+        } 
+        
+        public void ManualReset() {
+            SetupDefaultSettings();
+           // SetupDefaultSkinMaterial();
+            //UpdateMeshSkin(0);
         }
 
         private void SetupDefaultSettings() {
@@ -327,10 +332,10 @@ namespace FieldOfViewAsset {
 
             this._curveAccuracy = 5;
 
-            this._layersConfiguration = new[] { new LayersConfigurationEntry(-1, 0) }; // 'all layers with 0-transparency'
-            this._currentSkinMode = SkinMode.PASSIVE_MODE; 
+            this._layersConfiguration = new[] { new LayersConfigurationEntry(0, 0) }; // 'all layers with 0-transparency'
+            this._currentSkinMode = SkinMode.NONE; 
             
-            this._showSectorEdges = true;
+            this._showSectorEdges = false;
         }
 
         // Commented by Tholkappiyan
