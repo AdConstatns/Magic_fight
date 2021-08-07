@@ -28,9 +28,7 @@
             _anim = GetComponentInChildren<Animator>();
             _playerAnimation = GetComponent<PlayerAnimation>();
             _player = GetComponent<Player>();           
-            _unit = this.GetUnitFacade();
-         
-           
+            _unit = this.GetUnitFacade();         
         }
 
         private void OnDisable()
@@ -94,13 +92,17 @@
             // Create a boolean that is true if either of the input axes is non-zero.
             bool walking = false;
 
+            // Commented by tholkappiyan           
+            //if (_unit.velocity.sqrMagnitude > 10) {
+            //    walking = true;
+            //}
 
-            // modified by tholkappiyan
-            //if (_unit.velocity.x != 0.0f || _unit.velocity.z != 0.0f)  //_unit.velocity.sqrMagnitude > 0
-            if(_unit.velocity.sqrMagnitude != 0 )
-            {
+            // Add by tholkappiyan       
+            if (Mathf.Abs(_unit.velocity.x) > 2.0f || Mathf.Abs(_unit.velocity.z) > 2.0f) {
+
                 walking = true;
             }
+
 
             // Tell the animator whether or not the player is walking.
             // Commented by Tholkappiyan. Implemented below.
@@ -114,7 +116,14 @@
             //    _playerAnimation.SetAnimationBool(Attack, false);
             //}
 
+//#if UNITY_EDITOR
 
+//            if (gameObject.CompareTag("Player")) {
+//                Debug.LogWarning($"<color=green><b>Player Animation: Velocity:</b></color>" + _unit.velocity.sqrMagnitude);
+//                Debug.LogWarning($"<color=green><b>Player Animation: Walk velocity of x, z: </b></color>" + _unit.velocity.x + "  " + _unit.velocity.z);
+//            }
+
+//#endif
 
 //#if UNITY_EDITOR
 //            Debug.LogWarning($"<color=green><b>Player Animation: Walk Status:</b></color>"+ walking);

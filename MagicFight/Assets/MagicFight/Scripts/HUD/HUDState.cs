@@ -18,6 +18,7 @@
         private static FireUI _fire;
         private static ThunderUI _thunder;
         private static GroundUI _ground;
+        private static MaxPowerupUI _MaxPowerup;
 
         public static void UpdateAmmo(int currentAmmo) {
             _ammo.SetAmmo(currentAmmo);
@@ -37,8 +38,7 @@
             _health.SetHealth(currentHealth);
         }
 
-        public static void UpdateScore(int score)
-        {
+        public static void UpdateScore(int score) {
             _score.AddScore(score);
         }
 
@@ -55,6 +55,7 @@
             _bandaids = GetComponentInChildren<BandAidUI>();
             _health = GetComponentInChildren<HealthUI>();
             _score = GetComponentInChildren<ScoreUI>();
+            _MaxPowerup = GetComponentInChildren<MaxPowerupUI>();
         }
 
         public static void UpdateLavas(int currentGrounds) {
@@ -67,6 +68,10 @@
 
         public static void UpdateThunders(int currentThunder) {
             _thunder.SetThunders(currentThunder);
+        }
+
+        public static void DisplayMaxPowerupMessage(bool enable) {
+           _MaxPowerup.Display(enable);
         }
     }
 }

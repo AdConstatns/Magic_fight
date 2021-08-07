@@ -36,13 +36,13 @@ MonoBehaviour:
     Assembly-CSharp","score":310}]},{"@type":"Apex.AI.CompositeScoreQualifier, ApexAI","_scorers":[{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
     Assembly-CSharp","range":6,"score":120}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
     ApexAI"}}]}'
-  editorConfiguration: '{"offset":{"@x":-23,"@y":-75},"zoom":0.80000001,"SelectorView":{"ViewArea":{"@left":105,"@top":69,"@width":160,"@height":176},"Name":"Player
+  editorConfiguration: '{"offset":{"@x":-183,"@y":-324},"zoom":1,"SelectorView":{"ViewArea":{"@left":-23,"@top":-144,"@width":200,"@height":220},"Name":"Player
     Move or Idle","QualifierView":{"Name":"Player has no power","Description":"Player
     has no powerups. He is looking for Powerups","ActionView":{"@connectorType":"Selector"}},"QualifierView":{"Name":"Player
     has power up","Description":"Player already collected power and moving on to
-    collect other powerup. If he encounters Player he will attack.","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":297,"@top":69,"@width":160,"@height":128},"Name":"Pickup
+    collect other powerup. If he encounters Player he will attack.","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":217,"@top":-144,"@width":200,"@height":160},"Name":"Pickup
     Power-Up","QualifierView":{"Name":"Move To Power-Up","ActionView":{}},"DefaultQualifier":{"Name":"Default
-    Move ","Description":"Player is allowed to wander freely."}},"SelectorView":{"ViewArea":{"@left":297,"@top":229,"@width":160,"@height":224},"Name":"Move
+    Move ","Description":"Player is allowed to wander freely."}},"SelectorView":{"ViewArea":{"@left":217,"@top":56,"@width":200,"@height":280},"Name":"Move
     to other Player/Powers","QualifierView":{"Name":"Move to other PowerUps","ActionView":{}},"QualifierView":{"Name":"Has
     Maximum Power-Up"},"QualifierView":{"Name":"Has Player "},"DefaultQualifier":{"Name":"Default
     Move"}}}'

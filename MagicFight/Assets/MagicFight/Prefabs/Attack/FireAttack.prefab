@@ -4938,9 +4938,9 @@ GameObject:
   - component: {fileID: 3363689579415830882}
   - component: {fileID: 3363689579415830884}
   - component: {fileID: 3363689579415830885}
-  m_Layer: 16
+  m_Layer: 20
   m_Name: FireAttack
-  m_TagString: Untagged
+  m_TagString: PlayerAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4972,13 +4972,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a574b1902ef644b96c1e05e53828af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 10
   timeBetweenBombs: 1
   range: 5
   startingFires: 0
   FireLight: {fileID: 3363689579415830885}
+  _currentLavas: 0
   Fires:
   - {fileID: 1727626132299242, guid: b0bc1b6b391734647b9bb142bafc0819, type: 3}
+  - {fileID: 100006, guid: 57498c0ffb69c5247aa422aa34a14f8a, type: 3}
 --- !u!82 &3363689579415830884
 AudioSource:
   m_ObjectHideFlags: 0

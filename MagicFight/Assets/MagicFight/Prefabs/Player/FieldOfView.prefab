@@ -39,13 +39,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125559054317790815}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aeb5b55ec467224295da33707cc2c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 0
-  viewAngle: 0
+  viewAngle: 360
   targetMask:
     serializedVersion: 2
     m_Bits: 0
@@ -53,10 +53,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   visibleTargets: []
-  meshResolution: 0
+  meshResolution: 0.5
   edgeResolveIterations: 0
   edgeDstThreshold: 0
-  viewMeshFilter: {fileID: 0}
+  viewMeshFilter: {fileID: 2125559055425536747}
 --- !u!1 &2125559055425536750
 GameObject:
   m_ObjectHideFlags: 0

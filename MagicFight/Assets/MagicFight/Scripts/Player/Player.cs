@@ -242,8 +242,6 @@
             IncreaseFOVDistance();
             // Enable the Field Of View Particle System.
             EnableStrikeAreaParticle(_playerFire.gameObject);       
-            // Check for combo Attack. i.e player has more than one attack 
-            ComboAttack();
         }
 
         public void AddThunder(int amount) {
@@ -255,9 +253,7 @@
             // On Adding Thunder the Player Field of View Increase by 20 percent.          
             IncreaseFOVDistance();
             // Enable the Strike Area Particle System.
-            EnableStrikeAreaParticle(_playerThunder.gameObject);         
-            // Check for combo Attack. i.e player has more than one attack 
-            ComboAttack();
+            EnableStrikeAreaParticle(_playerThunder.gameObject);        
         }
 
         public void AddLava(int amount) {
@@ -269,10 +265,7 @@
             // On Adding Lava the Player Field of View Increase by 20 percent.
             IncreaseFOVDistance();
             // Enable the Field Of View Particle System.
-            EnableStrikeAreaParticle(_playerLava.gameObject);        
-            // Check for combo Attack. i.e player has more than one attack 
-            ComboAttack();
-
+            EnableStrikeAreaParticle(_playerLava.gameObject);
         }
 
         public void UseFire(AbilityMode mode) {
@@ -371,12 +364,7 @@
 
         public void IncreaseFOVDistance() {
             if (PowerUpCount > CollectedPowerup.Maximum )  // 5 is the max power up count
-                return;
-
-            // if (!_fieldOfView.enabled)
-            //    _fieldOfView.enabled = true;
-            // Field of view will become larger based on scanRange which is depend on Powerup Collected.
-            //_fieldOfView.ViewRadius = scanRange;
+                return;          
 
             StartCoroutine(ChangeToPct1(scanRange));
             StartCoroutine(ChangeToPct(scanRange));
@@ -411,38 +399,6 @@
             _fieldOfView1.viewRadius = scanRange;
         }
 
-
-
-        //// starting value for the Lerp
-        //static float t = 0.0f;
-        //    float minimum = 0;
-        //    float maximum = 1;
-
-        //private System.Collections.IEnumerator ChangeToPct1(float pct, float minimum, float maximum) {
-        //     // animate the game object from -1 to +1 and back
-
-
-        //// animate the position of the game object...
-        //_fieldOfView.ViewRadius = Mathf.Lerp(minimum, maximum, t);
-
-        //    // .. and increase the t interpolater
-        //    t += 0.03f * Time.deltaTime;
-
-        //    // now check if the interpolator has reached 1.0
-        //    // and swap maximum and minimum so game object moves
-        //    // in the opposite direction.
-        //    while (t > 1.0f) {
-        //        //float temp = maximum;
-        //        //maximum = minimum;
-        //        //minimum = temp;
-        //        t = 0.0f;
-        //    }
-
-        //    yield return null;
-        //}
-
-
-
         public void OnDeath() {
             // Turn off the movement and shooting scripts.
             _playerAIMovement.enabled = false;
@@ -474,31 +430,6 @@
                 angleInDegrees += transform.eulerAngles.y;
             }
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-        }
-
-        //public int GreatestOfThreePowerUp(int num1, int num2, int num3) {
-        //    // set the value of the three numbers
-        //    //num1 = 10;
-        //    //num2 = 20;
-        //    //num3 = 50;
-        //    int greatestNum;
-
-        //    if (num1 > num2) {
-        //        if (num1 > num3) {
-        //            //Console.Write("Number one is the largest!\n");
-        //            greatestNum = num1;
-        //        } else {
-        //            //Console.Write("Number three is the largest!\n");
-        //            greatestNum = num3;
-        //        }
-        //    } else if (num2 > num3)
-        //        //Console.Write("Number two is the largest!\n");
-        //        greatestNum = num2;
-        //    else
-        //        //Console.Write("Number three is the largest!\n");
-        //        greatestNum = num3;
-
-        //    return greatestNum;
-        //}
+        }      
     }
 }

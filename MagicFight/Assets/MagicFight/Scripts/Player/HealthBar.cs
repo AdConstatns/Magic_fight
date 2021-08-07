@@ -15,7 +15,7 @@ namespace AmazingTeam.MagicFight
         // Start is called before the first frame update
         void Awake()
         {
-            //_playerHealth = GetComponentInParent<PlayerHealth>();
+            _playerHealth = GetComponentInParent<PlayerHealth>();
            // GetComponent<Canvas>().worldCamera = Camera.main;          
         }
        

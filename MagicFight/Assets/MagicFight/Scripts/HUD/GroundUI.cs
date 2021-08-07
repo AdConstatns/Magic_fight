@@ -12,7 +12,6 @@ namespace AmazingTeam.MagicFight
 
         private void Awake() {
             _text = GetComponentInChildren<TextMeshProUGUI>();
-
         }
 
         private void Start() {
