@@ -578,10 +578,10 @@ MonoBehaviour:
   scanRange: 10
   StrikeRange: 3
   StrikeIncreasePercentage: 20
+  CachedStrikeRange: 0
   PowerUpCount: 0
   CollectedPowerup: {fileID: 11400000, guid: 887d63491b413c14ab29c756e2c01900, type: 2}
-  _cachedScanRange: 0
-  _fovUpdateSpeed: 0.02
+  _cachedFireParticleScale: 1.2
 --- !u!114 &564923348235241700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,8 +968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9d728dc72ea08489e10c3fbcc2f3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  minimumDistance: 0
+  radius: 12
+  minimumDistance: 8
   lingerForSeconds: 0
 --- !u!114 &5649709718395521855
 MonoBehaviour:
@@ -985,20 +985,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiConfigs:
   - aiId: dcb18271-7255-407e-865f-f06af241f9e4
-    intervalMin: 0.5
-    intervalMax: 0.5
+    intervalMin: 0.1
+    intervalMax: 0.1
     startDelayMin: 0
     startDelayMax: 0
     isActive: 1
   - aiId: 6a3493cf-51ff-4648-bdd7-e6b23d8acefb
-    intervalMin: 0.5
-    intervalMax: 0.5
+    intervalMin: 0.1
+    intervalMax: 0.1
     startDelayMin: 0
     startDelayMax: 0
     isActive: 1
   - aiId: 55f7fe19-a6ec-45bb-9192-8d2fe58b5079
-    intervalMin: 0.5
-    intervalMax: 0.5
+    intervalMin: 0.1
+    intervalMax: 0.1
     startDelayMin: 0
     startDelayMax: 0
     isActive: 1
