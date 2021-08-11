@@ -9,7 +9,8 @@ namespace AmazingTeam.MagicFight {
             var player = c.player;
             
            if( player.currentFires <= 0 && player.currentThunders <=0 && player.currentLavas <= 0) {
-                player.IsPlayerShooting = false;               
+                player.IsPlayerShooting = false;
+                player.StrikeRange = player.CachedStrikeRange;
            }    
         }
     }

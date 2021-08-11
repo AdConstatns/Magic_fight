@@ -34,9 +34,9 @@ MonoBehaviour:
     Assembly-CSharp","not":true,"score":110},{"@type":"AmazingTeam.MagicFight.HasLava,
     Assembly-CSharp","not":true,"score":110}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
     ApexAI","score":100}}]}'
-  editorConfiguration: '{"offset":{"@x":108,"@y":-3},"zoom":0.85000002,"SelectorView":{"ViewArea":{"@left":74,"@top":65,"@width":204,"@height":136},"Name":"Single/Combo
+  editorConfiguration: '{"offset":{"@x":71,"@y":49},"zoom":0.85000002,"SelectorView":{"ViewArea":{"@left":37,"@top":117,"@width":204,"@height":136},"Name":"Single/Combo
     Attack","Description":"Player  AI detect any other player within the range will
-    attack.","QualifierView":{"Name":"Is PlayerAI can Shoot","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":363,"@top":48,"@width":238,"@height":289},"Name":"Player
+    attack.","QualifierView":{"Name":"Is PlayerAI can Shoot","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":326,"@top":100,"@width":238,"@height":289},"Name":"Player
     Attack","QualifierView":{"Name":"Fire Attack","ActionView":{}},"QualifierView":{"Name":"Thunder
     Attack","ActionView":{}},"QualifierView":{"Name":"Lava Attack","ActionView":{}},"QualifierView":{"Name":"Is
     Shooting To False","ActionView":{"Name":"Is Shooting To False","Description":"If

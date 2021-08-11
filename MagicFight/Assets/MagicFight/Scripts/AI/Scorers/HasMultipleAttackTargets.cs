@@ -2,6 +2,8 @@ namespace AmazingTeam.MagicFight
 {
     using Apex.AI;
     using Apex.Serialization;
+    using UnityEngine;
+    using System.Collections.Generic;
 
     /// <summary>
     /// An AI scorer for evaluating whether the entity has an attack target or not.
@@ -12,9 +14,9 @@ namespace AmazingTeam.MagicFight
         public bool not = false;
 
         public override float Score(IAIContext context) {
-            var c = (SurvivalContext)context;          
+            var c = (SurvivalContext)context;              
 
-            if (c.Players.Count <= 0) {
+            if (c.PlayersInsideStrike.Count <= 0) {  // c.Players.Count
                 // No Players available make the input shooting false.
                 c.player.IsPlayerShooting = false;
                 return this.not ? this.score : 0f;

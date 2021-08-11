@@ -8,7 +8,10 @@ namespace AmazingTeam.MagicFight {
     public sealed class ScanForPlayers : ActionBase {
 
         [ApexSerialization(defaultValue = 0.0f), FriendlyName("Player Count", "How large a radius points are sampled in, in a square with the entity in the center")]
-        public int Count = 0;   
+        public int Count = 0;
+
+        [ApexSerialization(defaultValue = 0.0f), FriendlyName("Strike Area Player Count", "How large a radius points are sampled in, in a square with the entity in the center")]
+        public int StrikeAreaPlayerCount = 0;
 
         public override void Execute(IAIContext context) {
           
@@ -44,6 +47,36 @@ namespace AmazingTeam.MagicFight {
             }
             // Visually display the Player Count
             Count = c.Players.Count;
+          
+            c.PlayersInsideStrike.Clear();
+
+            // Use OverlapSphere for getting all relevant colliders within scan range, filtered by the scanning layer
+            var strikeAreacolliders = Physics.OverlapSphere(player.position, player.StrikeRange, Layers.players);
+
+            for (int i = 0; i < strikeAreacolliders.Length; i++) {
+                var col = strikeAreacolliders[i];
+
+                if (col.isTrigger) {
+                    continue;
+                }
+
+                // Scan for the AI Player.
+                var playerToAdd = EntityManager.instance.GetLivingEntityByGameObject(col.gameObject);
+
+                if (playerToAdd == null) {
+                    // Scan for the Non AI Player.
+                    playerToAdd = col.gameObject.GetComponent<Player>();
+                    if (playerToAdd is null)
+                        continue;
+                }
+
+                // Avoiding adding the own gameobject.
+                if (c.player.gameObject != col.gameObject) {
+                    c.PlayersInsideStrike.Add(playerToAdd);
+                }
+            }
+
+            StrikeAreaPlayerCount = c.PlayersInsideStrike.Count;
         }
     }
 }

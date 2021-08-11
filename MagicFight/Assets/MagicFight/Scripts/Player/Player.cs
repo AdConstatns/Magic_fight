@@ -17,8 +17,11 @@
 
         //The range inside which to scan for enemies and power-ups
         public float scanRange;
-        // The range inside which to attack the enemies
-        public float strikeRange;
+        // The range inside which to attack the enemies       
+        public float StrikeRange;
+        public float StrikeIncreasePercentage = 20;
+        [HideInInspector]
+        public float CachedStrikeRange;
 
         private SurvivalContext _context;
         private PlayerShooting _playerShooting;
@@ -49,13 +52,17 @@
         // For Handline multiple targets.
         public HashSet<LivingEntity> AttackTarget;
 
-        // public FOVCollider _fOVCollider;
-
+        [HideInInspector]
+        // Total Powerup Collected.
         public int PowerUpCount;
         public PlayerCollectable CollectedPowerup;
-        public  float _cachedScanRange;
+        // Cached initial Scan Value.      
+        private  float _cachedScanRange;
+        [HideInInspector]
+        // Cached Fire Particle Scale initial value
+        public float _cachedFireParticleScale = 1.2f;       
 
-        public float _fovUpdateSpeed = 1;
+        private float _fovUpdateSpeed = 0.02f;
 
         public static Player focusedPlayer {
             get;
@@ -140,12 +147,12 @@
             _playerAnimation = GetComponent<PlayerAnimation>();
 
             _fieldOfView = this.GetComponentInChildren<FieldOfViewAsset.FieldOfView>();
-            _fieldOfView1 = this.GetComponentInChildren<FieldOfView>();
-            //_fOVCollider = this.GetComponentInChildren<FOVCollider>();
+            _fieldOfView1 = this.GetComponentInChildren<FieldOfView>();          
 
             AttackTarget = new HashSet<LivingEntity>();
 
             _cachedScanRange = scanRange;
+            CachedStrikeRange = StrikeRange;           
         }
 
         private void OnEnable() {
@@ -237,11 +244,12 @@
             // Show Fire Effect
             _playerFire.ShowFireEffect();
             //Increase Scan Range of the player
-            IncreaseScanRange();
+            //IncreaseScanRange();
+            IncreaseStrikeRange();
             // On Adding fire the Player Field of View Increase by 20 percent.            
             IncreaseFOVDistance();
             // Enable the Field Of View Particle System.
-            EnableStrikeAreaParticle(_playerFire.gameObject);       
+            EnableFireStrikeAreaParticle(_playerFire.gameObject);       
         }
 
         public void AddThunder(int amount) {
@@ -249,55 +257,57 @@
             // Show Thunder Effect
             _playerThunder.ShowThunderEffect();    
             //Increase Scan Range of the player
-            IncreaseScanRange();
+            //IncreaseScanRange();
+            IncreaseStrikeRange();
             // On Adding Thunder the Player Field of View Increase by 20 percent.          
             IncreaseFOVDistance();
             // Enable the Strike Area Particle System.
-            EnableStrikeAreaParticle(_playerThunder.gameObject);        
+            EnableThunderStrikeAreaParticle(_playerThunder.gameObject);        
         }
 
         public void AddLava(int amount) {
             _playerLava.AddLava(amount);
             // Show Lava Effect
-            _playerLava.ShowLavaEffect();          
+            _playerLava.ShowLavaEffect();
             //Increase Scan Range of the player
-            IncreaseScanRange();
+            //IncreaseScanRange();
+            IncreaseStrikeRange();
             // On Adding Lava the Player Field of View Increase by 20 percent.
             IncreaseFOVDistance();
-            // Enable the Field Of View Particle System.
-            EnableStrikeAreaParticle(_playerLava.gameObject);
+            // Enable and Scale the Field Of View Particle System.
+            EnableLavaStrikeAreaParticle(_playerLava.gameObject);
         }
 
         public void UseFire(AbilityMode mode) {
             _playerFire.UseFire(mode);
 
             if (_playerFire.currentFires <= 0) {
-                DisableStrikeAreaParticle(_playerFire.gameObject);
+                DisableFireStrikeAreaParticle(_playerFire.gameObject);
             }
 
             DisableFieldOfView();
-            ResetPowerUpCount();
-            ResetScanRange();
+            ResetPowerUpCount();            
+            ResetStrikeRange();
         }
         public void UseThunder(AbilityMode mode) {
             _playerThunder.UseThunder(mode);
 
             if (_playerThunder.currentThunders <= 0) {
-                DisableStrikeAreaParticle(_playerThunder.gameObject);
+                DisableThunderStrikeAreaParticle(_playerThunder.gameObject);
             }
             DisableFieldOfView();
-            ResetPowerUpCount();
-            ResetScanRange();
+            ResetPowerUpCount();            
+            ResetStrikeRange();
         }
         public void UseLava(AbilityMode mode) {
             _playerLava.UseLava(mode);
 
             if (_playerLava.currentLavas <= 0) {
-                DisableStrikeAreaParticle(_playerLava.gameObject);
+                DisableLavaStrikeAreaParticle(_playerLava.gameObject);
             }
             DisableFieldOfView();
-            ResetPowerUpCount();
-            ResetScanRange();
+            ResetPowerUpCount();            
+            ResetStrikeRange();            
         }
 
         void IncreaseScanRange() {
@@ -309,16 +319,72 @@
             scanRange += _cachedScanRange * (FOVIncreasePercentage/100);
         }
 
+        void ResetStrikeRange() {
+            if(_playerFire.currentFires <= 0 && _playerThunder.currentThunders <= 0 && _playerLava.currentLavas <= 0)
+                StrikeRange = CachedStrikeRange;  
+        }
+
+        protected void IncreaseStrikeRange() {  
+            // Increrase the scan range by 20 percent
+            // i.e 3 is 100 percent
+            //     0.6 is 20 percent.
+            //scanRange += 0.6f; 
+            // Increase the scan range by FOVIncreasePercentage
+            StrikeRange += CachedStrikeRange * (StrikeIncreasePercentage / 100);
+        }
+
         void ResetScanRange() {
             scanRange = _cachedScanRange;
         }
 
-        public void EnableStrikeAreaParticle(GameObject strikeArea) {
+        public void EnableFireStrikeAreaParticle(GameObject strikeArea) {
             strikeArea.transform.GetChild(0).gameObject.SetActive(true);
+            ParticleSystem ps = strikeArea.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
+            var shape = ps.shape;
+            // radius should be scaled gradually. 
+            // i.e 1 hit it should be 0.3. 
+            //     2 hit it should be 0.6.
+            shape.radius = 0.3f * PowerUpCount;           
         }
 
-        public void DisableStrikeAreaParticle(GameObject strikeArea) {
+        public void DisableFireStrikeAreaParticle(GameObject strikeArea) {
             strikeArea.transform.GetChild(0).gameObject.SetActive(false);
+            ParticleSystem ps = strikeArea.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
+            var shape = ps.shape;
+            shape.radius = 0.0f;
+        }
+
+        public void EnableLavaStrikeAreaParticle(GameObject strikeArea) {
+            strikeArea.transform.GetChild(0).gameObject.SetActive(true);
+            Vector3 scale = new Vector3(0.1f, 0.1f, 0.1f);
+            Vector3 cachedInitialscale = new Vector3(_cachedFireParticleScale, _cachedFireParticleScale, _cachedFireParticleScale);
+            // Scale should be incremented gradually. 
+            // i.e 1 hit it should be 1. 
+            //     2 hit it should be 2.
+            strikeArea.transform.GetChild(0).gameObject.transform.localScale = cachedInitialscale + scale * PowerUpCount;
+        }
+
+        public void DisableLavaStrikeAreaParticle(GameObject strikeArea) {
+            strikeArea.transform.GetChild(0).gameObject.SetActive(false);
+            Vector3 scale = new Vector3(1.2f, 1.2f, 1.2f);
+            strikeArea.transform.GetChild(0).gameObject.transform.localScale = scale;
+        }
+
+        public void EnableThunderStrikeAreaParticle(GameObject strikeArea) {
+            strikeArea.transform.GetChild(0).gameObject.SetActive(true);
+            ParticleSystem ps = strikeArea.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
+            var shape = ps.shape;
+            // radius should be scaled gradually. 
+            // i.e 1 hit it should be 1. 
+            //     2 hit it should be 2.
+            shape.radius =  1.0f * PowerUpCount;
+        }      
+
+        public void DisableThunderStrikeAreaParticle(GameObject strikeArea) {
+            strikeArea.transform.GetChild(0).gameObject.SetActive(false);
+            ParticleSystem ps = strikeArea.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
+            var shape = ps.shape;
+            shape.radius = 0.0f;
         }
 
         public void DisableFieldOfView() {
@@ -366,8 +432,8 @@
             if (PowerUpCount > CollectedPowerup.Maximum )  // 5 is the max power up count
                 return;          
 
-            StartCoroutine(ChangeToPct1(scanRange));
-            StartCoroutine(ChangeToPct(scanRange));
+            StartCoroutine(ChangeToPct1(StrikeRange));
+            StartCoroutine(ChangeToPct(StrikeRange));
 
             //_fieldOfView.ViewRadius = scanRange;
             PowerUpCount++;
@@ -383,7 +449,7 @@
                 yield return null;
             }
 
-            _fieldOfView.ViewRadius = scanRange;
+            _fieldOfView.ViewRadius = StrikeRange;
         }
 
         private System.Collections.IEnumerator ChangeToPct1(float pct) {
@@ -396,7 +462,7 @@
                 yield return null;
             }
 
-            _fieldOfView1.viewRadius = scanRange;
+            _fieldOfView1.viewRadius = StrikeRange;
         }
 
         public void OnDeath() {

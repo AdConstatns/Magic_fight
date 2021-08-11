@@ -18,31 +18,39 @@ MonoBehaviour:
   configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":f10061be4cf743c8bc7408f295af2edf,"_id":6a3493cf51ff4648bdd7e6b23d8acefb,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
     ApexAI","_id":f10061be4cf743c8bc7408f295af2edf,"_qualifiers":[{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
     ApexAI","action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":6f948b060fb0428a9d115cb60db093a5},"threshold":100,"_scorers":[{"@type":"AmazingTeam.MagicFight.HasPowerUpsInRange,
-    Assembly-CSharp","range":8,"score":110},{"@type":"AmazingTeam.MagicFight.DoPlayerHasPowerUps,
+    Assembly-CSharp","range":20,"score":110},{"@type":"AmazingTeam.MagicFight.DoPlayerHasPowerUps,
     Assembly-CSharp","not":true,"score":110}]},{"@type":"Apex.AI.CompositeScoreQualifier,
     ApexAI","action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":12caae38a348439ba8cbb6c6487b8414},"_scorers":[{"@type":"AmazingTeam.MagicFight.DoPlayerHasPowerUps,
     Assembly-CSharp","score":110}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
     ApexAI"}},{"@type":"Apex.AI.ScoreSelector, ApexAI","_id":6f948b060fb0428a9d115cb60db093a5,"_qualifiers":[{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
     ApexAI","action":{"@type":"AmazingTeam.MagicFight.MoveToClosestPowerUp, Assembly-CSharp","_scorers":[{"@type":"AmazingTeam.MagicFight.PowerupProximityToSelf,
     Assembly-CSharp","score":30}]},"threshold":100,"_scorers":[{"@type":"AmazingTeam.MagicFight.HasPowerUpsInRange,
-    Assembly-CSharp","range":8,"score":110},{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
+    Assembly-CSharp","range":10,"score":110},{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
     Assembly-CSharp","range":3,"not":true,"score":110}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
     ApexAI"}},{"@type":"Apex.AI.ScoreSelector, ApexAI","_id":12caae38a348439ba8cbb6c6487b8414,"_qualifiers":[{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
+    ApexAI","action":{"@type":"Apex.AI.SelectorAction, ApexAI","_selectorId":b9882595c8964ca5ad902bbfd97a6012},"threshold":100,"_scorers":[{"@type":"AmazingTeam.MagicFight.HasMinimumPowerups,
+    Assembly-CSharp","score":110}]},{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
+    ApexAI","action":{"@type":"AmazingTeam.MagicFight.MoveToClosestPlayer, Assembly-CSharp","_scorers":[{"@type":"AmazingTeam.MagicFight.PlayerProximityToSelf,
+    Assembly-CSharp","score":30}]},"threshold":200,"_scorers":[{"@type":"AmazingTeam.MagicFight.HasMaximumPowerup,
+    Assembly-CSharp","score":210}]},{"@type":"Apex.AI.CompositeScoreQualifier, ApexAI","_scorers":[{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
+    Assembly-CSharp","range":6,"score":120}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    ApexAI"}},{"@type":"Apex.AI.ScoreSelector, ApexAI","_id":b9882595c8964ca5ad902bbfd97a6012,"_qualifiers":[{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
+    ApexAI","action":{"@type":"AmazingTeam.MagicFight.MoveToClosestPlayer, Assembly-CSharp","_scorers":[]},"threshold":100,"_scorers":[{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
+    Assembly-CSharp","range":8,"not":true,"score":110}]},{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
     ApexAI","action":{"@type":"AmazingTeam.MagicFight.MoveToClosestPowerUp, Assembly-CSharp","_scorers":[{"@type":"AmazingTeam.MagicFight.PowerupProximityToSelf,
     Assembly-CSharp","score":30}]},"threshold":100,"_scorers":[{"@type":"AmazingTeam.MagicFight.HasPowerUpsInRange,
-    Assembly-CSharp","range":8,"score":110},{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
-    Assembly-CSharp","range":5,"not":true,"score":110}]},{"@type":"Apex.AI.CompositeAllOrNothingQualifier,
-    ApexAI","threshold":300,"_scorers":[{"@type":"AmazingTeam.MagicFight.HasMaximumPowerup,
-    Assembly-CSharp","score":310}]},{"@type":"Apex.AI.CompositeScoreQualifier, ApexAI","_scorers":[{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
-    Assembly-CSharp","range":6,"score":120}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
+    Assembly-CSharp","range":10,"score":110},{"@type":"AmazingTeam.MagicFight.HasPlayerInRange,
+    Assembly-CSharp","range":3,"not":true,"score":110}]}],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
     ApexAI"}}]}'
-  editorConfiguration: '{"offset":{"@x":-183,"@y":-324},"zoom":1,"SelectorView":{"ViewArea":{"@left":-23,"@top":-144,"@width":200,"@height":220},"Name":"Player
+  editorConfiguration: '{"offset":{"@x":-98,"@y":-86},"zoom":0.80000001,"SelectorView":{"ViewArea":{"@left":30,"@top":58,"@width":160,"@height":176},"Name":"Player
     Move or Idle","QualifierView":{"Name":"Player has no power","Description":"Player
     has no powerups. He is looking for Powerups","ActionView":{"@connectorType":"Selector"}},"QualifierView":{"Name":"Player
     has power up","Description":"Player already collected power and moving on to
-    collect other powerup. If he encounters Player he will attack.","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":217,"@top":-144,"@width":200,"@height":160},"Name":"Pickup
+    collect other powerup. If he encounters Player he will attack.","ActionView":{"@connectorType":"Selector"}},"DefaultQualifier":{}},"SelectorView":{"ViewArea":{"@left":222,"@top":58,"@width":176,"@height":128},"Name":"Pickup
     Power-Up","QualifierView":{"Name":"Move To Power-Up","ActionView":{}},"DefaultQualifier":{"Name":"Default
-    Move ","Description":"Player is allowed to wander freely."}},"SelectorView":{"ViewArea":{"@left":217,"@top":56,"@width":200,"@height":280},"Name":"Move
-    to other Player/Powers","QualifierView":{"Name":"Move to other PowerUps","ActionView":{}},"QualifierView":{"Name":"Has
-    Maximum Power-Up"},"QualifierView":{"Name":"Has Player "},"DefaultQualifier":{"Name":"Default
-    Move"}}}'
+    Move ","Description":"Player is allowed to wander freely."}},"SelectorView":{"ViewArea":{"@left":222,"@top":218,"@width":176,"@height":224},"Name":"Has
+    Power-up","QualifierView":{"Name":"Has Minimum Powerup","ActionView":{"@connectorType":"Selector"}},"QualifierView":{"Name":"Has
+    Maximum Power-Up","ActionView":{}},"QualifierView":{"Name":"Has Player "},"DefaultQualifier":{"Name":"Default
+    Move"}},"SelectorView":{"ViewArea":{"@left":462,"@top":282,"@width":176,"@height":176},"Name":"Move
+    to Player/Powerup","QualifierView":{"Name":"Move to Closest Player","ActionView":{}},"QualifierView":{"Name":"Move
+    to Closest Powerup","ActionView":{}},"DefaultQualifier":{}}}'

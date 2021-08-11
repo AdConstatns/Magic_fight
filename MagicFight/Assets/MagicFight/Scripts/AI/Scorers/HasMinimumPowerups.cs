@@ -1,9 +1,10 @@
 namespace AmazingTeam.MagicFight
 {
+
     using Apex.AI;
     using Apex.Serialization;
+    public class HasMinimumPowerups : ContextualScorerBase {
 
-    public class HasMaximumPowerup : ContextualScorerBase {
         [ApexSerialization(defaultValue = false)]
         public bool not = false;
 
@@ -13,7 +14,7 @@ namespace AmazingTeam.MagicFight
             var player = c.player;
 
             // Check for the maximum powerup collected.
-            if (player.PowerUpCount < player.CollectedPowerup.Maximum && c.PlayersInsideStrike.Count <= 0) {
+            if (player.PowerUpCount >         player.CollectedPowerup.Maximum) {
                 return this.not ? this.score : 0f;
             }
 

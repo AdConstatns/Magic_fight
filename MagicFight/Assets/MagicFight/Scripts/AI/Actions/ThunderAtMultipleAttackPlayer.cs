@@ -6,7 +6,7 @@ namespace AmazingTeam.MagicFight {
             var c = (SurvivalContext)context;
 
             var player = c.player;
-            var players = c.Players;
+            var players = c.PlayersInsideStrike;
             var damage = c.player.GetComponentInChildren<PlayerThunder>().damage;
 
             foreach (var otherPlayer in players) {

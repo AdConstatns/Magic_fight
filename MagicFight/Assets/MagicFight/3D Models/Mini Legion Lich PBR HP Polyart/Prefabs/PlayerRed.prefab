@@ -575,8 +575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cf633d339ecd143b23824eb81df7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 3
-  strikeRange: 0
+  scanRange: 10
+  StrikeRange: 3
+  StrikeIncreasePercentage: 20
   PowerUpCount: 0
   CollectedPowerup: {fileID: 11400000, guid: 887d63491b413c14ab29c756e2c01900, type: 2}
   _cachedScanRange: 0
@@ -721,7 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstTime: 0
-  _hiddenComponents: 2047
+  _hiddenComponents: 2046
 --- !u!114 &5715512202232932060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,15 +735,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8b867335f0d2045980180adfee5184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAcceleration: 20
-  _maxDeceleration: 30
+  _maxAcceleration: 60
+  _maxDeceleration: 50
   _maxAngularAcceleration: 40
   _maxAngularSpeed: 6
   _minimumSpeed: 0.2
   _maximumSpeed: 10
   crawlSpeed: 1
   crouchedSpeed: 1.5
-  walkSpeed: 3
+  walkSpeed: 6
   runSpeed: 6
   strafeMaxSpeed: 4
   backPedalMaxSpeed: 3
@@ -967,8 +968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9d728dc72ea08489e10c3fbcc2f3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 12
-  minimumDistance: 8
+  radius: 0
+  minimumDistance: 0
   lingerForSeconds: 0
 --- !u!114 &5649709718395521855
 MonoBehaviour:

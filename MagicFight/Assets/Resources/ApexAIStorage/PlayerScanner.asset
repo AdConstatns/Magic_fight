@@ -18,8 +18,8 @@ MonoBehaviour:
   configuration: '{"@type":"Apex.AI.UtilityAI, ApexAI","_rootSelectorId":45894ab81ee3456eb3f711c9623b5350,"_id":dcb182717255407e865ff06af241f9e4,"_selectors":[{"@type":"Apex.AI.ScoreSelector,
     ApexAI","_id":45894ab81ee3456eb3f711c9623b5350,"_qualifiers":[],"_defaultQualifier":{"@type":"Apex.AI.DefaultQualifier,
     ApexAI","action":{"@type":"Apex.AI.CompositeAction, ApexAI","_actions":[{"@type":"AmazingTeam.MagicFight.ScanForPlayers,
-    Assembly-CSharp","Count":0},{"@type":"AmazingTeam.MagicFight.ScanForPowerUps,
+    Assembly-CSharp","Count":0,"StrikeAreaPlayerCount":0},{"@type":"AmazingTeam.MagicFight.ScanForPowerUps,
     Assembly-CSharp"},{"@type":"AmazingTeam.MagicFight.ScanForPositions, Assembly-CSharp"}]}}}]}'
-  editorConfiguration: '{"offset":{"@x":-15,"@y":-7},"zoom":1,"SelectorView":{"ViewArea":{"@left":85,"@top":93,"@width":200,"@height":100},"Name":"Scan
+  editorConfiguration: '{"offset":{"@x":111,"@y":41},"zoom":1,"SelectorView":{"ViewArea":{"@left":211,"@top":141,"@width":200,"@height":100},"Name":"Scan
     For Players","Description":"Scan for players in the Range Provided by the player.","DefaultQualifier":{"Name":"Context
     For Player","ActionView":{"@connectorType":"Composite","Name":"Scan"}}}}'
