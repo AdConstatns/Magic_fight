@@ -471,6 +471,7 @@
             _playerShooting.enabled = false;
             _playerAI.enabled = false;
             _playerAnimation.enabled = false;
+            HUDState.DisplayMaxPowerupMessage(false);
 
         }
 
