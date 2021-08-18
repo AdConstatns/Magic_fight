@@ -71,7 +71,8 @@
         }
 
         public void StartWander() {
-            _unit.Wander(10.0f, 4.0f, 0.0f);
+            // _unit.Wander(10.0f, 4.0f, 0.0f);
+            _unit.Wander(12.0f, 8.0f, 0.0f);
         }        
 
         /// <summary>

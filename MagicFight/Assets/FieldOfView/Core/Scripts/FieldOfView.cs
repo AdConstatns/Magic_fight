@@ -322,10 +322,10 @@ namespace FieldOfViewAsset {
 
         private void SetupDefaultSettings() {
             this._viewRadius = 0.0f;
-            this._viewAngle = 360;
+            this._viewAngle = 90;
             this._viewResolution = 0.5f;
 
-            this._alwaysVisible = true;
+            this._alwaysVisible = false;
 
             this._detectionTime = 0.1f;
             this._coolDownTime = 0.2f;

@@ -22,6 +22,7 @@ namespace AmazingTeam.MagicFight {
 
             // Use OverlapSphere for getting all relevant colliders within scan range, filtered by the scanning layer
             var colliders = Physics.OverlapSphere(player.position, player.scanRange, Layers.players);
+          
             
             for (int i = 0; i < colliders.Length; i++) {
                 var col = colliders[i];
@@ -50,7 +51,7 @@ namespace AmazingTeam.MagicFight {
           
             c.PlayersInsideStrike.Clear();
 
-            // Use OverlapSphere for getting all relevant colliders within scan range, filtered by the scanning layer
+            // Use OverlapSphere for getting all relevant colliders within Strike range, filtered by the scanning layer
             var strikeAreacolliders = Physics.OverlapSphere(player.position, player.StrikeRange, Layers.players);
 
             for (int i = 0; i < strikeAreacolliders.Length; i++) {
@@ -72,7 +73,25 @@ namespace AmazingTeam.MagicFight {
 
                 // Avoiding adding the own gameobject.
                 if (c.player.gameObject != col.gameObject) {
-                    c.PlayersInsideStrike.Add(playerToAdd);
+
+                    //calculate the Angle between player and other player.
+                    // 1. calculate the direction.
+                    // direction = Destination - Source.
+                    var dir = (col.gameObject.transform.position - c.player.gameObject.transform.position).normalized;
+
+                    if (Vector3.Angle(c.player.gameObject.transform.forward, dir) < 46) {
+                        c.PlayersInsideStrike.Add(playerToAdd);
+                    } else {
+                        c.PlayersInsideStrike.Remove(playerToAdd);
+                    }
+
+                    // 2. calculate the angle using the inverse tangent method.
+                    // Return Angle in Radians.
+                    //var angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg - 90;
+                    //if (angle < 45 && angle > -45)
+                    //    c.PlayersInsideStrike.Add(playerToAdd);
+                    //else
+                    //    c.PlayersInsideStrike.Remove(playerToAdd);
                 }
             }
 
