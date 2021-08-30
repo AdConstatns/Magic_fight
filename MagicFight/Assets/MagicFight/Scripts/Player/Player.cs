@@ -7,7 +7,7 @@
     using Apex.Units;
     using UnityEngine;
     using System.Collections.Generic;
-   
+    using Apex.LoadBalancing;
 
     /// <summary>
     /// Component representing the player. Instantiates the context and holds player specific variables
@@ -63,6 +63,8 @@
         public float _cachedFireParticleScale = 1.2f;       
 
         private float _fovUpdateSpeed = 0.02f;
+
+        public PlayerKilled _playerKilled;
 
         public static Player focusedPlayer {
             get;
@@ -473,6 +475,20 @@
             _playerAnimation.enabled = false;
             HUDState.DisplayMaxPowerupMessage(false);
 
+            // If Non AI Player is Dead.
+            if (gameObject.CompareTag("Player")) {
+                // Game Over. Player lose.
+                GameOverMenu.Show();               
+            }
+            // If AI Player is Dead.
+            else if (gameObject.CompareTag("PlayerAI")) {
+                // Increment the Player Death Count.
+                _playerKilled.CurrentDeath++;
+                // If the player Death Count reached the max.
+                if(_playerKilled.CurrentDeath >= _playerKilled.MaximumDeath)
+                // Game Over. Player Win
+                    GameOverMenu.Show();
+            }              
         }
 
         protected override void OnAttackTargetChanged(LivingEntity newAttackTarget) {

@@ -322,7 +322,7 @@ namespace FieldOfViewAsset {
 
         private void SetupDefaultSettings() {
             this._viewRadius = 0.0f;
-            this._viewAngle = 90;
+            this._viewAngle = 70;
             this._viewResolution = 0.5f;
 
             this._alwaysVisible = false;

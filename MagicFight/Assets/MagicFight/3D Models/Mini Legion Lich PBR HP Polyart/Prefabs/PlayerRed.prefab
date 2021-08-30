@@ -576,12 +576,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanRange: 10
-  StrikeRange: 3
-  StrikeIncreasePercentage: 20
+  StrikeRange: 4
+  StrikeIncreasePercentage: 30
   CachedStrikeRange: 0
   PowerUpCount: 0
   CollectedPowerup: {fileID: 11400000, guid: 887d63491b413c14ab29c756e2c01900, type: 2}
   _cachedFireParticleScale: 1.2
+  _playerKilled: {fileID: 11400000, guid: bf939155c081f8141ab54d37a667f3e1, type: 2}
 --- !u!114 &564923348235241700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5837,6 +5838,10 @@ PrefabInstance:
       value: PlayerAI
       objectReference: {fileID: 0}
     - target: {fileID: 3363689579415830882, guid: 32e4ab3f93e72354d81ee967b60fe44e, type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363689579415830882, guid: 32e4ab3f93e72354d81ee967b60fe44e, type: 3}
       propertyPath: Fires.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -5952,7 +5957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5352930687296196832, guid: d50eaba0378f6e94b996f7a180a7b769, type: 3}
       propertyPath: _viewAngle
-      value: 90
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5352930687296196832, guid: d50eaba0378f6e94b996f7a180a7b769, type: 3}
       propertyPath: _alwaysVisible
@@ -6022,7 +6027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5745189750916205879, guid: e5e564e15891dfe48b417815912e2d7b, type: 3}
       propertyPath: viewAngle
-      value: 90
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5e564e15891dfe48b417815912e2d7b, type: 3}
@@ -6148,6 +6153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaAttack
       objectReference: {fileID: 0}
+    - target: {fileID: 8500657798678174099, guid: ab6299b5fc4c3044eb51e0933767e071, type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab6299b5fc4c3044eb51e0933767e071, type: 3}
 --- !u!4 &3982605028986620536 stripped
@@ -6162,6 +6171,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 297077726540985118}
     m_Modifications:
+    - target: {fileID: 4059348013103741601, guid: d500e8beed21c144b9634eae00422b41, type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4059348013103741630, guid: d500e8beed21c144b9634eae00422b41, type: 3}
       propertyPath: m_RootOrder
       value: 3

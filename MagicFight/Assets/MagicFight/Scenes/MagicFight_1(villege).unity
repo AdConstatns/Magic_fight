@@ -4441,6 +4441,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570021486, guid: ca806280edb0a93419ab19eb57aa41f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 902732377, guid: ca806280edb0a93419ab19eb57aa41f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 982770599, guid: ca806280edb0a93419ab19eb57aa41f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207428589, guid: ca806280edb0a93419ab19eb57aa41f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3038047389162803692, guid: ca806280edb0a93419ab19eb57aa41f5, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -6533,6 +6549,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4657260702397742, guid: 356fa83e91052c344953b8081a7d6f57, type: 3}
   m_PrefabInstance: {fileID: 1061776960}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1181695710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1181695712}
+  - component: {fileID: 1181695711}
+  m_Layer: 0
+  m_Name: SceneASettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1181695711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181695710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ce04eb1291d5f4abf2db3533ce4f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuManagerPrefab: {fileID: 7627982613816173016, guid: a072ba51c88d45648bfbc7db6f9bc3a3, type: 3}
+--- !u!4 &1181695712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181695710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -14.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1184488612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10322,7 +10382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityConfigs:
-  - prefab: {fileID: 1839304754744059133, guid: 01b400d16f9f9fb4c818b5c436704eea, type: 3}
+  - prefab: {fileID: 290837826417469154, guid: 7e46634215f640f41b16f5fb1c12475e, type: 3}
     type: 0
     initialPoolSize: 1
   - prefab: {fileID: 6433630910243344614, guid: 0c4256e194a457a4f9a900c43e270c41, type: 3}

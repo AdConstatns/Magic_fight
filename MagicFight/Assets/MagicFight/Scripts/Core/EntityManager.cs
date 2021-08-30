@@ -94,8 +94,9 @@
         /// <param name="entity">The entity.</param>
         public void Recycle(IEntity entity)
         {
-            var pool = _pools[(int)entity.type];
-            pool.Return(entity);
+            var pool = _pools[(int)entity.type]; 
+          
+             pool.Return(entity);
             _entityLookup.Remove(entity.gameObject);
 
             //If the entity is a player, test for game over condition.

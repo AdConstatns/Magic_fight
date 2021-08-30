@@ -79,7 +79,7 @@ namespace AmazingTeam.MagicFight {
                     // direction = Destination - Source.
                     var dir = (col.gameObject.transform.position - c.player.gameObject.transform.position).normalized;
 
-                    if (Vector3.Angle(c.player.gameObject.transform.forward, dir) < 46) {
+                    if (Vector3.Angle(c.player.gameObject.transform.forward, dir) < 36) {
                         c.PlayersInsideStrike.Add(playerToAdd);
                     } else {
                         c.PlayersInsideStrike.Remove(playerToAdd);

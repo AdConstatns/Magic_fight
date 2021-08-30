@@ -9,6 +9,7 @@ TagManager:
   - Powerup
   - FxTemporaire
   - PlayerAI
+  - InControl
   layers:
   - Default
   - TransparentFX
