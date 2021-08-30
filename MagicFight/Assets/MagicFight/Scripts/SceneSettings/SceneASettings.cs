@@ -11,12 +11,7 @@
         void Awake() {
             PlayerPrefs.SetString("Scene", "MagicFight_2(Villege)");
             Instantiate(MenuManagerPrefab);
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-        }
+        }       
     }
 
 }

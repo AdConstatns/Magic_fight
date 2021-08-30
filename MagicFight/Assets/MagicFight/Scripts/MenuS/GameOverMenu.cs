@@ -19,8 +19,9 @@
         public void OnRestartPressed() {
             PlayerPrefs.SetInt("GameOver", 0);
             _playerkilled.CurrentDeath = 0;
-            SceneManager.LoadScene("MagicFight_2(Arena)", LoadSceneMode.Single);
-            //LoadBalancer.defaultBalancer.ExecuteOnce(RestartLevel, 4f);           
+            GameObject.FindGameObjectWithTag("EntityManager").SetActive(false);
+            //SceneManager.LoadSceneAsync("MagicFight_2(Arena)", LoadSceneMode.Single);
+            LoadBalancer.defaultBalancer.ExecuteOnce(RestartLevel, 1f);           
         }
 
         protected override void Awake() {
@@ -31,8 +32,8 @@
 
         // Start is called once 
         void Start() {
-
-            GameObject.FindGameObjectWithTag("InControl").SetActive(false);
+            //Time.timeScale = 0;
+            GameObject.FindGameObjectWithTag("InControl").SetActive(false);           
             if (_playerkilled.CurrentDeath == 3) {
                 PlayerPrefs.SetInt("GameOver", 1);
                 GameOverStatus.text = "You Win!";
@@ -43,6 +44,7 @@
 
         private static void RestartLevel() {
 #if  UNITY_2020
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 #else
             Application.LoadLevel(Application.loadedLevel);
