@@ -177,7 +177,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.5911806, g: 0.7264151, b: 0.51739943, a: 1}
     m_HighlightedColor: {r: 0, g: 0.9529412, b: 0.09411765, a: 1}
     m_PressedColor: {r: 0, g: 0.9528302, b: 0.09398146, a: 1}
     m_SelectedColor: {r: 0, g: 0.9529412, b: 0.09411765, a: 1}
@@ -620,7 +620,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: NEXT
 --- !u!1 &2011653919527259202
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.14150941, g: 0.14129359, b: 0.13683693, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -687,7 +687,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a2eb3aad547e4864fb9a1c7613f43686, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -699,7 +699,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over.
+  m_Text: Game Over
 --- !u!1 &4399999658820950259
 GameObject:
   m_ObjectHideFlags: 0

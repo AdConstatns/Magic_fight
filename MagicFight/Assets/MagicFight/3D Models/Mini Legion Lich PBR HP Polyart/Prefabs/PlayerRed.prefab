@@ -575,9 +575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cf633d339ecd143b23824eb81df7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 10
+  scanRange: 15
   StrikeRange: 4
-  StrikeIncreasePercentage: 30
+  StrikeIncreasePercentage: 25
   CachedStrikeRange: 0
   PowerUpCount: 0
   CollectedPowerup: {fileID: 11400000, guid: 887d63491b413c14ab29c756e2c01900, type: 2}

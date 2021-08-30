@@ -6,12 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MagicFight/Scenes/MainMenu.unity
-    guid: 22dba928932646848bf5006f37714616
-  - enabled: 1
-    path: Assets/MagicFight/Scenes/MagicFight_2(villege).unity
-    guid: 105161357b802b5449e6e22e12b6f353
-  - enabled: 1
     path: Assets/MagicFight/Scenes/MagicFight_2(Arena).unity
     guid: 3064464235920af48afb8b6dcc219a67
   m_configObjects: {}
