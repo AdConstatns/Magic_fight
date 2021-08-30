@@ -5839,7 +5839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3363689579415830882, guid: 32e4ab3f93e72354d81ee967b60fe44e, type: 3}
       propertyPath: damage
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3363689579415830882, guid: 32e4ab3f93e72354d81ee967b60fe44e, type: 3}
       propertyPath: Fires.Array.size
@@ -6155,7 +6155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8500657798678174099, guid: ab6299b5fc4c3044eb51e0933767e071, type: 3}
       propertyPath: damage
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab6299b5fc4c3044eb51e0933767e071, type: 3}
@@ -6173,7 +6173,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4059348013103741601, guid: d500e8beed21c144b9634eae00422b41, type: 3}
       propertyPath: damage
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4059348013103741630, guid: d500e8beed21c144b9634eae00422b41, type: 3}
       propertyPath: m_RootOrder
