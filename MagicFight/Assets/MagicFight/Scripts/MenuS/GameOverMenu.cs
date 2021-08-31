@@ -37,8 +37,12 @@
             if (_playerkilled.CurrentDeath == 3) {
                 PlayerPrefs.SetInt("GameOver", 1);
                 GameOverStatus.text = "You Win!";
+                YSOCorpAnalytics.Instance.GameFinish(true);
+                YSOCorpAnalytics.Level++;
+
             } else if (PlayerPrefs.GetInt("GameOver") == 1 || _player.currentHealth <= 0) {
                 GameOverStatus.text = "You lose!";
+                YSOCorpAnalytics.Instance.GameFinish(false);
             }
         }
 

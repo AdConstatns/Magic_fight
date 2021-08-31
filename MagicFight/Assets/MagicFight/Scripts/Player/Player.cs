@@ -298,7 +298,7 @@
                 DisableThunderStrikeAreaParticle(_playerThunder.gameObject);
             }
             DisableFieldOfView();
-            ResetPowerUpCount();            
+            ResetPowerUpCount();     
             ResetStrikeRange();
         }
         public void UseLava(AbilityMode mode) {
