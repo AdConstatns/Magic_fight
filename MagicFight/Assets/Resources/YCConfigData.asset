@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfcf417bceeba474b8d12501c906cef3, type: 3}
   m_Name: YCConfigData
   m_EditorClassIdentifier: 
-  gameYcId: 
+  gameYcId: dd4b19
   ABVersion: 1
   ABForcedSample: 
   ABSamples: []
-  Name: 
-  FbAppId: 
+  Name: Magic Fight
+  FbAppId: 815286595824769
   MmpAdjust: 0
   MmpAdjustAppToken: 
-  MmpTenjin: 0
+  MmpTenjin: 1
