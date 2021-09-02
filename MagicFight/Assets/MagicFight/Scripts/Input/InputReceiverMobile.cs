@@ -11,7 +11,8 @@ namespace AmazingTeam.MagicFight {
 
         //IUnitFacade unit;
 
-        public Transform target;
+        // Not Used.
+        private Transform target;
         partial void Steer(Vector3 Direction);
 
         InputDevice inputDevice;

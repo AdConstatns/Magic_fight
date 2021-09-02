@@ -23,7 +23,7 @@
 
         private static void RestartLevel()
         {
-#if UNITY_5_3 || UNITY_2020
+#if  UNITY_2020
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 #else
             Application.LoadLevel(Application.loadedLevel);

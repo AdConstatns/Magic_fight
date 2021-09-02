@@ -19,7 +19,10 @@
         public void OnRestartPressed() {
             PlayerPrefs.SetInt("GameOver", 0);
             _playerkilled.CurrentDeath = 0;
+            // To Disable the Spanning of Enemy and Powerups.
             GameObject.FindGameObjectWithTag("EntityManager").SetActive(false);
+            // To Disable the player 
+            _player.gameObject.SetActive(false);
             //SceneManager.LoadSceneAsync("MagicFight_2(Arena)", LoadSceneMode.Single);
             LoadBalancer.defaultBalancer.ExecuteOnce(RestartLevel, 1f);           
         }
@@ -33,7 +36,8 @@
         // Start is called once 
         void Start() {
             //Time.timeScale = 0;
-            GameObject.FindGameObjectWithTag("InControl").SetActive(false);           
+            // To Disable the Touch Control (Left Stick)
+            GameObject.FindGameObjectWithTag("InControl").SetActive(false);          
             if (_playerkilled.CurrentDeath == 3) {
                 PlayerPrefs.SetInt("GameOver", 1);
                 GameOverStatus.text = "You Win!";

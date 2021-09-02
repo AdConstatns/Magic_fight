@@ -12,12 +12,7 @@
             PlayerPrefs.SetString("Scene", "Menu");
             PlayerPrefs.SetInt("GameOver", 0);
             Instantiate(MenuManagerPrefab);
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-        }
+        }      
     }
 
 }

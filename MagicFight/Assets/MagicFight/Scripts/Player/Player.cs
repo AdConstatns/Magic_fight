@@ -66,6 +66,12 @@
 
         public PlayerKilled _playerKilled;
 
+        // Fiew of View Angle     
+        public float FieldOfViewAngle {
+            get; 
+            private set;
+        }
+
         public static Player focusedPlayer {
             get;
             set;
@@ -149,7 +155,8 @@
             _playerAnimation = GetComponent<PlayerAnimation>();
 
             _fieldOfView = this.GetComponentInChildren<FieldOfViewAsset.FieldOfView>();
-            _fieldOfView1 = this.GetComponentInChildren<FieldOfView>();          
+            _fieldOfView1 = this.GetComponentInChildren<FieldOfView>();
+            FieldOfViewAngle = _fieldOfView1.viewAngle;
 
             AttackTarget = new HashSet<LivingEntity>();
 
