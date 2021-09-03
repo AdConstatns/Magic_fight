@@ -34,6 +34,8 @@ namespace AmazingTeam.MagicFight
             YCManager.instance.OnGameStarted(Level);
 
             Debug.Log("YSO: start");
+            Debug.Log($"Level: {Level}");
+            
         }
 
      public void GameFinish(bool win)
@@ -41,6 +43,8 @@ namespace AmazingTeam.MagicFight
             YCManager.instance.OnGameFinished(win);
 
             Debug.Log($"YSO: end {win}");
+            Debug.Log($"Level: {Level}");
+            Level ++;
         }
         #endregion
     }
