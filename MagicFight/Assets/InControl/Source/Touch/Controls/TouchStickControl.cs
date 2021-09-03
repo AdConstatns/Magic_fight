@@ -114,10 +114,10 @@ namespace InControl
 
 		public override void DrawGizmos()
 		{
-			ring.DrawGizmos( RingPosition, Color.yellow );
-			knob.DrawGizmos( KnobPosition, Color.yellow );
-			Utility.DrawCircleGizmo( RingPosition, worldKnobRange, Color.red );
-			Utility.DrawRectGizmo( worldActiveArea, Color.green );
+			ring.DrawGizmos( RingPosition, Color.clear);
+			knob.DrawGizmos( KnobPosition, Color.clear);
+			Utility.DrawCircleGizmo( RingPosition, worldKnobRange, Color.clear);
+			Utility.DrawRectGizmo( worldActiveArea, Color.clear);
 		}
 
 

@@ -127,7 +127,7 @@
 
                 //Recycle the entity
                 // 4f is the time afterwhich the player is recycled.
-                LoadBalancer.defaultBalancer.ExecuteOnce(() => EntityManager.instance.Recycle(_player), 3f);
+                LoadBalancer.defaultBalancer.ExecuteOnce(() => EntityManager.instance.Recycle(_player), 1f);
             }  else {
                StartCoroutine(WaitForParticleSystem());          
             }
