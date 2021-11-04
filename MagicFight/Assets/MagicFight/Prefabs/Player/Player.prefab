@@ -673,7 +673,7 @@ Transform:
   m_GameObject: {fileID: 4801237413982153905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 104, y: 0.4, z: 106.1}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7784942973065913928}
   - {fileID: 8859185439019106552}
@@ -898,6 +898,7 @@ MonoBehaviour:
   PowerUpCount: 0
   CollectedPowerup: {fileID: 11400000, guid: 887d63491b413c14ab29c756e2c01900, type: 2}
   _cachedFireParticleScale: 1.2
+  _playerKilled: {fileID: 0}
 --- !u!114 &4801237413982153911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,7 +911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5dfa927cfa5444cb4e2ab358a0cc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &4801237413982153910
 MonoBehaviour:
   m_ObjectHideFlags: 0
